@@ -1,4 +1,4 @@
-package;
+package credits;
 
 #if desktop
 import Discord.DiscordClient;
@@ -20,16 +20,20 @@ import sys.io.File;
 import lime.utils.Assets;
 import flixel.addons.display.FlxBackdrop;
 import flixel.addons.display.FlxGridOverlay;
+import backend.TreeMenu;
+import backend.type.*;
 
 using StringTools;
 
-class CreditsState extends MusicBeatState
+class CreditsState extends TreeMenu
 {
 	var curSelected:Int = -1;
 
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private var iconArray:Array<AttachedSprite> = [];
 	private var creditsStuff:Array<Array<String>> = [];
+
+	var items:Array<OptionType> = [];
 
 	var bg:FlxSprite;
 	var descText:FlxText;
@@ -67,6 +71,8 @@ class CreditsState extends MusicBeatState
 		grid.alpha = 0;
 		FlxTween.tween(grid, {alpha: 1}, 0.5, {ease: FlxEase.quadOut});
 		add(grid);
+
+		var xmlPath = Paths.configxml('config/credits');
 
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
@@ -122,7 +128,7 @@ class CreditsState extends MusicBeatState
 				[
 					'CharGoldenYT',
 					'char',
-					"Idk if he wants to be a developer",
+					"Joined the project because me 'VideoBot' asked him",
 					'https://bsky.app/profile/chargoldenyt.bsky.social',
 					'FFA600'
 				],
