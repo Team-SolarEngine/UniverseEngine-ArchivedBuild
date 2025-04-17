@@ -26,6 +26,8 @@ import flash.media.Sound;
 import flixel.graphics.frames.FlxFramesCollection;
 import flixel.animation.FlxAnimationController;
 
+import backend.assets.AssetsLibraryList;
+
 using StringTools;
 
 class Paths
@@ -37,6 +39,8 @@ class Paths
 
 	public static var noteSkinFramesMap:Map<String, FlxFramesCollection> = new Map();
 	public static var noteSkinAnimsMap:Map<String, FlxAnimationController> = new Map();
+
+	public static var assetsTree:AssetsLibraryList;
 
 	#if MODS_ALLOWED
 	public static var ignoreModFolders:Array<String> = [
@@ -158,7 +162,7 @@ class Paths
 		currentLevel = name.toLowerCase();
 	}
 
-	public static function getPath(file:String, type:AssetType, ?library:Null<String> = null)
+	public static function getPath(file:String, ?type:AssetType, ?library:Null<String> = null)
 	{
 		if (library != null)
 			return getLibraryPath(file, library);

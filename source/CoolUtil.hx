@@ -16,6 +16,7 @@ import openfl.utils.Assets;
 import sys.io.Process;
 
 import Song.SwagSong;
+import haxe.xml.Access;
 
 using StringTools;
 
@@ -76,6 +77,11 @@ class CoolUtil
 
 	@:noUsing public static inline function getFPSRatio(ratio:Float):Float {
 		return FlxMath.bound(ratio * 60 * FlxG.elapsed, 0, 1);
+	}
+
+	public static inline function getAtt(xml:Access, name:String) {
+		if (!xml.has.resolve(name)) return null;
+		return xml.att.resolve(name);
 	}
 
 	inline public static function quantize(f:Float, snap:Float)
