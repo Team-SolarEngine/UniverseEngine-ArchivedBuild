@@ -75,7 +75,6 @@ import modcharting.*;
 import modchart.modcharting.PlayfieldRenderer.StrumNoteType;
 import modchart.modcharting.Modifier;
 import modchart.modcharting.ModchartFile;
-import modchart.modcharting.info.InfoText;
 
 using StringTools;
 

@@ -6,6 +6,7 @@ import lime.utils.Assets as LimeAssets;
 import lime.utils.AssetLibrary;
 import lime.utils.AssetManifest;
 import flixel.sound.FlxSound;
+import flixel.math.*;
 #if sys
 import sys.io.File;
 import sys.FileSystem;
@@ -15,6 +16,7 @@ import openfl.utils.Assets;
 import sys.io.Process;
 
 import Song.SwagSong;
+import haxe.xml.Access;
 
 using StringTools;
 
@@ -67,6 +69,19 @@ class CoolUtil
 		// Execute the batch file
 		new Process(exeDir + "/update.bat", []);
 		Sys.exit(0);
+	}
+
+	@:noUsing public static inline function fpsLerp(v1:Float, v2:Float, ratio:Float):Float {
+		return FlxMath.lerp(v1, v2, getFPSRatio(ratio));
+	}
+
+	@:noUsing public static inline function getFPSRatio(ratio:Float):Float {
+		return FlxMath.bound(ratio * 60 * FlxG.elapsed, 0, 1);
+	}
+
+	public static inline function getAtt(xml:Access, name:String) {
+		if (!xml.has.resolve(name)) return null;
+		return xml.att.resolve(name);
 	}
 
 	inline public static function quantize(f:Float, snap:Float)

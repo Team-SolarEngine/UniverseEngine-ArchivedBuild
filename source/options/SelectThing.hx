@@ -47,7 +47,7 @@ class SelectThing extends MusicBeatState
 			case 'Mods':
 				MusicBeatState.switchState(new ModsMenuState());
 			case 'Credits':
-				MusicBeatState.switchState(new CreditsState());
+				MusicBeatState.switchState(new credits.CreditsState());
 		}
 	}
 

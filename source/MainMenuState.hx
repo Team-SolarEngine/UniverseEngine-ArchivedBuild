@@ -359,7 +359,7 @@ class MainMenuState extends MusicBeatState
 									case 'awards':
 										MusicBeatState.switchState(new AchievementsMenuState());
 									case 'credits':
-										MusicBeatState.switchState(new CreditsState());
+										MusicBeatState.switchState(new credits.CreditsState());
 									case 'options':
 										LoadingState.loadAndSwitchState(new options.SelectThing());
 								}
