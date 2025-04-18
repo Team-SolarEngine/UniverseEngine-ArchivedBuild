@@ -1,5 +1,7 @@
 package credits;
 
+import flixel.group.FlxGroup.FlxTypedGroup;
+
 class UECredits extends OptionsScreen
 {
 	var credits:Array<Array<String>> = [
@@ -21,7 +23,7 @@ class UECredits extends OptionsScreen
 		[
 			'CharGoldenYT',
 			'char',
-			"Joined the project because me 'VideoBot' asked him",
+			"Joined the project because me, 'VideoBot', asked him",
 			'https://bsky.app/profile/chargoldenyt.bsky.social',
 			'FF8800'
 		],
@@ -137,6 +139,8 @@ class UECredits extends OptionsScreen
 		creditList();
 	}
 
+	var grpCredits:FlxTypedGroup<PortraitOption> = new FlxTypedGroup<PortraitOption>();
+
 	function creditList()
 	{
 		for (credit in credits)
@@ -145,6 +149,30 @@ class UECredits extends OptionsScreen
 				FlxG.bitmap.add(Paths.image("credits/" + credit[1])), 1, true);
 			@:privateAccess opt.__text.color = if (credit[4] == null) FlxColor.WHITE else FlxColor.fromString("0x" + credit[4]);
 			add(opt);
+			grpCredits.add(opt);
+		}
+	}
+
+	/**
+	 * Does a function then calls chamgeSelection().
+	 * @param func 
+	 */
+	function creditFunc(func:Void->Void)
+	{
+		func();
+		changeSelection(1);
+		changeSelection(-1);
+	}
+
+	override function update(elapsed:Float) {
+		super.update(elapsed);
+
+		if (FlxG.keys.justPressed.J)
+		{
+			if (grpCredits.members[curSelected].text == 'CharGoldenYT')
+			{
+				creditFunc(function() grpCredits.members[curSelected].desc = "Joined the project because me, 'VideoBot', asked him\nHi it's me Char.\nI'M BEING HELD HOSTAGE UNTILL THE MOD FOLDER SUPPORT IS DONE /J");
+			}
 		}
 	}
 }

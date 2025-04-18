@@ -10,6 +10,7 @@ import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.display.StageScaleMode;
+import ue.modding.ModsFolder;
 
 //crash handler stuff
 #if CRASH_HANDLER
@@ -36,6 +37,7 @@ class Main extends Sprite
 	var framerate:Int = 60; // How many frames per second the game should run at.
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
 	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
+	var modToLoad:String = null;
 	public static var fpsVar:FPS;
 
 	// You can pretty much ignore everything from here on - your code should go in your states.
@@ -104,6 +106,14 @@ class Main extends Sprite
 		
 		#if CRASH_HANDLER
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
+		#end
+
+		Paths.assetsTree = new AssetsLibraryList();
+		
+
+		ModsFolder.init();
+		#if MOD_SUPPORT
+		ModsFolder.switchMod(modToLoad = ClientPrefs.data.lastLoadedMod);
 		#end
 	}
 

@@ -23,7 +23,7 @@ class TextOption extends OptionType {
 	}
 	public override function onSelect() {
 		super.onSelect();
-		FlxG.sound.play(Paths.sound("confirm"));
+		FlxG.sound.play(Paths.sound("confirmMenu"));
 		FlxFlicker.flicker(this, 1, 0.15, true, false);
 		selectCallback();
 	}

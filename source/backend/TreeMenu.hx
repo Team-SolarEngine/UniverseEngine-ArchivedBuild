@@ -87,7 +87,7 @@ class TreeMenu extends MusicBeatState {
 	}
 
 	public function onMenuClose(m:OptionsScreen) {
-		FlxG.sound.play(Paths.sound("cancel"));
+		FlxG.sound.play(Paths.sound("cancelMenu"));
 	}
 
 	var menuChangeTween:FlxTween;

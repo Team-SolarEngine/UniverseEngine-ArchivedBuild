@@ -9,6 +9,7 @@ import flixel.util.FlxColor;
 
 class SaveVariables
 {
+	public var lastLoadedMod:String = null;
 	public var downScroll:Bool = false;
 	public var middleScroll:Bool = false;
 	public var opponentStrums:Bool = true;

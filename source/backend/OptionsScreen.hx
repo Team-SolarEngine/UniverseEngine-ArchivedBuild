@@ -70,7 +70,7 @@ class OptionsScreen extends FlxTypedSpriteGroup<OptionType> {
 	public function changeSelection(sel:Int, force:Bool = false) {
 		if (members.length <= 0 || (sel == 0 && !force)) return;
 
-		FlxG.sound.play(Paths.sound("scroll"));
+		FlxG.sound.play(Paths.sound("scrollMenu"));
 		curSelected = FlxMath.wrap(curSelected + sel, 0, members.length-1);
 		members[curSelected].selected = true;
 		updateMenuDesc();

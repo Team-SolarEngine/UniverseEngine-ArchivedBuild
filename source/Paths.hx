@@ -469,6 +469,9 @@ class Paths
 
 	public static var currentTrackedSounds:Map<String, Sound> = [];
 
+	// Videobot, this should actually point to a getPath thing, reference https://github.com/CodenameCrew/CodenameEngine/blob/main/source/funkin/backend/assets/Paths.hx#L104
+	public static function script(script:String) return script; 
+
 	public static function returnSound(path:String, key:String, ?library:String)
 	{
 		#if MODS_ALLOWED
@@ -506,7 +509,8 @@ class Paths
 	#if MODS_ALLOWED
 	inline static public function mods(key:String = '')
 	{
-		return 'mods/' + key;
+		// Psych Mods have been moved to addons.
+		return 'addons/' + key;
 	}
 
 	inline static public function modsFont(key:String)
