@@ -74,7 +74,7 @@ class UECredits extends OptionsScreen
 		],
 		['< UE Special Thanks >'],
 		[
-			"Codename Engine",
+			"Codename Crew",
 			"cne",
 			"HScript Support and new credits system. They're the GOAT",
 			"https://codename-engine.com/",
