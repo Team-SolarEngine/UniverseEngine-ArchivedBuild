@@ -235,6 +235,7 @@ class CoolUtil
 
 	public static function browserLoad(site:String)
 	{
+		if (site == null) return;
 		#if linux
 		Sys.command('/usr/bin/xdg-open', [site]);
 		#else
