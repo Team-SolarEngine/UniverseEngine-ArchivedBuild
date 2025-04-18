@@ -23,6 +23,8 @@ import sys.io.File;
 import sys.io.Process;
 #end
 
+import backend.assets.AssetsLibraryList;
+
 using StringTools;
 
 class Main extends Sprite
@@ -81,6 +83,7 @@ class Main extends Sprite
 			gameHeight = Math.ceil(stageHeight / zoom);
 		}
 	
+		Paths.assetsTree = new AssetsLibraryList();
 		ClientPrefs.loadDefaultStuff();
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, framerate, framerate, skipSplash, startFullscreen));
 
