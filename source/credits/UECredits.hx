@@ -171,7 +171,7 @@ class UECredits extends OptionsScreen
 		{
 			if (grpCredits.members[curSelected].text == 'CharGoldenYT')
 			{
-				creditFunc(function() grpCredits.members[curSelected].desc = "Joined the project because me, 'VideoBot', asked him\nHi it's me Char.\nI'M BEING HELD HOSTAGE UNTILL THE MOD FOLDER SUPPORT IS DONE /J");
+				creditFunc(function() grpCredits.members[curSelected].desc = "Joined the project because me, 'VideoBot', asked him\nHi it's me Char.\nI WAS HELD HOSTAGE UNTILL THE MOD FOLDER SUPPORT IS DONE /J");
 			}
 		}
 	}
