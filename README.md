@@ -50,7 +50,7 @@
     </a>
   </p>
   <p>
-      Third DEV "sup guys I was ~~forced~~ asked to join the team"
+      Third DEV "sup guys I was <s>forced</s> asked to join the team"
   </p>
 </div>
 
