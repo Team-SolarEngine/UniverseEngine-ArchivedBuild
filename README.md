@@ -43,9 +43,10 @@ modcharting tool my beloved <3<3
 coolest thing there is in this engine.
 
 # CREDICE
-* [uwenalil](https://linktr.ee/uwenalil) -> Former dev, (No Longer) In charge of the LUA, HX files and other.
-* [VideoBot](https://linktr.ee/videobot) -> First DEV, In charge of the HX files
-* [BaranMuzu](https://www.youtube.com/@BaranMuzu) -> Second DEV, In charge of the LUA files and other
+* <img src="https://github.com/VideoBotYT/Universe-Engine/blob/main/assets/preload/images/credits/uwenalil.png?raw=true" width="25" height="25"> [uwenalil](https://linktr.ee/uwenalil) -> Former dev, (No Longer) In charge of the LUA, HX files and other.
+* <img src="https://github.com/VideoBotYT/Universe-Engine/blob/main/assets/preload/images/credits/videobot.png?raw=true" width="25" height="25"> [VideoBot](https://linktr.ee/videobot) -> First DEV, In charge of the HX files
+* <img src="https://github.com/VideoBotYT/Universe-Engine/blob/main/assets/preload/images/credits/baranmuzu.png?raw=true" width="25" height="25"> [BaranMuzu](https://www.youtube.com/@BaranMuzu) -> Second DEV, In charge of the LUA files and other
+* <img src="https://github.com/CharGoldenYT/CharGoldenYT/blob/main/cha.png?raw=true" width="25" height="25"> [CharGoldenYT](https://github.com/CharGoldenYT) ->  Third DEV "sup guys I was ~~forced~~ asked to join the team"
 
 ### Universe Bonus Stuff
 * Support server (also uwens discord server) -> will have it's own dedicated server. not supported on previous link anymore because i left the server because owner used admin abuse on me.
