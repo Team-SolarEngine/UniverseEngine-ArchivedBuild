@@ -48,7 +48,7 @@
 
 <details align="center">
   <summary><h2>What is Universe Engine?</h2></summary>
-  <p> Universe Engine is a Forked Engine of Psych Engine </p>
+  <p> Universe Engine is a Forked Engine of Psych Engine (i swear to you this is psych fork -dave) </p>
   <p> With more features of modding like the Modcharting tool and other crazy stuff </p>
 </details>
 
