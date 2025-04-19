@@ -13,9 +13,7 @@
         <b>Daveberry (FKA: uwenalil)</b>
       </a>
   </h2>
-  <p>
-    Former dev, (No Longer) In charge of the LUA, HX files and other.
-  </p>
+  <p> Former dev, (No Longer) In charge of the LUA, HX files and other. </p>
 </div>
   
 <div class="videobot" align="center">
@@ -25,9 +23,7 @@
         <b>VideoBot</b>
     </a>
   </h2>
-  <p>
-    First DEV, In charge of the HX files
-  </p>
+  <p> First DEV, In charge of the HX files </p>
 </div>
   
 <div class="baran" align="center">
@@ -37,9 +33,7 @@
         <b>BaranMuzu</b>
     </a>
   </h2>
-  <p>
-    Second DEV, In charge of the LUA files and other
-  </p>
+  <p> Second DEV, In charge of the LUA files and other </p>
 </div>
 
 <div class="char" align="center">
@@ -49,9 +43,31 @@
         <b>CharGoldenYT</b>
     </a>
   </h2>
-  <p>
-      Third DEV "sup guys I was <s>forced</s> asked to join the team"
-  </p>
+  <p> Third DEV "sup guys I was <s>forced</s> asked to join the team" </p>
 </div>
 
-placeholder for now, will do later 3:<
+<details align="center">
+  <summary><h2>What is Universe Engine?</h2></summary>
+  <p> Universe Engine is a Forked Engine of Psych Engine </p>
+  <p> With more features of modding like the Modcharting tool and other crazy stuff </p>
+</details>
+
+<details align="center">
+  <summary><h2>What is the goal of Universe Engine?</h2></summary>
+  <p> Plan to give modders the true power of soft modding (like Codename Engine) </p>
+  <p> We also plan to optimize this engine! </p>
+</details>
+
+<details align="center">
+  <summary><h2>How do I Help?</h2></summary>
+  <p> You can help by making Issues (Finding Bugs) or make Pull Requests! (QOL, Bugfixes, etc...) </p>
+</details>
+
+<h1 align="center">
+  <a href="https://discord.gg/RaHmP5fgyA">
+    Universe Engine Discord Server
+  </a>
+  <a href="https://github.com/VideoBotYT/Universe-Engine-Launhcer">
+    Universe Engine Launcher
+  </a>
+</h1>
