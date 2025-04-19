@@ -49,9 +49,8 @@ coolest thing there is in this engine.
 * <img src="https://github.com/CharGoldenYT/CharGoldenYT/blob/main/cha.png?raw=true" width="25" height="25"> [CharGoldenYT](https://github.com/CharGoldenYT) ->  Third DEV "sup guys I was ~~forced~~ asked to join the team"
 
 ### Universe Bonus Stuff
-* Support server (also uwens discord server) -> will have it's own dedicated server. not supported on previous link anymore because i left the server because owner used admin abuse on me.
-* [OFFICIAL Universe Engine Website](https://uwenalil.netlify.app/universe%20engine/universewiki) -> https://uwenalil.netlify.app/universe%20engine/universewiki
-* [Bonus Songs (MODCHARTS)](https://github.com/uwenalil/Universe-Bonus-Songs) -> https://github.com/uwenalil/Universe-Bonus-Songs
+* [OFFICIAL Universe Engine Discord Server](https://discord.gg/RaHmP5fgyA) -> https://discord.gg/RaHmP5fgyA
+* [Bonus Songs (MODCHARTS)](https://github.com/VideoBotYT/Universe-Engine-Bonus-Songs) -> https://github.com/VideoBotYT/Universe-Engine-Bonus-Songs
 * [Official Launcher](https://github.com/VideoBotYT/Universe-Engine-Launhcer) -> https://github.com/VideoBotYT/Universe-Engine-Launhcer
 
 <details>
