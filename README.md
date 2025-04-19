@@ -50,8 +50,9 @@
   <p> "sup guys I was <s>forced</s> asked to join the team" </p>
 </div>
 
-<div align="center">
+<h1></h1>
 
+<div align="center">
 <details>
   <summary><h2>What is Universe Engine?</h2></summary>
   <p> Universe Engine is a Forked Engine of Psych Engine (i swear to you this is a psych fork -dave) </p>
