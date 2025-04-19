@@ -14,6 +14,7 @@
       </a>
   </h2>
   <p> Former dev, (No Longer) In charge of the LUA, HX files and other. </p>
+  <p> "even tho i quit deving, doesnt mean i can't change this stupid readme.md" </p>
 </div>
   
 <div class="videobot" align="center">
@@ -24,6 +25,7 @@
     </a>
   </h2>
   <p> First DEV, In charge of the HX files </p>
+  <p> "I love MODCHARTING" </p>
 </div>
   
 <div class="baran" align="center">
@@ -34,6 +36,7 @@
     </a>
   </h2>
   <p> Second DEV, In charge of the LUA files and other </p>
+  <p> "idk" </p>
 </div>
 
 <div class="char" align="center">
@@ -43,7 +46,8 @@
         <b>CharGoldenYT</b>
     </a>
   </h2>
-  <p> Third DEV "sup guys I was <s>forced</s> asked to join the team" </p>
+  <p> Third DEV, In charge of the HX files </p>
+  <p> "sup guys I was <s>forced</s> asked to join the team" </p>
 </div>
 
 <details align="center">
