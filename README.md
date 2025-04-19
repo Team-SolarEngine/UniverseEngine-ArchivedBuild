@@ -67,6 +67,8 @@
   <a href="https://discord.gg/RaHmP5fgyA">
     Universe Engine Discord Server
   </a>
+</h1>
+<h1 align="center">
   <a href="https://github.com/VideoBotYT/Universe-Engine-Launhcer">
     Universe Engine Launcher
   </a>
