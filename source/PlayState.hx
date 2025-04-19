@@ -4939,6 +4939,8 @@ class PlayState extends MusicBeatState
 			},
 			startDelay: Conductor.crochet * 0.002 / playbackRate
 		});
+
+		callOnLuas('onRating', [daRating.name]);
 	}
 
 	public var strumsBlocked:Array<Bool> = [];
