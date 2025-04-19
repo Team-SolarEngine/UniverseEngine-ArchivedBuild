@@ -1,6 +1,6 @@
-<h1 align="center"> 
+<div align="center"> 
   <img src="assets/exclude/images/Universe Engine.png" width="568" height="285">
-</h1>
+</div>
 
 <h2 align="center">
   THE PEOPLE WHO MADE THIS POSSIBLE!
