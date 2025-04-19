@@ -1,4 +1,4 @@
-<img src="assets/exclude/images/Universe Engine.png">
+<img src="assets/exclude/images/Universe Engine.png" width="568" height="285">
 
 ## THE PEOPLE WHO MADE THIS ENGINE POSSIBLE!
 * <img src="https://github.com/VideoBotYT/Universe-Engine/blob/main/assets/preload/images/credits/uwenalil.png?raw=true" width="25" height="25"> [uwenalil](https://linktr.ee/uwenalil) -> Former dev, (No Longer) In charge of the LUA, HX files and other.
