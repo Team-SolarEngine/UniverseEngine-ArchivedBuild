@@ -17,7 +17,7 @@
     </p>
   </div>
   
-  <div class="videobot">
+  <div class="videobot" align="center">
     <p>
       <img src="https://github.com/VideoBotYT/Universe-Engine/blob/main/assets/preload/images/credits/videobot.png?raw=true" width="25" height="25">
       <a href="https://linktr.ee/videobot">
