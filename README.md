@@ -50,22 +50,25 @@
   <p> "sup guys I was <s>forced</s> asked to join the team" </p>
 </div>
 
-<details align="center">
+<div align="center">
+
+<details>
   <summary><h2>What is Universe Engine?</h2></summary>
   <p> Universe Engine is a Forked Engine of Psych Engine (i swear to you this is a psych fork -dave) </p>
   <p> With more features of modding like the Modcharting tool and other crazy stuff </p>
 </details>
 
-<details align="center">
+<details>
   <summary><h2>What is the goal of Universe Engine?</h2></summary>
   <p> Plan to give modders the true power of soft modding (like Codename Engine) </p>
   <p> We also plan to optimize this engine! </p>
 </details>
 
-<details align="center">
+<details>
   <summary><h2>How do I Help?</h2></summary>
   <p> You can help by making Issues (Finding Bugs) or make Pull Requests! (QOL, Bugfixes, etc...) </p>
 </details>
+</div>
 
 <h1 align="center">
   <a href="https://discord.gg/RaHmP5fgyA">
