@@ -47,7 +47,7 @@
     </a>
   </h2>
   <p> Third DEV, In charge of the HX files </p>
-  <p> "sup guys I was <s>forced</s> asked to join the team" </p>
+  <p> "sup guys I was <s>forced</s> asked to join the team<br>Did you know I'm making a mo-" </p>
 </div>
 
 <h1></h1>
