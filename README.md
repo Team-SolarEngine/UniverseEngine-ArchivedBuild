@@ -10,7 +10,7 @@
   <p>
       <img src="https://daveberry.netlify.app/daveberry/dave.png" width="30" height="30"> 
       <a href="https://daveberry.netlify.app">
-        Daveberry (FKA: uwenalil)
+        <b>Daveberry (FKA: uwenalil)</b>
       </a>
   </p>
   <p>
@@ -22,7 +22,7 @@
   <p>
     <img src="https://github.com/VideoBotYT/Universe-Engine/blob/main/assets/preload/images/credits/videobot.png?raw=true" width="30" height="30">
     <a href="https://linktr.ee/videobot">
-        VideoBot
+        <b>VideoBot</b>
     </a>
   </p>
   <p>
@@ -34,7 +34,7 @@
   <p>
     <img src="https://github.com/VideoBotYT/Universe-Engine/blob/main/assets/preload/images/credits/baranmuzu.png?raw=true" width="30" height="30">
     <a href="https://www.youtube.com/@BaranMuzu">
-        BaranMuzu
+        <b>BaranMuzu</b>
     </a>
   </p>
   <p>
@@ -46,7 +46,7 @@
   <p>
     <img src="https://github.com/CharGoldenYT/CharGoldenYT/blob/main/cha.png?raw=true" width="30" height="30">
     <a href="https://github.com/CharGoldenYT">
-        CharGoldenYT
+        <b>CharGoldenYT</b>
     </a>
   </p>
   <p>
