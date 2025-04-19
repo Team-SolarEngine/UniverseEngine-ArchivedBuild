@@ -43,19 +43,10 @@ class CreditsState extends TreeMenu
 		#end
 
 		persistentUpdate = true;
-		if (ClientPrefs.data.darkmode)
-		{
-			bg = new FlxSprite(0, 0).loadGraphic(Paths.image("aboutMenu", "preload"));
-			add(bg);
-			bg.screenCenter();
-		}
-		else
-		{
-			bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
-			add(bg);
-			bg.screenCenter();
-		}
-
+		bg = new FlxSprite(0, 0).loadGraphic(Paths.image(ClientPrefs.data.darkmode? "aboutMenu" : "menuDesat", "preload"));
+		add(bg);
+		bg.screenCenter();
+		bg.color = 0xFFFDE871;
 		bg.scrollFactor.set();
 
 		var grid:FlxBackdrop = new FlxBackdrop(FlxGridOverlay.createGrid(80, 80, 160, 160, true, 0x33FFFFFF, 0x0));
@@ -72,7 +63,7 @@ class CreditsState extends TreeMenu
 		for (source in [AssetSource.SOURCE, AssetSource.MODS])
 		{
 			if (Paths.assetsTree != null)
-				{
+			{
 				if (Paths.assetsTree.existsSpecific(xmlPath, "TEXT", source))
 				{
 					var access:Access = null;

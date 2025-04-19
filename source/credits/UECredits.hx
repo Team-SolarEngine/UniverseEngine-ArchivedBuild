@@ -38,6 +38,13 @@ class UECredits extends OptionsScreen
 		['< UE Borrowed Code >'],
 		['Edwhak', 'Edwhak', 'Modchart Tool', 'https://www.youtube.com/@EDWHAK', '00FF00'],
 		[
+			"Codename Crew",
+			"cne",
+			"HScript Support, new credits system and mod loading. They're the GOAT! \n It was a pain in the a## to port tho.",
+			"https://codename-engine.com/",
+			"ae5cb8"
+		],
+		[
 			'Rozebud',
 			'rozebud',
 			"Chart Editor's Lil' Buddies",
@@ -73,13 +80,6 @@ class UECredits extends OptionsScreen
 			'FFFFFF'
 		],
 		['< UE Special Thanks >'],
-		[
-			"Codename Crew",
-			"cne",
-			"HScript Support and new credits system. They're the GOAT",
-			"https://codename-engine.com/",
-			"ae5cb8"
-		],
 		[
 			'Blitz',
 			'Blitz',
