@@ -24,7 +24,7 @@ class UECredits extends OptionsScreen
 			'CharGoldenYT',
 			'char',
 			"Joined the project because me, 'VideoBot', asked him",
-			'https://bsky.app/profile/chargoldenyt.bsky.social',
+			'https://bsky.app/profile/vschar-official.com',
 			'FF8800'
 		],
 		['< Former UE DEV >'],
