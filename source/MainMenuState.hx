@@ -354,7 +354,7 @@ class MainMenuState extends MusicBeatState
 										MusicBeatState.switchState(new FreeplayState());
 									#if MODS_ALLOWED
 									case 'mods':
-										openSubState(new ue.substates.ModSwitchMenu());
+										openSubState(new codename.substates.ModSwitchMenu());
 									#end
 									case 'awards':
 										MusicBeatState.switchState(new AchievementsMenuState());

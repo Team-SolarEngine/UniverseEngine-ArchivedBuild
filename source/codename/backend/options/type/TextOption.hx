@@ -1,4 +1,4 @@
-package backend.type;
+package codename.backend.options.type;
 
 import flixel.FlxG;
 import flixel.effects.FlxFlicker;

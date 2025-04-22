@@ -20,12 +20,13 @@ import sys.io.File;
 import lime.utils.Assets;
 import flixel.addons.display.FlxBackdrop;
 import flixel.addons.display.FlxGridOverlay;
-import backend.TreeMenu;
-import backend.OptionsScreen;
+import codename.backend.options.TreeMenu;
+import codename.backend.options.OptionsScreen;
 import backend.type.*;
 import credits.*;
 import haxe.xml.Access;
-import backend.assets.AssetsLibraryList.AssetSource;
+import codename.backend.assets.AssetsLibraryList.AssetSource;
+import codename.backend.shaders.CustomShader;
 
 using StringTools;
 
@@ -59,6 +60,7 @@ class CreditsState extends TreeMenu
 		var xmlPath = Paths.configxml('config/credits');
 
 		trace(Paths.assetsTree);
+		trace(Paths.configxml('config/credits'));
 
 		for (source in [AssetSource.SOURCE, AssetSource.MODS])
 		{

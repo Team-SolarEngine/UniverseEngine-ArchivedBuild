@@ -1,4 +1,4 @@
-package ue.modding;
+package codename.modding;
 
 import haxe.io.Path;
 import flixel.util.FlxSignal.FlxTypedSignal;

@@ -1,9 +1,8 @@
-package backend;
+package codename.backend.options;
 
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.FlxG;
 import flixel.math.*;
-import backend.type.*;
 
 class OptionsScreen extends FlxTypedSpriteGroup<OptionType> {
 	public static var optionHeight:Float = 120;

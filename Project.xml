@@ -83,6 +83,7 @@
 		<library name="week5"         preload="true" />
 		<library name="week6"         preload="true" />
 		<library name="week7"         preload="true" />
+		<library name="shaders"		  preload="true"/>
 	</section>
 	
 	<section if="NO_PRELOAD_ALL">
@@ -113,6 +114,7 @@
 	<assets path="assets/week6"         library="week6"         exclude="*.mp3" unless="web"/>
 	<assets path="assets/week7"         library="week7"         exclude="*.ogg" if="web"/>
 	<assets path="assets/week7"         library="week7"         exclude="*.mp3" unless="web"/>
+	<assets path="assets/shaders"		library="shaders"/>
 	
 	<section if="MODS_ALLOWED">
 	<!-- 									Psych Mods are moved-->

@@ -10,7 +10,7 @@ import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.display.StageScaleMode;
-import ue.modding.ModsFolder;
+import codename.modding.ModsFolder;
 
 //crash handler stuff
 #if CRASH_HANDLER
@@ -24,7 +24,7 @@ import sys.io.File;
 import sys.io.Process;
 #end
 
-import backend.assets.AssetsLibraryList;
+import codename.backend.assets.AssetsLibraryList;
 
 using StringTools;
 

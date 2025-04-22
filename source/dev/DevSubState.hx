@@ -33,7 +33,6 @@ class DevSubState extends MusicBeatSubstate
 
 	var grid:FlxBackdrop = new FlxBackdrop(FlxGridOverlay.createGrid(80, 80, 160, 160, true, 0x33FFFFFF, 0x0));
 
-	var UI_Box:FlxUITabMenu;
 	static var enableStage:Bool;
 	public static var animatedIcons:Bool;
 
@@ -55,23 +54,9 @@ class DevSubState extends MusicBeatSubstate
 		grpMenuShit = new FlxTypedGroup<Alphabet>();
 		add(grpMenuShit);
 
-		var tabs = [
-			{name: "Dev Options", label: "Dev Options"},
-			{name: "Dev States", label:"Dev States"}
-		];
-
-		UI_Box = new FlxUITabMenu(null, tabs, true);
-		UI_Box.resize(300, 300);
-		UI_Box.x = FlxG.width - 400;
-		UI_Box.y = 25;
-		add(UI_Box);
-
 		FlxG.mouse.visible = true;
 
 		regenMenu();
-		addDevStateUI();
-		addDevOptionUI();
-		UI_Box.selected_tab_id = "Dev States";
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
 		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
 		FlxG.sound.music.fadeIn(2, 0.7, 0.2);
@@ -90,7 +75,6 @@ class DevSubState extends MusicBeatSubstate
 		{
 			inShortcutMenu = false;
 			FlxG.mouse.visible = false;
-			UI_Box.destroy();
 			for (i in 0...grpMenuShit.members.length)
 			{
 				var obj = grpMenuShit.members[0];
@@ -115,7 +99,7 @@ class DevSubState extends MusicBeatSubstate
 		{
 			changeSelection(1);
 		}
-		if (accepted && !ClientPrefs.data.controllerMode && enableStage)
+		if (accepted && !ClientPrefs.data.controllerMode)
 		{
 			var daSelected:String = menuItems[curSelected];
 			switch (daSelected)
@@ -187,33 +171,5 @@ class DevSubState extends MusicBeatSubstate
 		}
 		curSelected = 0;
 		changeSelection();
-	}
-
-	var stageEditorButton:FlxUICheckBox;
-
-	function addDevStateUI()
-	{
-		var stateGroup = new FlxUI(null, UI_Box);
-		stateGroup.name = "Dev States";
-
-		stageEditorButton = new FlxUICheckBox(20, 20, null, null, "Stage Editor", 100);
-		stageEditorButton.checked = enableStage;
-
-		stateGroup.add(stageEditorButton);
-		UI_Box.addGroup(stateGroup);
-	}
-
-	var iconButton:FlxUICheckBox;
-
-	function addDevOptionUI()
-	{
-		var optionGroup = new FlxUI(null, UI_Box);
-		optionGroup.name = "Dev Options";
-
-		iconButton = new FlxUICheckBox(20, 20, null, null, "Animated Icons");
-		iconButton.checked = animatedIcons;
-
-		optionGroup.add(iconButton);
-		UI_Box.addGroup(optionGroup);
 	}
 }

@@ -1,7 +1,7 @@
-package backend.shaders;
+package codename.backend.shaders;
 
 import haxe.Exception;
-import backend.hscript.IHScriptCustomBehaviour;
+import codename.scripting.hscript.IHScriptCustomBehaviour;
 import flixel.graphics.tile.FlxGraphicsShader;
 import openfl.display3D.Program3D;
 import flixel.system.FlxAssets.FlxShader;

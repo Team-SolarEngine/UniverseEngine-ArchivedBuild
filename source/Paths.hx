@@ -23,7 +23,7 @@ import haxe.Json;
 import flash.media.Sound;
 import flixel.graphics.frames.FlxFramesCollection;
 import flixel.animation.FlxAnimationController;
-import backend.assets.AssetsLibraryList;
+import codename.backend.assets.AssetsLibraryList;
 
 using StringTools;
 
@@ -60,7 +60,7 @@ class Paths
 	];
 	#end
 
-	static public function getFolderDirectories(key:String, addPath:Bool = false, source:backend.assets.AssetsLibraryList.AssetSource = BOTH):Array<String>
+	static public function getFolderDirectories(key:String, addPath:Bool = false, source:codename.backend.assets.AssetsLibraryList.AssetSource = BOTH):Array<String>
 	{
 		if (!key.endsWith("/"))
 			key += "/";
@@ -73,7 +73,7 @@ class Paths
 		return content;
 	}
 
-	static public function getFolderContent(key:String, addPath:Bool = false, source:backend.assets.AssetsLibraryList.AssetSource = BOTH):Array<String>
+	static public function getFolderContent(key:String, addPath:Bool = false, source:codename.backend.assets.AssetsLibraryList.AssetSource = BOTH):Array<String>
 	{
 		// designed to work both on windows and web
 		if (!key.endsWith("/"))

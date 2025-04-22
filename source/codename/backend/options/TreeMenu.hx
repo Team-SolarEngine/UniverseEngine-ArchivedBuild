@@ -1,4 +1,4 @@
-package backend;
+package codename.backend.options;
 
 import flixel.util.typeLimit.OneOfTwo;
 import flixel.text.FlxText;
@@ -6,8 +6,6 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.math.FlxMath;
 import flixel.tweens.*;
-import backend.*;
-import backend.type.*;
 
 class TreeMenu extends MusicBeatState {
 	public var main:OptionsScreen;

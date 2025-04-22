@@ -1,4 +1,4 @@
-package ue.backend;
+package codename.backend.assets;
 
 import lime.utils.AssetLibrary;
 import lime.utils.Assets as LimeAssets;

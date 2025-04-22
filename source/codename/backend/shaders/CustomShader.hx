@@ -1,8 +1,9 @@
-package backend.shaders;
+package codename.backend.shaders;
 
 import haxe.Exception;
 import openfl.Assets;
-import backend.hscript.IHScriptCustomBehaviour;
+import codename.scripting.hscript.IHScriptCustomBehaviour;
+import codename.backend.shaders.FunkinShader;
 
 class CustomShader extends FunkinShader {
 	public var path:String = "";

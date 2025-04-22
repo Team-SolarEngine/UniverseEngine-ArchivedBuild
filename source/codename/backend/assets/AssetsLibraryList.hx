@@ -1,4 +1,4 @@
-package backend.assets;
+package codename.backend.assets;
 
 import lime.utils.AssetLibrary;
 import lime.utils.Assets;

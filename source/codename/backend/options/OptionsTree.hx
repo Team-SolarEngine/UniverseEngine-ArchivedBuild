@@ -1,4 +1,4 @@
-package backend;
+package codename.backend.options;
 
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.util.FlxDestroyUtil;

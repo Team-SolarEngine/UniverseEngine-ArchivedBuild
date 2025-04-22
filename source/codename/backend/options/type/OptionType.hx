@@ -1,4 +1,4 @@
-package backend.type;
+package codename.backend.options.type;
 
 import flixel.group.FlxSpriteGroup;
 import Controls;

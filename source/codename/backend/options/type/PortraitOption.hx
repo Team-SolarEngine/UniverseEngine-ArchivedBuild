@@ -1,8 +1,8 @@
-package backend.type;
+package codename.backend.options.type;
 
 import flixel.graphics.FlxGraphic;
 import flixel.FlxSprite;
-import backend.shaders.CustomShader;
+import codename.backend.shaders.CustomShader;
 
 class PortraitOption extends TextOption {
 	public var portrait:FlxSprite = null;

@@ -1,4 +1,4 @@
-package backend.assets;
+package codename.backend.assets;
 
 import lime.utils.Log;
 import lime.utils.AssetLibrary;
@@ -14,7 +14,7 @@ import lime.text.Font;
 import lime.utils.AssetType;
 import lime.utils.Bytes;
 
-#if MOD_SUPPORT
+#if MODS_ALLOWED
 import sys.FileStat;
 import sys.FileSystem;
 #end

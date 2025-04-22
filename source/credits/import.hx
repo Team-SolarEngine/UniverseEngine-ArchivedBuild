@@ -1,8 +1,8 @@
 package credits;
 
 #if !macro
-import backend.OptionsScreen;
-import backend.type.PortraitOption;
+import codename.backend.options.*;
+import codename.backend.options.type.*;
 import flixel.util.FlxColor;
 import flixel.FlxG;
 #end

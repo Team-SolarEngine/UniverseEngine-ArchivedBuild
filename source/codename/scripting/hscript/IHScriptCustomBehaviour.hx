@@ -1,4 +1,4 @@
-package backend.hscript;
+package codename.scripting.hscript;
 
 interface IHScriptCustomBehaviour {
 	public function hset(name:String, val:Dynamic):Dynamic;

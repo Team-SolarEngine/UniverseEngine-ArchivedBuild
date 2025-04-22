@@ -1,4 +1,4 @@
-package ue.substates;
+package codename.substates;
 
 #if MOD_SUPPORT
 import haxe.io.Path;
