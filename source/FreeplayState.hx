@@ -139,20 +139,10 @@ class FreeplayState extends MusicBeatState
 				}
 		}*/
 
-		if (ClientPrefs.data.darkmode)
-		{
-			bg = new FlxSprite(0, 0).loadGraphic(Paths.image("aboutMenu", "preload"));
-			bg.antialiasing = ClientPrefs.data.globalAntialiasing;
-			add(bg);
-			bg.screenCenter();
-		}
-		else
-		{
-			bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
-			bg.antialiasing = ClientPrefs.data.globalAntialiasing;
-			add(bg);
-			bg.screenCenter();
-		}
+		bg = new FlxSprite(0, 0).loadGraphic(Paths.image(ClientPrefs.data.darkmode? "aboutMenu" : "menuDesat", "preload"));
+		bg.antialiasing = ClientPrefs.data.globalAntialiasing;
+		add(bg);
+		bg.screenCenter();
 
 		var grid:FlxBackdrop = new FlxBackdrop(FlxGridOverlay.createGrid(80, 80, 160, 160, true, 0x33FFFFFF, 0x0));
 		grid.velocity.set(40, 20);

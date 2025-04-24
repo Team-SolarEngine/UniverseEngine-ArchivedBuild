@@ -8,6 +8,8 @@ import flixel.FlxG;
 import lime.text.Font;
 import openfl.text.Font as OpenFLFont;
 
+import codename.states.MainState;
+
 #if MODS_ALLOWED
 import sys.FileSystem;
 #end
@@ -33,7 +35,7 @@ class ModsFolder {
 
     public static function reloadMods(){
         if (!__firstTime)
-            FlxG.switchState(new MainMenuState());
+            FlxG.switchState(new MainState());
         __firstTime = false;
     }
 

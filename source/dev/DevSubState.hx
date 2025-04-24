@@ -110,15 +110,6 @@ class DevSubState extends MusicBeatSubstate
 					LoadingState.loadAndSwitchState(new editors.CharacterEditorState(Character.DEFAULT_CHARACTER, false));
 			}
 		}
-
-		if (stageEditorButton.checked)
-			enableStage = true;
-		else
-			enableStage = false;
-		if (iconButton.checked)
-			animatedIcons = true;
-		else
-			animatedIcons = false;
 	}
 
 	function changeSelection(change:Int = 0):Void
