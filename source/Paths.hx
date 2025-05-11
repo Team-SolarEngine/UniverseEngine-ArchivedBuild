@@ -264,14 +264,17 @@ class Paths
 		return getPath('data/$key.json', TEXT, library);
 	}
 
+	public static function cne_getPath(file:String, ?library:String) return library != null ? '$library:assets/$library/$file' : 'assets/$file';
+
 	inline static public function shaderFragment(key:String, ?library:String)
 	{
-		return getPath('shaders/$key.frag', TEXT, library);
+		trace(cne_getPath('shaders/$key.frag', library));
+		return cne_getPath('shaders/$key.frag', library);
 	}
 
 	inline static public function shaderVertex(key:String, ?library:String)
 	{
-		return getPath('shaders/$key.vert', TEXT, library);
+		return cne_getPath('shaders/$key.vert', library);
 	}
 
 	inline static public function lua(key:String, ?library:String)
