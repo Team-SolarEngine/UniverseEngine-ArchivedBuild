@@ -513,7 +513,7 @@ class Paths
 	inline static public function mods(key:String = '')
 	{
 		// Psych Mods have been moved to addons.
-		return 'addons/' + key;
+		return 'psych_mods/' + key;
 	}
 
 	inline static public function modsFont(key:String)
@@ -581,7 +581,7 @@ class Paths
 			if (FileSystem.exists(fileToCheck))
 				return fileToCheck;
 		}
-		return 'mods/' + key;
+		return 'psych_mods/' + key;
 	}
 
 	public static var globalMods:Array<String> = [];

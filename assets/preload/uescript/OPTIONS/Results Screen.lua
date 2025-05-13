@@ -162,8 +162,8 @@ function onTimerCompleted(tag, loops, loopsLeft)
     end
     if tag == "bfcomes" then
         makeAnimatedLuaSprite('bfhappy', 'result/bfgreatresult', 1300, -250)
-        addAnimationByPrefix('bfhappy', 'comes', 'come', 10, false)
-        addAnimationByPrefix('bfhappy', 'danceloop', 'danceloop', 8, true)
+        addAnimationByPrefix('bfhappy', 'comes', 'come', 24, false)
+        addAnimationByPrefix('bfhappy', 'danceloop', 'danceloop', 24, true)
         addLuaSprite('bfhappy', true)
         runTimer("bfstartstodance", 0.27)
         objectPlayAnimation('bfhappy', 'comes', true)
@@ -172,7 +172,7 @@ function onTimerCompleted(tag, loops, loopsLeft)
     end
     if tag == "bfcomesA" then
         makeAnimatedLuaSprite('bfsohappy', 'result/bfamazingresult', 1300, 330)
-        addAnimationByPrefix('bfsohappy', 'amazingloop', 'amazingloop', 8, true)
+        addAnimationByPrefix('bfsohappy', 'amazingloop', 'amazingloop', 24, true)
         setProperty('bfsohappy.antialiasing', false)
         addLuaSprite('bfsohappy', true)
         runTimer("bfstartstodanceA", 0.27)
@@ -185,8 +185,8 @@ function onTimerCompleted(tag, loops, loopsLeft)
     end
     if tag == "shitbfcomes" then
         makeAnimatedLuaSprite('shitbf', 'result/bfshitresult', 1300, 0)
-        addAnimationByPrefix('shitbf', 'intro', 'intro', 7, false)
-        addAnimationByPrefix('shitbf', 'look', 'look', 8, true)
+        addAnimationByPrefix('shitbf', 'intro', 'intro', 24, false)
+        addAnimationByPrefix('shitbf', 'look', 'look', 24, true)
         addLuaSprite('shitbf', true)
         objectPlayAnimation('shitbf', 'intro', true)
         setObjectCamera('shitbf', 'other')

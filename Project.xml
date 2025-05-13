@@ -117,7 +117,7 @@
 	
 	<section if="MODS_ALLOWED">
 	<!-- 									Psych Mods are moved-->
-		<assets path='example_mods' rename='addons' embed='false'/>
+		<assets path='example_mods' rename='psych_mods' embed='false'/>
 		<assets path='new_example_mods' rename='mods' embed='false'/>
 	</section>
 	<assets path='art/readme.txt' rename='do NOT readme.txt' />
