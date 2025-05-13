@@ -70,9 +70,7 @@ class SaveVariables
 	public var ueresultscreen:Bool = true;
 	public var uems:Bool = true;
 	public var loadscreen:Bool = false;
-	public var disable2ndpage:Bool = false;
 	public var hideOriCredits:Bool = false;
-	public var moveCreditMods:Bool = false;
 	public var windows:Bool = false;
 
 	// offical launcherl mao

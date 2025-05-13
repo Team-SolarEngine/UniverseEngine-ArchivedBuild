@@ -48,24 +48,15 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
-		if (ClientPrefs.data.moveCreditMods)
-			optionShit = [
-				'story_mode',
-				'freeplay',
-				#if ACHIEVEMENTS_ALLOWED 'awards', #end
-				#if !switch 'donate', #end
-				'options'
-			];
-		else
-			optionShit = [
-				'story_mode',
-				'freeplay',
-				#if ACHIEVEMENTS_ALLOWED 'awards', #end
-				#if !switch 'donate', #end
-				'mods',
-				'credits',
-				'options'
-			];
+		optionShit = [
+			'story_mode',
+			'freeplay',
+			#if ACHIEVEMENTS_ALLOWED 'awards', #end
+			#if !switch 'donate', #end
+			'mods',
+			'credits',
+			'options'
+		];
 
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();

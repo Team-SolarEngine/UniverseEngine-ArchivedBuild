@@ -513,13 +513,6 @@ class ModsMenuState extends MusicBeatState
 				}
 				FlxG.camera.fade(FlxColor.BLACK, 0.5, false, FlxG.resetGame, false);
 			}
-			else
-			{
-				if (ClientPrefs.data.moveCreditMods)
-					MusicBeatState.switchState(new options.SelectThing());
-				else
-					MusicBeatState.switchState(new MainMenuState());
-			}
 		}
 
 		if (controls.UI_UP_P)

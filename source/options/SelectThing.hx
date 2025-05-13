@@ -44,10 +44,6 @@ class SelectThing extends MusicBeatState
 				MusicBeatState.switchState(new options.UniverseOptionsMenu());
 			case 'Psych Options':
 				MusicBeatState.switchState(new options.OptionsState());
-			case 'Mods':
-				MusicBeatState.switchState(new ModsMenuState());
-			case 'Credits':
-				MusicBeatState.switchState(new credits.CreditsState());
 		}
 	}
 
@@ -58,11 +54,7 @@ class SelectThing extends MusicBeatState
 	{
 		// FlxG.sound.playMusic(Paths.music(Paths.formatToSongPath(ClientPrefs.data.pauseMusic), "shared"), 0);
 		// FlxG.sound.music.fadeIn(4, 0, 0.7);
-
-		if (ClientPrefs.data.moveCreditMods)
-			options = ['Universe Options', 'Psych Options', 'Mods', 'Credits'];
-		else
-			options = ['Universe Options', 'Psych Options'];
+		options = ['Universe Options', 'Psych Options'];
 
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();

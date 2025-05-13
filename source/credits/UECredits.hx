@@ -30,8 +30,8 @@ class UECredits extends OptionsScreen
 		['< Former UE DEV >'],
 		[
 			'Daveberry',
-			'uwenalil',
-			'Former DEV, (No Longer) In charge of the LUA, HX files and other',
+			'dave',
+			'Former Dev\nhello i still exist and still somewhat helping :3',
 			'https://daveberry.netlify.app/',
 			'008bff'
 		],

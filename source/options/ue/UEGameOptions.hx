@@ -76,16 +76,10 @@ class UEGameOptions extends BaseOptionsMenu
 		/*var option:Option = new Option('Silly Bounce', "Makes the dots behind the main menu bounce", 'sillyBob', 'bool', true);
 		addOption(option);*/
 
-		var option:Option = new Option('Disable Second Page', "Disables the second page on the main menu.", 'disable2ndpage', 'bool', false);
-		addOption(option);
-
 		var option:Option = new Option('Hide Original Credits', "Hides the original credits built-in in source.", 'hideOriCredits', 'bool', false);
 		addOption(option);
 
-		var option:Option = new Option('Move Credits and Mods', "Moves the Credits and Mods to Options.", 'moveCreditMods', 'bool', false);
-		addOption(option);
-
-		var option:Option = new Option("Dangerous Functions", "Are you sure about this?", "windows", "bool", false);
+		var option:Option = new Option("Dangerous Functions", "This does DANGEROUS stuff to your OS. Not deleting your files, just a extenal window of a message box, hiding the taskbar, etc etc...", "windows", "bool", false);
 		addOption(option);
 		option.onChange = window;
 

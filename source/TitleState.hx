@@ -91,6 +91,7 @@ class TitleState extends MusicBeatState
 
 	public static var updateVersion:String = '';
 
+	// AN AMMAR CREATIIVTY
 	var blackDots:FlxBackdrop;
 	var logoCanBeat:Bool = false;
 	var fnf:FlxSprite;
@@ -98,6 +99,7 @@ class TitleState extends MusicBeatState
 	var creativity:FlxSprite;
 	var bg:FlxSprite;
 
+	// NORMAL COLLECTIONS
 	var pRESSENTERTOBEGIN:FlxSprite;
 	var yOUR:FlxSprite;
 	var nORMAL:FlxSprite;
@@ -107,6 +109,16 @@ class TitleState extends MusicBeatState
 	var daveberry:FlxBackdrop;
 	var square1:FlxBackdrop;
 	var square2:FlxBackdrop;
+
+	// UNIVERSE ENGINE
+	var arrow1:FlxSprite;
+	var arrow2:FlxSprite;
+	var arrow3:FlxSprite;
+	var arrow4:FlxSprite;
+
+	// CAMERA TWEEN SHIT LOL!!!
+	var beatCamAngle:FlxTween;
+	var beatCamZoom:FlxTween;
 
 	override public function create():Void
 	{
@@ -144,17 +156,17 @@ class TitleState extends MusicBeatState
 		FlxG.keys.preventDefaultKeys = [TAB];
 
 		PlayerSettings.init();
-		
+
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 		unWackyourwacky = FlxG.random.getObject(getUETextShit());
-		
+
 		// DEBUG BULLSHIT
-		
+
 		swagShader = new ColorSwap();
 		super.create();
-		
+
 		FlxG.save.bind('funkin', 'universe');
-		
+
 		ClientPrefs.loadPrefs();
 		WindowColorMode.setWindowBorderColor(ClientPrefs.data.windowColor, true, true);
 		WindowColorMode.redrawWindowHeader();
@@ -322,23 +334,28 @@ class TitleState extends MusicBeatState
 			logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
 			logoBl.animation.play('bump');
 			logoBl.updateHitbox();
-				logoBl.y = FlxG.height / 2 - 450;
-				logoBl.screenCenter(X);
-				logoBl.scale.set(1.1, 1.1);
+			// logoBl.y = FlxG.height / 2 - 450;
+			logoBl.scale.set(1, 1);
+			logoBl.screenCenter();
+
+			arrow1 = new FlxSprite().loadGraphic(Paths.image("title/universe/arrow-1"));
+			arrow2 = new FlxSprite().loadGraphic(Paths.image("title/universe/arrow-2"));
+			arrow3 = new FlxSprite().loadGraphic(Paths.image("title/universe/arrow-3"));
+			arrow4 = new FlxSprite().loadGraphic(Paths.image("title/universe/arrow-4"));
 		}
 
 		if (ClientPrefs.data.mmm == "Normal Collections")
 		{
-			var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('title/bg/bg-' + FlxG.random.int(1, 5)));
+			var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('title/yncm/bg/bg-' + FlxG.random.int(1, 5)));
 			bg.antialiasing = ClientPrefs.data.globalAntialiasing;
 			bg.screenCenter();
 			add(bg);
 
-			pRESSENTERTOBEGIN = new FlxSprite().loadGraphic(Paths.image('title/PRESSENTERTOBEGIN'));
-			yOUR = new FlxSprite().loadGraphic(Paths.image('title/YOUR'));
-			nORMAL = new FlxSprite().loadGraphic(Paths.image('title/NORMAL'));
-			cOLLECTIONS = new FlxSprite().loadGraphic(Paths.image('title/COLLECTIONS'));
-			mOD = new FlxSprite().loadGraphic(Paths.image('title/MOD'));
+			pRESSENTERTOBEGIN = new FlxSprite().loadGraphic(Paths.image('title/yncm/PRESSENTERTOBEGIN'));
+			yOUR = new FlxSprite().loadGraphic(Paths.image('title/yncm/YOUR'));
+			nORMAL = new FlxSprite().loadGraphic(Paths.image('title/yncm/NORMAL'));
+			cOLLECTIONS = new FlxSprite().loadGraphic(Paths.image('title/yncm/COLLECTIONS'));
+			mOD = new FlxSprite().loadGraphic(Paths.image('title/yncm/MOD'));
 		}
 
 		// logoBl.color = FlxColor.BLACK;
@@ -382,42 +399,40 @@ class TitleState extends MusicBeatState
 		if (ClientPrefs.data.mmm != "AAC V4" && ClientPrefs.data.mmm != "Normal Collections")
 		{
 			gfDance.antialiasing = ClientPrefs.data.globalAntialiasing;
-				gfDance.screenCenter(X);
-				gfDance.y = FlxG.height / 2 - 200;
-				gfDance.scale.set(0.75, 0.75);
-				var fancyBG:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('universeBanner'));
-				fancyBG.updateHitbox();
-				fancyBG.screenCenter();
-				fancyBG.antialiasing = ClientPrefs.data.globalAntialiasing;
-				fancyBG.setGraphicSize(Std.int(fancyBG.width * 1.175));
-				add(fancyBG);
+			gfDance.screenCenter(X);
+			gfDance.y = FlxG.height / 2 - 200;
+			gfDance.scale.set(0.75, 0.75);
 
-			logoBl.shader = swagShader.shader;
-				var darkBG:FlxSprite = new FlxSprite(0, 0);
-				darkBG.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-				darkBG.alpha = 0.5;
-				darkBG.screenCenter();
-				add(darkBG);
+			var fancyBG:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('universeBanner'));
+			fancyBG.updateHitbox();
+			fancyBG.screenCenter();
+			fancyBG.antialiasing = ClientPrefs.data.globalAntialiasing;
+			fancyBG.setGraphicSize(Std.int(fancyBG.width * 1.175));
+			add(fancyBG);
 
-				var fancyLogoBl = new FlxSprite(titleJSON.titlex, titleJSON.titley);
-				fancyLogoBl.frames = Paths.getSparrowAtlas('logoBumpin');
-				fancyLogoBl.antialiasing = ClientPrefs.data.globalAntialiasing;
-				fancyLogoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
-				fancyLogoBl.animation.play('bump');
-				fancyLogoBl.updateHitbox();
-				fancyLogoBl.screenCenter(X);
-				logoBl.y = FlxG.height / 2 - 450;
-				add(fancyLogoBl);
-				fancyLogoBl.alpha = 0;
-				fancyLogoBl.shader = swagShader.shader;
+			var darkBG:FlxSprite = new FlxSprite(0, 0);
+			darkBG.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+			darkBG.alpha = 0.5;
+			darkBG.screenCenter();
+			add(darkBG);
+
+			var arrowArray:Array<FlxSprite> = [arrow1, arrow2, arrow3, arrow4];
+			for (i in arrowArray)
+			{
+				add(i);
+				i.y += 1280;
+			}
+
 			add(logoBl);
-			add(gfDance);
+			// add(gfDance);
+
+			// logoBl.y = FlxG.height / 2 - 450;
 			gfDance.shader = swagShader.shader;
 		}
 
 		if (ClientPrefs.data.mmm == "AAC V4")
 		{
-			bg = new FlxSprite(0, 0).loadGraphic(Paths.image('AmmarTitle/introBG'));
+			bg = new FlxSprite(0, 0).loadGraphic(Paths.image('title/ammar/introBG'));
 			bg.updateHitbox();
 			bg.screenCenter();
 			bg.antialiasing = ClientPrefs.data.globalAntialiasing;
@@ -434,19 +449,19 @@ class TitleState extends MusicBeatState
 			blackDots.y += 125;
 			add(blackDots);
 
-			fnf = new FlxSprite(0, 0).loadGraphic(Paths.image('AmmarTitle/FNF'));
+			fnf = new FlxSprite(0, 0).loadGraphic(Paths.image('title/ammar/FNF'));
 			fnf.updateHitbox();
 			fnf.screenCenter(X);
 			fnf.y = FlxG.height / 2 - 370;
 			fnf.antialiasing = ClientPrefs.data.globalAntialiasing;
 
-			anammar = new FlxSprite(0, 0).loadGraphic(Paths.image('AmmarTitle/An Ammar'));
+			anammar = new FlxSprite(0, 0).loadGraphic(Paths.image('title/ammar/An Ammar'));
 			anammar.updateHitbox();
 			anammar.screenCenter(X);
 			anammar.y = FlxG.height / 2 - 360;
 			anammar.antialiasing = ClientPrefs.data.globalAntialiasing;
 
-			creativity = new FlxSprite(0, 0).loadGraphic(Paths.image('AmmarTitle/Creativity'));
+			creativity = new FlxSprite(0, 0).loadGraphic(Paths.image('title/ammar/Creativity'));
 			creativity.updateHitbox();
 			creativity.screenCenter(X);
 			creativity.y = FlxG.height / 2 - 350;
@@ -468,18 +483,18 @@ class TitleState extends MusicBeatState
 			FlxTween.tween(grid, {alpha: 0.5}, 2, {ease: FlxEase.linear});
 			add(grid);
 			// funny
-			daveberry = new FlxBackdrop(Paths.image("title/daveberry"));
+			daveberry = new FlxBackdrop(Paths.image("title/yncm/daveberry"));
 			daveberry.alpha = 0.1;
 			daveberry.color = 0xFF008BFF;
 			daveberry.velocity.set(25, -25);
 			// add(daveberry);
 
-			square1 = new FlxBackdrop(Paths.image("title/SQUARE"));
+			square1 = new FlxBackdrop(Paths.image("title/yncm/SQUARE"));
 			square1.alpha = 0.25;
 			square1.velocity.set(0, 50);
 			add(square1);
 
-			square2 = new FlxBackdrop(Paths.image("title/SQUARE"));
+			square2 = new FlxBackdrop(Paths.image("title/yncm/SQUARE"));
 			square2.angle = 180;
 			square2.alpha = 0.25;
 			square2.velocity.set(0, -50);
@@ -797,18 +812,21 @@ class TitleState extends MusicBeatState
 			skipIntro();
 		}
 
-		if (swagShader != null)
-		{
-			if (controls.UI_LEFT)
-				swagShader.hue -= elapsed * 0.1;
-			if (controls.UI_RIGHT)
-				swagShader.hue += elapsed * 0.1;
-		}
+		// no more shader fak yo-
+		/* 
+			if (swagShader != null)
+			{
+				if (controls.UI_LEFT)
+					swagShader.hue -= elapsed * 0.1;
+				if (controls.UI_RIGHT)
+					swagShader.hue += elapsed * 0.1;
+			}
 
-		if (ClientPrefs.data.mmm != "AAC V4" && ClientPrefs.data.mmm != "Normal Collections")
-		{
-			swagShader.hue += elapsed * 0.1;
-		}
+			if (ClientPrefs.data.mmm != "AAC V4" && ClientPrefs.data.mmm != "Normal Collections")
+			{
+				swagShader.hue += elapsed * 0.1;
+			}
+		 */
 
 		super.update(elapsed);
 	}
@@ -891,14 +909,15 @@ class TitleState extends MusicBeatState
 		}
 		if (skippedIntro)
 		{
-			if (ClientPrefs.data.mmm == "Normal Collections")
-			{
-				FlxTween.tween(FlxG.camera, {angle: curBeat % 2 == 0 ? 2 : -2}, 1, {ease: FlxEase.expoOut, type: BACKWARD});
-				FlxTween.tween(FlxG.camera, {zoom: 1.125}, 1, {ease: FlxEase.expoOut, type: BACKWARD});
+			if (beatCamAngle != null) beatCamAngle.cancel();
+			if (beatCamZoom != null) beatCamZoom.cancel();
+
+			if (ClientPrefs.data.mmm == "Normal Collections" && ClientPrefs.data.mmm == "AAC V4") {
+				beatCamAngle = FlxTween.tween(FlxG.camera, {angle: curBeat % 2 == 0 ? 2 : -2}, 1, {ease: FlxEase.expoOut, type: BACKWARD});
+				beatCamZoom = FlxTween.tween(FlxG.camera, {zoom: 1.125}, 1, {ease: FlxEase.expoOut, type: BACKWARD});
 			}
-			if (ClientPrefs.data.mmm == "AAC V4")
-			{
-				FlxTween.tween(FlxG.camera, {zoom: 1.025}, 1, {ease: FlxEase.expoOut, type: BACKWARD});
+			else {
+				beatCamZoom = FlxTween.tween(FlxG.camera, {zoom: 1.1}, 1, {ease: FlxEase.expoOut, type: BACKWARD});
 			}
 		}
 		else
@@ -1023,6 +1042,13 @@ class TitleState extends MusicBeatState
 	{
 		if (!skippedIntro)
 		{
+			if (ClientPrefs.data.mmm != "AAC V4" && ClientPrefs.data.mmm != "Normal Collections")
+			{
+				FlxTween.tween(arrow1, {y: 0}, 2.5, {ease: FlxEase.backOut, startDelay: 0.1});
+				FlxTween.tween(arrow2, {y: 0}, 2.5, {ease: FlxEase.backOut, startDelay: 0.2});
+				FlxTween.tween(arrow3, {y: 0}, 2.5, {ease: FlxEase.backOut, startDelay: 0.3});
+				FlxTween.tween(arrow4, {y: 0}, 2.5, {ease: FlxEase.backOut, startDelay: 0.4});
+			}
 			if (ClientPrefs.data.mmm == "AAC V4")
 			{
 				FlxTween.tween(bg, {y: ((720 / 2) - (bg.height / 2))}, 1, {ease: FlxEase.expoOut, startDelay: 0.4});
