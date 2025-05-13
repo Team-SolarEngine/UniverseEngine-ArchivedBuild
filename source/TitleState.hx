@@ -338,10 +338,10 @@ class TitleState extends MusicBeatState
 			logoBl.scale.set(1, 1);
 			logoBl.screenCenter();
 
-			arrow1 = new FlxSprite().loadGraphic(Paths.image("title/universe/arrow-1"));
-			arrow2 = new FlxSprite().loadGraphic(Paths.image("title/universe/arrow-2"));
-			arrow3 = new FlxSprite().loadGraphic(Paths.image("title/universe/arrow-3"));
-			arrow4 = new FlxSprite().loadGraphic(Paths.image("title/universe/arrow-4"));
+			arrow1 = new FlxSprite(0, 0).loadGraphic(Paths.image("title/universe/arrow-1"));
+			arrow2 = new FlxSprite(100, 0).loadGraphic(Paths.image("title/universe/arrow-2"));
+			arrow3 = new FlxSprite(0, 0).loadGraphic(Paths.image("title/universe/arrow-3"));
+			arrow4 = new FlxSprite(100, 0).loadGraphic(Paths.image("title/universe/arrow-4"));
 		}
 
 		if (ClientPrefs.data.mmm == "Normal Collections")
