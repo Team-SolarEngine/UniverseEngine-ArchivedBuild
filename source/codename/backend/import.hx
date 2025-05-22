@@ -1,5 +1,6 @@
 package codename.backend;
 
 #if !macro
-import codename.backend.scripting.Script;
+import codename.backend.Script;
+import codename.scripting.*;
 #end

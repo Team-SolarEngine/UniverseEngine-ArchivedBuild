@@ -15,7 +15,9 @@ import flixel.FlxState;
 import flixel.FlxCamera;
 import flixel.FlxBasic;
 import flixel.sound.FlxSound;
-
+// scripting
+import codename.scripting.ScriptPack;
+import codename.scripting.DummyScript;
 #if sys
 import sys.FileSystem;
 import sys.io.File;
@@ -40,18 +42,77 @@ class MusicBeatState extends modchart.modcharting.ModchartMusicBeatState
 	inline function get_controls():Controls
 		return PlayerSettings.player1.controls;
 
+	// scripting
+	public var stateScripts:ScriptPack;
+
+	public var scriptsAllowed:Bool = true;
+
+	public static var lastScriptName:String = null;
+	public static var lastStateName:String = null;
+
+	public var scriptName:String = null;
+
+	public function new(scriptsAllowed:Bool = true, ?scriptName:String)
+	{
+		super();
+		this.scriptsAllowed = #if SOFTCODED_STATES scriptsAllowed #else false #end;
+
+		if (lastStateName != (lastStateName = Type.getClassName(Type.getClass(this))))
+		{
+			lastScriptName = null;
+		}
+		this.scriptName = scriptName != null ? scriptName : lastScriptName;
+		lastScriptName = this.scriptName;
+	}
+
+	function loadScript()
+	{
+		var className = Type.getClassName(Type.getClass(this));
+		if (stateScripts == null)
+			(stateScripts = new ScriptPack(className)).setParent(this);
+		if (scriptsAllowed)
+		{
+			if (stateScripts.scripts.length == 0)
+			{
+				var scriptName = this.scriptName != null ? this.scriptName : className.substr(className.lastIndexOf(".") + 1);
+				for (i in codename.modding.ModsFolder.getLoadedMods())
+				{
+					var path = Paths.hscript('menuScripts/${scriptName}/LIB_$i');
+					var script = Script.create(path);
+					if (script is DummyScript)
+						continue;
+					script.remappedNames.set(script.fileName, '$i:${script.fileName}');
+					stateScripts.add(script);
+					script.load();
+				}
+			}
+			else
+				stateScripts.reload();
+		}
+	}
+
 	override function create()
 	{
+		loadScript();
+		call("create");
 		camBeat = FlxG.camera;
 		var skip:Bool = FlxTransitionableState.skipNextTransOut;
 
 		super.create();
+		call("postCreate");
 
 		if (!skip)
 		{
 			openSubState(new CustomFadeTransition(0.7, true));
 		}
 		FlxTransitionableState.skipNextTransOut = false;
+	}
+
+	public function call(name:String, ?args:Array<Dynamic>, ?defaultVal:Dynamic):Dynamic {
+		// calls the function on the assigned script
+		if(stateScripts != null)
+			return stateScripts.call(name, args);
+		return defaultVal;
 	}
 
 	override function update(elapsed:Float)
@@ -78,6 +139,8 @@ class MusicBeatState extends modchart.modcharting.ModchartMusicBeatState
 
 		if (FlxG.save.data != null)
 			FlxG.save.data.fullscreen = FlxG.fullscreen;
+
+		call("update", [elapsed]);
 
 		super.update(elapsed);
 	}
@@ -180,11 +243,14 @@ class MusicBeatState extends modchart.modcharting.ModchartMusicBeatState
 	{
 		if (curStep % 4 == 0)
 			beatHit();
+
+		call("stepHit", [curStep]);
 	}
 
 	public function beatHit():Void
 	{
 		// trace('Beat: ' + curBeat);
+		call("beatHit", [curBeat]);
 	}
 
 	public function sectionHit():Void

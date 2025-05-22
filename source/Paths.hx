@@ -25,6 +25,9 @@ import flixel.graphics.frames.FlxFramesCollection;
 import flixel.animation.FlxAnimationController;
 import codename.backend.assets.AssetsLibraryList;
 
+import codename.scripting.HScript;
+import codename.backend.Script;
+
 using StringTools;
 
 class Paths
@@ -474,6 +477,37 @@ class Paths
 
 	// Videobot, this should actually point to a getPath thing, reference https://github.com/CodenameCrew/CodenameEngine/blob/main/source/funkin/backend/assets/Paths.hx#L104
 	public static function script(script:String) return script; 
+
+	@:noCompletion public static function getFilenameFromLibFile(path:String) {
+		var file = new haxe.io.Path(path);
+		if(file.file.startsWith("LIB_")) {
+			return file.dir + "." + file.ext;
+		}
+		return path;
+	}
+
+	@:noCompletion public static function getLibFromLibFile(path:String) {
+		var file = new haxe.io.Path(path);
+		if(file.file.startsWith("LIB_")) {
+			return file.file.substr(4);
+		}
+		return "";
+	}
+
+	inline static public function hscript(key:String, ?library:String, isAssetsPath:Bool = false) {
+		var scriptPath = isAssetsPath ? key : cne_getPath(key, library);
+		if (!OpenFlAssets.exists(scriptPath)) {
+			var p:String;
+			for(ex in Script.scriptExtensions) {
+				p = '$scriptPath.$ex';
+				if (OpenFlAssets.exists(p)) {
+					scriptPath = p;
+					break;
+				}
+			}
+		}
+		return scriptPath;
+	}
 
 	public static function returnSound(path:String, key:String, ?library:String)
 	{

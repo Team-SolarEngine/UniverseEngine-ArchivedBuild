@@ -59,6 +59,8 @@
 	<define name="PSYCHVERSION" value="0.6.3"/>
 	<define name="hscript"/>
 
+	<define name="GLOBAL_SCRIPT"/>
+
 	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/>
 	<assets path="assets/preload" rename="assets" exclude="*.mp3"  unless="web"/>
 	<section if="TITLE_SCREEN_EASTER_EGG">
