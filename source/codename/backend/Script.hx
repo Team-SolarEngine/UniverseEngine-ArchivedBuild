@@ -8,7 +8,7 @@ package codename.backend;
 import lime.app.Application;
 import flixel.util.FlxDestroyUtil.IFlxDestroyable;
 import haxe.io.Path;
-import codename.scripting.hscript.IHScriptCustomConstructor;
+import hscript.IHScriptCustomConstructor;
 import flixel.util.FlxStringUtil;
 import flixel.FlxBasic;
 import openfl.utils.Assets;
@@ -55,9 +55,9 @@ class Script extends FlxBasic implements IFlxDestroyable {
 			"FlxTypeText"	   => flixel.addons.text.FlxTypeText,
 			"FlxText"		   => flixel.text.FlxText,
 			"FlxTimer"		  => flixel.util.FlxTimer,
-			"FlxPoint"		  => CoolUtil.getMacroAbstractClass("flixel.math.FlxPoint"),
-			"FlxAxes"		   => CoolUtil.getMacroAbstractClass("flixel.util.FlxAxes"),
-			"FlxColor"		  => CoolUtil.getMacroAbstractClass("flixel.util.FlxColor"),
+			"FlxPoint"		  => ScriptUtils.getMacroAbstractClass("flixel.math.FlxPoint"),
+			"FlxAxes"		   => ScriptUtils.getMacroAbstractClass("flixel.util.FlxAxes"),
+			"FlxColor"		  => ScriptUtils.getMacroAbstractClass("flixel.util.FlxColor"),
 
 			"ModState"		  => codename.scripting.ModState,
 			"ModSubState"	   => codename.scripting.ModSubState,

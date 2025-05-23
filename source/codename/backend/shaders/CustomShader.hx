@@ -2,7 +2,7 @@ package codename.backend.shaders;
 
 import haxe.Exception;
 import openfl.Assets;
-import codename.scripting.hscript.IHScriptCustomBehaviour;
+import hscript.IHScriptCustomBehaviour;
 import codename.backend.shaders.FunkinShader;
 
 class CustomShader extends FunkinShader {

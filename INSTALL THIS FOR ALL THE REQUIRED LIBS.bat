@@ -9,5 +9,6 @@ haxelib install discord_rpc
 haxelib git linc_luajit https://github.com/superpowers04/linc_luajit
 haxelib git hxcpp https://github.com/HaxeFoundation/hxcpp.git
 haxelib install hxWindowColorMode
+haxelib git hscript-improved https://github.com/CodenameCrew/hscript-improved
 haxelib run lime setup
 pause

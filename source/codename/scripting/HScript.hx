@@ -20,7 +20,7 @@ class HScript extends Script
 	{
 		var parser = new Parser();
 		parser.allowJSON = parser.allowMetadata = parser.allowTypes = true;
-		parser.preprocesorValues = Script.getDefaultPreprocessors();
+		// parser.preprocesorValues = Script.getDefaultPreprocessors();
 		return parser;
 	}
 

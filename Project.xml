@@ -142,6 +142,8 @@
 	<haxelib name="flixel-addons" />
 	<haxelib name="hscript" />
 	<haxelib name="hxWindowColorMode"/>
+	<haxelib name="hscript-improved"/>
+	<haxedef name="hscriptPos" />
 
 	<!--In case you want to use the ui package-->
 	<haxelib name="flixel-ui" />
