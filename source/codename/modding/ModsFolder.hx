@@ -25,11 +25,15 @@ class ModsFolder {
 
     public static function init() {
         if (!getModsList().contains(ClientPrefs.data.lastLoadedMod))
+		{
             ClientPrefs.data.lastLoadedMod = null;
+			ClientPrefs.saveSettings();
+		}
     }
 
     public static function switchMod(mod:String) {
         ClientPrefs.data.lastLoadedMod = currentModFolder = mod;
+		ClientPrefs.saveSettings();
         reloadMods();
     }
 
