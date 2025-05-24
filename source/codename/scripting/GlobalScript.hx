@@ -54,7 +54,7 @@ class GlobalScript {
 				}
 			}
 			if (FlxG.keys.justPressed.F2){}
-				// NativeAPI.allocConsole();
+				NativeAPI.allocConsole();
 		});
 		FlxG.signals.preDraw.add(function() {
 			call("preDraw");

@@ -40,6 +40,8 @@ class Main extends Sprite
 	var modToLoad:String = null;
 	public static var fpsVar:FPS;
 
+	public static var noTerminalColor:Bool = false;
+
 	// You can pretty much ignore everything from here on - your code should go in your states.
 
 	public static function main():Void
@@ -85,7 +87,6 @@ class Main extends Sprite
 			gameHeight = Math.ceil(stageHeight / zoom);
 		}
 	
-		Paths.assetsTree = new AssetsLibraryList();
 		ClientPrefs.loadDefaultStuff();
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, framerate, framerate, skipSplash, startFullscreen));
 
@@ -110,6 +111,9 @@ class Main extends Sprite
 
 		Paths.assetsTree = new AssetsLibraryList();
 		
+		#if GLOBAL_SCRIPT
+		codename.scripting.GlobalScript.init();
+		#end
 
 		ModsFolder.init();
 		#if MOD_SUPPORT

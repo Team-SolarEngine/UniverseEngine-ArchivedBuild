@@ -140,6 +140,9 @@ class MusicBeatState extends modchart.modcharting.ModchartMusicBeatState
 		if (FlxG.save.data != null)
 			FlxG.save.data.fullscreen = FlxG.fullscreen;
 
+		if (FlxG.keys.justPressed.F5)
+			loadScript();
+
 		call("update", [elapsed]);
 
 		super.update(elapsed);
