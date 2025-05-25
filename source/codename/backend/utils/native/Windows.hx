@@ -27,6 +27,7 @@ import codename.backend.utils.NativeAPI.MessageBoxIcon;
 #include <wingdi.h>
 #include <shellapi.h>
 #include <uxtheme.h>
+#include <Main.h>
 
 #define SAFE_RELEASE(punk)  \\
 			  if ((punk) != NULL)  \\
@@ -106,7 +107,7 @@ class AudioFixClient : public IMMNotificationClient {
 		EDataFlow flow, ERole role,
 		LPCWSTR pwstrDeviceId)
 	{
-		_hx_system::Main_obj::audioDisconnected = true;
+		Main_obj::audioDisconnected = true;
 		return S_OK;
 	};
 };

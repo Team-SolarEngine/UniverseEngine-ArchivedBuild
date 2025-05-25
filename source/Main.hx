@@ -89,6 +89,8 @@ class Main extends Sprite
 			gameWidth = Math.ceil(stageWidth / zoom);
 			gameHeight = Math.ceil(stageHeight / zoom);
 		}
+
+		Paths.assetsTree = new AssetsLibraryList();
 	
 		ClientPrefs.loadDefaultStuff();
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, framerate, framerate, skipSplash, startFullscreen));
@@ -111,8 +113,6 @@ class Main extends Sprite
 		#if CRASH_HANDLER
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
 		#end
-
-		Paths.assetsTree = new AssetsLibraryList();
 		
 		#if GLOBAL_SCRIPT
 		codename.scripting.GlobalScript.init();
