@@ -42,6 +42,9 @@ class Main extends Sprite
 
 	public static var noTerminalColor:Bool = false;
 
+	@:dox(hide)
+	public static var audioDisconnected:Bool = false;
+
 	// You can pretty much ignore everything from here on - your code should go in your states.
 
 	public static function main():Void

@@ -106,7 +106,7 @@ class AudioFixClient : public IMMNotificationClient {
 		EDataFlow flow, ERole role,
 		LPCWSTR pwstrDeviceId)
 	{
-		::funkin::backend::_hx_system::Main_obj::audioDisconnected = true;
+		_hx_system::Main_obj::audioDisconnected = true;
 		return S_OK;
 	};
 };
