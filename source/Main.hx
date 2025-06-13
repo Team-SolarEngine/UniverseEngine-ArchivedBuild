@@ -11,6 +11,7 @@ import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.display.StageScaleMode;
 import codename.modding.ModsFolder;
+import codename.backend.system.Logs;
 
 //crash handler stuff
 #if CRASH_HANDLER
@@ -91,6 +92,7 @@ class Main extends Sprite
 		}
 
 		Paths.assetsTree = new AssetsLibraryList();
+		Logs.init();
 	
 		ClientPrefs.loadDefaultStuff();
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, framerate, framerate, skipSplash, startFullscreen));

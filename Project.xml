@@ -53,6 +53,7 @@
 	<define name="TITLE_SCREEN_EASTER_EGG" if="officialBuild"/> <!-- DELETE THE if="officialBuild" for enabling this on an unofficial build -->
 	<define name="CRASH_HANDLER" if="desktop release" />
 	<define name="SOFTCODED_STATES" if="MODS_ALLOWED"/>
+	<define name="GLOBAL_SCRIPT" if="MODS_ALLOWED"/>
 
 	<define name="DEV"/>
 	

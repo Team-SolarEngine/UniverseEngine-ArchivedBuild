@@ -1,161 +1,107 @@
 package codename.backend.system;
 
-import flixel.system.debug.log.LogStyle;
-import flixel.system.frontEnds.LogFrontEnd;
 import haxe.Log;
-import codename.backend.utils.NativeAPI;
-import codename.backend.utils.NativeAPI.ConsoleColor;
+import haxe.PosInfos;
+import lime.app.Application;
+using codename.backend.system.Logs.LogTools;
 
-class Logs {
-	private static var __showing:Bool = false;
+class AlertParams
+{
+    public var content:String = 'None';
+    public var title:Null<String> = null;
 
+    public function new(content:String = 'None', ?title:Null<String>)
+    {
+        this.content = content;
+        this.title = title;
+    }
+}
+
+class LogTools
+{
+    @:deprecated('The level.toLevel() function will soon be removed from backend.LogTools.') public static inline function toLevel(level:Level):String
+    {
+        return levelToString(level);
+    }
+
+    public static inline function levelToString(level:Level):String
+    {
+        switch (level)
+        {
+            case INFO | NONE:
+                return '[  INFO    ]';
+            case WARNING:
+                return '[  WARNING ]';
+            case ERROR:
+                return '[  ERROR   ]';
+            default:
+                return '[  MISC    ]';
+        }
+    }
+
+    public static inline function spawnAlertWindow(params:AlertParams, ?infos:haxe.PosInfos)
+    {
+        Logs.traceNew(params.content, ERROR, infos);
+        Application.current.window.alert(params.content, params.title);
+    }
+}
+
+class Logs
+{
 	public static var nativeTrace = Log.trace;
-	public static function init() {
-		Log.trace = function(v:Dynamic, ?infos:Null<haxe.PosInfos>) {
-			var data = [
-				logText('${infos.fileName}:${infos.lineNumber}: ', CYAN),
-				logText(Std.string(v))
-			];
 
-			if (infos.customParams != null) {
-				for (i in infos.customParams) {
-					data.push(
-						logText("," + Std.string(i))
-					);
-				}
-			}
-			__showInConsole(prepareColoredTrace(data, TRACE));
-		};
+    public static function init()
+    {
+        Log.trace = traceOverride;
+    }
 
-		LogUtils.onLogs = function(data, style, fireOnce) {
-			var prefix = "[FLIXEL]";
-			var color:ConsoleColor = LIGHTGRAY;
-			var level:Level = INFO;
-			if (style == LogStyle.CONSOLE)  // cant place a switch here as these arent inline values  - Nex
-			{
-				prefix = "> ";
-				color = WHITE;
-				level = INFO;
-			}
-			else if (style == LogStyle.ERROR)
-			{
-				prefix = "[FLIXEL]";
-				color = RED;
-				level = ERROR;
-			}
-			else if (style == LogStyle.NORMAL)
-			{
-				prefix = "[FLIXEL]";
-				color = WHITE;
-				level = INFO;
-			}
-			else if (style == LogStyle.NOTICE)
-			{
-				prefix = "[FLIXEL]";
-				color = GREEN;
-				level = VERBOSE;
-			}
-			else if (style == LogStyle.WARNING)
-			{
-				prefix = "[FLIXEL]";
-				color = YELLOW;
-				level = WARNING;
-			}
+    static function levelToInt(l:Level):Int
+    {
+        switch(l)
+        {
+            case INFO:
+                return 0;
+            case MISC:
+                return 1;
+            case NONE:
+                return 2;
+            case WARNING:
+                return 3;
+            case ERROR:
+                return 4;
+        }
+    }
 
-			var d:Dynamic = data;
-			if (!(d is Array))
-				d = [d];
-			var a:Array<Dynamic> = d;
-			var strs = [for(e in a) Std.string(e)];
-			for(e in strs)
-			{
-				Logs.trace('$prefix $e', level, color);
-			}
-		};
-	}
+    static function traceOverride(v:Dynamic, ?infos:PosInfos):Void traceNew(v, NONE, infos);
 
-	public static function prepareColoredTrace(text:Array<LogText>, level:Level = INFO) {
-		var time = Date.now();
-		var superCoolText = [
-			logText('[  '),
-			logText('${Std.string(time.getHours()).addZeros(2)}:${Std.string(time.getMinutes()).addZeros(2)}:${Std.string(time.getSeconds()).addZeros(2)}', DARKMAGENTA),
-			logText('  |'),
-			switch (level)
-			{
-				case WARNING:
-					logText('   WARNING   ', DARKYELLOW);
-				case ERROR:
-					logText('    ERROR    ', DARKRED);
-				case TRACE:
-					logText('    TRACE    ', GRAY);
-				case VERBOSE:
-					logText('   VERBOSE   ', DARKMAGENTA);
-				default:
-					logText(' INFORMATION ', CYAN);
-			},
-			logText('] ')
-		];
-		for(k=>e in superCoolText)
-			text.insert(k, e);
-		return text;
-	}
-
-	public static function logText(text:String, color:ConsoleColor = LIGHTGRAY):LogText {
-		return {
-			text: text,
-			color: color
-		};
-	}
-
-	public static function __showInConsole(text:Array<LogText>) {
-		#if (sys && !mobile)
-		while(__showing) {
-			Sys.sleep(0.05);
-		}
-		__showing = true;
-		for(t in text) {
-			NativeAPI.setConsoleColors(t.color);
-			Sys.print(t.text);
-		}
-		NativeAPI.setConsoleColors();
-		Sys.print("\r\n");
-		__showing = false;
-		#elseif mobile
-		while(__showing) {
-			Sys.sleep(0.05);
-		}
-		__showing = true;
-		@:privateAccess
-		Sys.print([for(t in text) t.text].join(""));
-		__showing = false;
-		#else
-		@:privateAccess
-		nativeTrace([for(t in text) t.text].join(""));
-		#end
-	}
-
-	public static function traceColored(text:Array<LogText>, level:Level = INFO)
-		__showInConsole(prepareColoredTrace(text, level));
-
-	public static function trace(text:String, level:Level = INFO, color:ConsoleColor = LIGHTGRAY) {
-		traceColored([
-			{
-				text: text,
-				color: color
-			}
-		], level);
-	}
+    public static function traceNew(v:Dynamic, level:Level, ?infos:PosInfos):Void
+    {
+        var str = '${level.toLevel()} : ' + Log.formatOutput(v, infos).replace('\n\n', '\n').replace('\n', '\n${level.toLevel()} : ${infos.fileName}:${infos.lineNumber}: ');
+        #if js
+        if (js.Syntax.typeof(untyped console) != "undefined" && (untyped console).log != null)
+            (untyped console).log(str);
+        #elseif lua
+        untyped __define_feature__("use._hx_print", _hx_print(str));
+        #elseif sys
+        Sys.println(str);
+        #else
+        throw new haxe.exceptions.NotImplementedException()
+        #end
+    }
 }
 
-enum abstract Level(Int) {
-	var INFO = 0;
-	var WARNING = 1;
-	var ERROR = 2;
-	var TRACE = 3;
-	var VERBOSE = 4;
+enum abstract TraceStyle(String) {
+    var ALL = 'ALL';
+    var WARNINGS_PLUS = 'WARNINGS+';
+    var ERRORS_ONLY = 'ERRORS_ONLY';
+    var NONE = 'NONE';
 }
 
-typedef LogText = {
-	var text:String;
-	var color:ConsoleColor;
+enum abstract Level(Int)
+{
+    var INFO = 0;
+    var MISC = 1;
+    var NONE = 2;
+	var WARNING = 3;
+	var ERROR = 4;
 }

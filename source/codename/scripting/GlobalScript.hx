@@ -53,7 +53,7 @@ class GlobalScript {
 					onModSwitch(#if MOD_SUPPORT ModsFolder.currentModFolder #else null #end);
 				}
 			}
-			if (FlxG.keys.justPressed.F2){}
+			if (FlxG.keys.justPressed.F2)
 				NativeAPI.allocConsole();
 		});
 		FlxG.signals.preDraw.add(function() {
