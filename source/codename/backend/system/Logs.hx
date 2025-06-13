@@ -90,13 +90,6 @@ class Logs
     }
 }
 
-enum abstract TraceStyle(String) {
-    var ALL = 'ALL';
-    var WARNINGS_PLUS = 'WARNINGS+';
-    var ERRORS_ONLY = 'ERRORS_ONLY';
-    var NONE = 'NONE';
-}
-
 enum abstract Level(Int)
 {
     var INFO = 0;
