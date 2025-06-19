@@ -211,7 +211,7 @@ class HScript extends Script
 	{
 		var posInfo = interp.posInfos();
 
-		Logs.traceNew('${fileName}:${posInfo.lineNumber}: ' + Std.isOfType(v, String) ? v : Std.string(v), MISC);
+		Logs.traceNew('${fileName}:${posInfo.lineNumber}: ' + Std.string(Std.isOfType(v, String) ? v : Std.string(v)), MISC);
 	}
 
 	public override function setPublicMap(map:Map<String, Dynamic>)
