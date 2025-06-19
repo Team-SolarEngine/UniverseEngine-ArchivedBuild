@@ -723,7 +723,7 @@ class FreeplayState extends MusicBeatState
 					}
 					catch (e:Dynamic)
 					{
-						trace('Error loading/playing file! $e');
+						Logs.traceNew('Error loading/playing file! $e', ERROR);
 						FlxG.sound.play(Paths.sound('cancelMenu'));
 					}
 					#end
@@ -753,7 +753,7 @@ class FreeplayState extends MusicBeatState
 						curDifficulty = 1;
 						trace('Couldnt find file');
 				}*/
-				trace(poop);
+				Logs.traceNew(poop, ERROR);
 
 				PlayState.isStoryMode = false;
 				PlayState.storyDifficulty = curDifficulty;

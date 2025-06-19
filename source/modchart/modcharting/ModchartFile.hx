@@ -197,7 +197,7 @@ class ModchartFile
         }
         catch(e:Dynamic)
         {
-            trace(e);
+            Logs.traceNew(e, ERROR);
         }
         #end
         
@@ -261,7 +261,7 @@ class ModchartFile
             }
             catch(e:Dynamic)
             {
-                trace(e);
+                Logs.traceNew(e, ERROR);
             }
             
             trace(filePath);

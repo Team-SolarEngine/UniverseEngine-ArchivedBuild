@@ -25,7 +25,7 @@ class CustomShader extends FunkinShader {
 		path = fragShaderPath+vertShaderPath;
 
 		if (fragCode == null && vertCode == null)
-			trace('Shader "$name" couldn\'t be found.');
+			Logs.traceNew('Shader "$name" couldn\'t be found.', ERROR);
 
 		super(fragCode, vertCode, glslVersion);
 	}

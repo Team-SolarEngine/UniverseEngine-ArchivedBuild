@@ -30,7 +30,7 @@ class ScriptedAssetLibrary extends ModsFolderLibrary {
 		script.load();
 		if(args == null) args = [];
 		script.call("create", args);
-		trace(script);
+		Logs.traceNew(script, INFO);
 	}
 
 	#if MOD_SUPPORT

@@ -97,7 +97,7 @@ class FunkinLua
 			var resultStr:String = Lua.tostring(lua, result);
 			if (resultStr != null && result != 0)
 			{
-				trace('Error on lua script! ' + resultStr);
+				Logs.traceNew('Error on lua script! ' + resultStr, ERROR);
 				#if windows
 				lime.app.Application.current.window.alert(resultStr, 'Error on lua script!');
 				#else
@@ -109,17 +109,17 @@ class FunkinLua
 		}
 		catch (e:Dynamic)
 		{
-			trace(e);
+			Logs.traceNew(e, ERROR);
 			return;
 		}
 		scriptName = script;
 		initHaxeModule();
 
 		// unlowercased starting words make me mad!!
-		trace('Lua file loaded succesfully:' + script);
+		Logs.traceNew('Lua file loaded succesfully:' + script, INFO);
 
 		// Lua shit
-		set('Function_StopLua', Function_StopLua);
+		set('Function_StopLua', Function_StopLua);	
 		set('Function_Stop', Function_Stop);
 		set('Function_Continue', Function_Continue);
 		set('luaDebugMode', false);
@@ -3978,7 +3978,7 @@ class FunkinLua
 				return;
 			}
 			PlayState.instance.addTextToDebug(text, color);
-			trace(text);
+			Logs.traceNew(text, ERROR);
 		}
 		#end
 	}
@@ -4058,7 +4058,7 @@ class FunkinLua
 		}
 		catch (e:Dynamic)
 		{
-			trace(e);
+			Logs.traceNew(e, ERROR);
 		}
 		#end
 		return Function_Continue;

@@ -95,14 +95,14 @@ class Paths
 	// Function that initializes the first note. This way, we can recycle the notes
 	public static function initDefaultSkin(?noteSkin:String, ?inEditor:Bool = false)
 	{
-		trace(noteSkin);
+		Logs.traceNew(noteSkin, WARNING);
 		if (noteSkin.length > 0)
 			defaultSkin = noteSkin;
 		else if (!PlayState.isPixelStage)
 			defaultSkin = 'NOTE_assets' + Note.getNoteSkinPostfix();
 		else
 			defaultSkin = 'NOTE_assets';
-		trace(defaultSkin);
+		Logs.traceNew(defaultSkin, WARNING);
 	}
 
 	public static function initNote(keys:Int = 4, ?noteSkin:String)
@@ -271,7 +271,7 @@ class Paths
 
 	inline static public function shaderFragment(key:String, ?library:String)
 	{
-		trace(cne_getPath('shaders/$key.frag', library));
+		Logs.traceNew(cne_getPath('shaders/$key.frag', library), INFO);
 		return cne_getPath('shaders/$key.frag', library);
 	}
 
@@ -652,7 +652,7 @@ class Paths
 						}
 						catch (e:Dynamic)
 						{
-							trace(e);
+							Logs.traceNew(e, ERROR);
 						}
 					}
 				}

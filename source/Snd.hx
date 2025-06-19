@@ -1113,7 +1113,7 @@ class Snd {
 		mode |= FmodMode.FMOD_2D;
 		
 		
-		if( DEBUG_TRACK) trace("Snd:loading " + path);
+		if( DEBUG_TRACK) Logs.traceNew("Snd:loading " + path, INFO);
 		
 		var snd : cpp.RawPointer<faxe.Faxe.FmodSound> = cast  null;
 		var sndR :  cpp.RawPointer<cpp.RawPointer<faxe.Faxe.FmodSound>> = cpp.RawPointer.addressOf(snd);

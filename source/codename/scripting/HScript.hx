@@ -37,7 +37,7 @@ class HScript extends Script
 		}
 		catch (e)
 		{
-			// Logs.trace('Error while reading $path: ${Std.string(e)}', ERROR);
+			Logs.traceNew('Error while reading $path: ${Std.string(e)}', ERROR);
 		}
 
 		parser = initParser();
@@ -132,10 +132,7 @@ class HScript extends Script
 		if (err.startsWith(fn))
 			err = err.substr(fn.length);
 
-		// Logs.traceColored([
-		// 	Logs.logText(fn, GREEN),
-		// 	Logs.logText(err, RED)
-		// ], ERROR);
+		Logs.traceNew(fn +": "+ err, ERROR);
 	}
 
 	public override function setParent(parent:Dynamic)
@@ -213,10 +210,8 @@ class HScript extends Script
 	public override function trace(v:Dynamic)
 	{
 		var posInfo = interp.posInfos();
-		// Logs.traceColored([
-		// 	Logs.logText('${fileName}:${posInfo.lineNumber}: ', GREEN),
-		// 	Logs.logText(Std.isOfType(v, String) ? v : Std.string(v))
-		// ], TRACE);
+
+		Logs.traceNew('${fileName}:${posInfo.lineNumber}: ' + Std.isOfType(v, String) ? v : Std.string(v), MISC);
 	}
 
 	public override function setPublicMap(map:Map<String, Dynamic>)

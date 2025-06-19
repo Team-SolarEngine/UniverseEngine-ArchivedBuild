@@ -59,8 +59,8 @@ class CreditsState extends TreeMenu
 
 		var xmlPath = Paths.configxml('config/credits');
 
-		trace(Paths.assetsTree);
-		trace(Paths.configxml('config/credits'));
+		Logs.traceNew(Paths.assetsTree, INFO);
+		Logs.traceNew(Paths.configxml('config/credits'), INFO);
 
 		for (source in [AssetSource.SOURCE, AssetSource.MODS])
 		{
@@ -75,7 +75,7 @@ class CreditsState extends TreeMenu
 					}
 					catch (e)
 					{
-						trace('Error while parsing credits.xml: ${Std.string(e)}');
+						Logs.traceNew('Error while parsing credits.xml: ${Std.string(e)}', ERROR);
 					}
 
 					if (access != null)

@@ -123,7 +123,7 @@ class ResetScoreSubState extends MusicBeatSubstate
 			}
 			catch (e:Dynamic)
 			{
-				trace('Icon does not have an XML!');
+				Logs.traceNew('Icon does not have an XML!', ERROR);
 
 				@:privateAccess {
 					leHealthIcon.char = '';
