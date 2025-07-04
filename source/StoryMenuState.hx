@@ -409,8 +409,8 @@ class StoryMenuState extends MusicBeatState
 			sprDifficulty.x += (308 - sprDifficulty.width) / 3;
 			sprDifficulty.alpha = 0;
 			sprDifficulty.y = leftArrow.y - 15;
-			menuPos[1].set(sprDifficulty.x, menuPos[0].y);
-			if (isCoolMenu) menuPos[1].y += 400;
+			menuPos[1].set((menuPos[0].x + 60) + ((308 - sprDifficulty.width) / 3), menuPos[0].y);
+			if (isCoolMenu) menuPos[1].y -= 400;
 
 			if (tweenDifficulty != null)
 				tweenDifficulty.cancel();
@@ -514,7 +514,7 @@ class StoryMenuState extends MusicBeatState
 				bgTweens.push(FlxTween.tween(tracksSprite, {x: (FlxG.width * 0.07) + 800}, 1, {ease: FlxEase.linear}));
 
 				bgTweens.push(FlxTween.tween(leftArrow, {y: menuPos[0].y - 400}, 1, {ease: FlxEase.linear}));
-				bgTweens.push(FlxTween.tween(sprDifficulty, {y: menuPos[1].y - 400}, 1, {ease: FlxEase.linear}));
+				bgTweens.push(FlxTween.tween(sprDifficulty, {y: menuPos[0].y - 400}, 1, {ease: FlxEase.linear}));
 				bgTweens.push(FlxTween.tween(rightArrow, {y: menuPos[2].y - 400}, 1, {ease: FlxEase.linear}));
 
 				var songColor:Array<Int> = leWeek.menuColor;
@@ -557,7 +557,7 @@ class StoryMenuState extends MusicBeatState
 			bgTweens.push(FlxTween.tween(tracksSprite, {x: FlxG.width * 0.07}, 1, {ease: FlxEase.linear}));
 			
 			bgTweens.push(FlxTween.tween(leftArrow, {y: menuPos[0].y}, 1, {ease: FlxEase.linear}));
-			bgTweens.push(FlxTween.tween(sprDifficulty, {y: menuPos[1].y}, 1, {ease: FlxEase.linear}));
+			bgTweens.push(FlxTween.tween(sprDifficulty, {y: menuPos[0].y}, 1, {ease: FlxEase.linear}));
 			bgTweens.push(FlxTween.tween(rightArrow, {y: menuPos[2].y}, 1, {ease: FlxEase.linear}));
 
 			for (week in grpWeekText)
