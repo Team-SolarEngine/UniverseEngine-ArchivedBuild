@@ -27,6 +27,8 @@ typedef WeekFile =
 	var hideFreeplay:Bool;
 	var difficulties:String;
 	var icons:Null<Array<Null<AnimIcon>>>;
+	@:optional var useFancyMenu:Bool;
+	@:optional var menuColor:Array<Int>;
 }
 
 typedef AnimIcon =
@@ -58,6 +60,8 @@ class WeekData
 	public var hideStoryMode:Bool;
 	public var hideFreeplay:Bool;
 	public var difficulties:String;
+	public var useFancyMenu:Null<Bool> = false;
+	public var menuColor:Array<Int> = [];
 
 	public var icons:Null<Array<Null<AnimIcon>>>;
 
@@ -129,6 +133,8 @@ class WeekData
 		hideStoryMode = weekFile.hideStoryMode;
 		hideFreeplay = weekFile.hideFreeplay;
 		difficulties = weekFile.difficulties;
+		useFancyMenu = weekFile.useFancyMenu != null ? weekFile.useFancyMenu : null;
+		menuColor = weekFile.menuColor != null ? weekFile.menuColor : [146, 113, 253];
 
 		if (weekFile.icons == null)
 		{
