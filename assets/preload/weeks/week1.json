@@ -18,5 +18,7 @@
 	"startUnlocked": true,
 
 	"hideStoryMode": false,
-	"hideFreeplay": false
+	"hideFreeplay": false,
+	"useFancyMenu": true,
+	"menuColor": [146, 113, 253]
 }
