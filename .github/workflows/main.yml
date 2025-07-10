@@ -90,6 +90,7 @@ jobs:
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
           haxelib install hxWindowColorMode
           haxelib git hscript-improved https://github.com/CodenameCrew/hscript-improved
+          haxelib install hxCodec 2.5.1
           haxelib install hscript
           haxelib install hxcpp-debug-server
           haxelib list
