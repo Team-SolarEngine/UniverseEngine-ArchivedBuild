@@ -74,7 +74,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Install Haxelib
         run: |
-            .\"testLib.bat"
+            .\"INSTALL THIS FOR ALL THE REQUIRED LIBS.bat"
         shell: cmd
       - name: Create Version Tag
         run: echo "${{github.run_id}}" > VERSION

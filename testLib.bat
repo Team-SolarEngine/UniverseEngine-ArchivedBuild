@@ -41,3 +41,4 @@ haxelib install thx.semver 0.2.2 && haxelib set thx.semver 0.2.2
 haxelib install tjson 1.4.0 && haxelib set tjson 1.4.0
 haxelib install utest 1.13.2 && haxelib set utest 1.13.2
 echo DONE
+pause
