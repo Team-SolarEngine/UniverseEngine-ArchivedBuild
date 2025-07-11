@@ -84,7 +84,7 @@
   </ul>
 </p>
 
-<h3> ☝️❓ How can I join the DEV team? </h3>
+<h3> ☝️❓ How can YOU join the DEV team? </h3>
 <p>
   We are currently not hiring and probably never. <br>
   We only invite people to join the DEV team.
