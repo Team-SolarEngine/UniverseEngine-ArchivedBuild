@@ -1,7 +1,10 @@
 <div align="center"> 
   <img src="assets/exclude/images/Universe Engine.png" width="568" height="285"> <br>
-  
-  <h3> Universe engine - Yet another <a href="https://github.com/ShadowMario/FNF-PsychEngine">Psych Engine</a> fork. </h3>
+
+  <h3>
+    <img src="art/icon64.png" width="25">
+    Universe engine - Yet another <a href="https://github.com/ShadowMario/FNF-PsychEngine">Psych Engine</a> fork.
+  </h3>
   
   <p>
     <a href="https://discord.gg/RaHmP5fgyA">
