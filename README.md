@@ -55,6 +55,7 @@
 <h3> 👑 Who created and helped this engine? </h3>
 <table align="center">
   <tr>
+    <th>Contributor Names</th>
     <th> <img src="https://daveberry.netlify.app/daveberry/dave.png" width="25"> Daveberry   </th>
     <th> <img src="https://github.com/VideoBotYT/Universe-Engine/blob/main/assets/preload/images/credits/videobot.png?raw=true" width="25"> VideoBot </th>
     <th> <img src="https://github.com/VideoBotYT/Universe-Engine/blob/main/assets/preload/images/credits/baranmuzu.png?raw=true" width="25"> BaranMuzu </th>
@@ -62,17 +63,28 @@
   </tr>
 
   <tr>
-    <th> Idea for the engine. <br> Created the engine. </th>
-    <th> Idea for the engine. <br> Created the engine. </th>
+    <th>Initial Role</th>
+    <th> Created the engine. </th>
+    <th> Created the engine. </th>
     <th> Invited to help. </th>
     <th> Invited to help. </th>
   </tr>
 
   <tr>
+    <th>Role</th>
     <th> Former Developer </th>
     <th> Main Developer </th>
     <th> Invited Developer </th>
     <th> Invited Developer </th>
+  </tr>
+
+  <tr>
+    <th> Personal Message </th>
+    <th> "I'M NOT FUCKING GAY" </th>
+    <th> "I love MODCHARTING" </th>
+    <th> "idk" </th>
+    <th> "sup guys I was <s>forced</s> asked to join the team
+Did you know I'm making a mo-" </th>
   </tr>
 </table>
 
