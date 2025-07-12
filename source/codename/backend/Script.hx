@@ -1,10 +1,5 @@
 package codename.backend;
 
-/**
- * VideoBot, you can make this actually do shit yourself, this is just required to start loading mods.
- * 
- * Not referencing actual CNE code for this class.
- */
 import lime.app.Application;
 import flixel.util.FlxDestroyUtil.IFlxDestroyable;
 import haxe.io.Path;

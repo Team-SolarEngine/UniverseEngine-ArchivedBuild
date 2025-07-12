@@ -1,0 +1,1 @@
+function postCreate() trace("Script");

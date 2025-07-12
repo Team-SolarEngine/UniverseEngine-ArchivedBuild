@@ -1,9 +1,8 @@
 package codename.scripting;
 
 import flixel.util.FlxStringUtil;
-// import funkin.backend.scripting.events.CancellableEvent;
 
-// @:access(CancellableEvent)
+@:access(CancellableEvent)
 class ScriptPack extends Script {
 	public var scripts:Array<Script> = [];
 	public var additionalDefaultVariables:Map<String, Dynamic> = [];
@@ -64,15 +63,15 @@ class ScriptPack extends Script {
 	 * @param event Event (will be the first parameter of the function)
 	 * @return (modified by scripts)
 	 */
-	// public inline function event<T:CancellableEvent>(func:String, event:T):T {
-	// 	for(e in scripts) {
-	// 		if(!e.active) continue;
+	public inline function event<T:CancellableEvent>(func:String, event:T):T {
+		for(e in scripts) {
+	 		if(!e.active) continue;
 
-	// 		e.call(func, [event]);
-	// 		if (event.cancelled && !event.__continueCalls) break;
-	// 	}
-	// 	return event;
-	// }
+	 		e.call(func, [event]);
+	 		if (event.cancelled && !event.__continueCalls) break;
+	 	}
+	 	return event;
+	}
 
 	public override function get(val:String):Dynamic {
 		for(e in scripts) {

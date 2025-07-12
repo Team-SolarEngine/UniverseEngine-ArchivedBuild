@@ -59,6 +59,7 @@
 	
 	<define name="PSYCH" />
 	<define name="PSYCHVERSION" value="0.6.3"/>
+	<define name="UEVERSION" value="1.0.0"/> <!-- REMINDER: DO NOT INCLUDE BETA BUILD STRING FOR COMPARISON PURPOSES. (i.e 1.0.0b2 should truncate to 1.0.0) -->
 	<define name="hscript"/>
 
 	<define name="GLOBAL_SCRIPT"/>

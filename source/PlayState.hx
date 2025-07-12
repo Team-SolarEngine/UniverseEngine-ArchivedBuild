@@ -68,6 +68,7 @@ import modchart.modcharting.ModchartFuncs;
 import modchart.modcharting.NoteMovement;
 import modchart.modcharting.PlayfieldRenderer;
 import modchart.modcharting.ModchartEditorState;
+import globalscripts.UEScript;
 #if !flash
 import flixel.addons.display.FlxRuntimeShader;
 import openfl.filters.ShaderFilter;
@@ -196,7 +197,7 @@ class PlayState extends MusicBeatState
 	public var health:Float = 1;
 	public var combo:Int = 0;
 
-	private var healthBarBG:AttachedSprite;
+	public var healthBarBG:AttachedSprite;
 
 	public var healthBar:FlxBar;
 
@@ -362,6 +363,8 @@ class PlayState extends MusicBeatState
 
 	public static var playerIsCheating:Bool = false;
 
+	public static var scripter:UEScript;
+
 	override public function create()
 	{
 		// trace('Playback Rate: ' + playbackRate);
@@ -370,6 +373,8 @@ class PlayState extends MusicBeatState
 
 		// for lua
 		instance = this;
+
+		scripter = new UEScript();
 
 		debugKeysChart = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_1'));
 		debugKeysCharacter = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_2'));
@@ -930,6 +935,7 @@ class PlayState extends MusicBeatState
 		add(luaDebugGroup);
 		#end
 
+		scripter.initialize();
 		// "GLOBAL" SCRIPTS
 		#if LUA_ALLOWED
 		var filesPushed:Array<String> = [];
@@ -1473,6 +1479,7 @@ class PlayState extends MusicBeatState
 		if (ClientPrefs.data.windows)
 			scripting.WindowsLua.loadLua();
 		callOnLuas('onCreatePost', []);
+		scripter.onCreatePost();
 
 		animIconCheck();
 
@@ -2557,6 +2564,7 @@ class PlayState extends MusicBeatState
 					}
 				});
 				callOnLuas('onCountdownTick', [swagCounter]);
+				scripter.onCountdownTick(swagCounter);
 
 				swagCounter += 1;
 				// generateSong('fresh');
@@ -2728,6 +2736,7 @@ class PlayState extends MusicBeatState
 		#end
 		setOnLuas('songLength', songLength);
 		callOnLuas('onSongStart', []);
+		scripter.onSongStart();
 	}
 
 	var debugNum:Int = 0;
@@ -3163,6 +3172,7 @@ class PlayState extends MusicBeatState
 			}
 			paused = false;
 			callOnLuas('onResume', []);
+			scripter.onResume();
 
 			#if desktop
 			if (startTimer != null && startTimer.finished)
@@ -3253,6 +3263,7 @@ class PlayState extends MusicBeatState
 				iconP1.swapOldIcon();
 		}*/
 		callOnLuas('onUpdate', [elapsed]);
+		scripter.onUpdate(elapsed);
 
 		switch (curStage)
 		{
@@ -3441,6 +3452,7 @@ class PlayState extends MusicBeatState
 		if (controls.PAUSE && startedCountdown && canPause)
 		{
 			var ret:Dynamic = callOnLuas('onPause', [], false);
+			scripter.onPause();
 			if (ret != FunkinLua.Function_Stop)
 			{
 				openPauseMenu();
@@ -3824,6 +3836,7 @@ class PlayState extends MusicBeatState
 		setOnLuas('cameraY', camFollowPos.y);
 		setOnLuas('botPlay', cpuControlled);
 		callOnLuas('onUpdatePost', [elapsed]);
+		scripter.onUpdatePost(elapsed);
 	}
 
 	function openPauseMenu()
@@ -3940,7 +3953,7 @@ class PlayState extends MusicBeatState
 			if (eventNotes[0].value2 != null)
 				value2 = eventNotes[0].value2;
 
-			triggerEventNote(eventNotes[0].event, value1, value2);
+			triggerEventNote(eventNotes[0].event, value1, value2, leStrumTime);
 			eventNotes.shift();
 		}
 	}
@@ -3952,7 +3965,7 @@ class PlayState extends MusicBeatState
 		return pressed;
 	}
 
-	public function triggerEventNote(eventName:String, value1:String, value2:String)
+	public function triggerEventNote(eventName:String, value1:String, value2:String, strumTime:Float = 0)
 	{
 		switch (eventName)
 		{
@@ -4395,6 +4408,7 @@ class PlayState extends MusicBeatState
 				}
 		}
 		callOnLuas('onEvent', [eventName, value1, value2]);
+		scripter.onEvent(eventName, value1, value2, strumTime);
 	}
 
 	function moveCameraSection():Void
@@ -4941,6 +4955,7 @@ class PlayState extends MusicBeatState
 		});
 
 		callOnLuas('onRating', [daRating.name]);
+		scripter.onRating(daRating.name);
 	}
 
 	public var strumsBlocked:Array<Bool> = [];
@@ -5229,6 +5244,12 @@ class PlayState extends MusicBeatState
 			daNote.noteType,
 			daNote.isSustainNote
 		]);
+		scripter.onNoteMiss(
+			notes.members.indexOf(daNote),
+			daNote.noteData,
+			daNote.noteType,
+			daNote.isSustainNote
+			);
 	}
 
 	function noteMissPress(direction:Int = 1):Void // You pressed a key when there was no notes to press for this key
@@ -5335,6 +5356,12 @@ class PlayState extends MusicBeatState
 			note.noteType,
 			note.isSustainNote
 		]);
+		scripter.opponentNoteHit(
+			notes.members.indexOf(note),
+			Math.abs(note.noteData),
+			note.noteType,
+			note.isSustainNote
+		);
 
 		if (!note.isSustainNote)
 		{
@@ -5456,6 +5483,7 @@ class PlayState extends MusicBeatState
 			var leData:Int = Math.round(Math.abs(note.noteData));
 			var leType:String = note.noteType;
 			callOnLuas('goodNoteHit', [notes.members.indexOf(note), leData, leType, isSus]);
+			scripter.goodNoteHit(notes.members.indexOf(note), leData, leType, isSus);
 
 			if (!note.isSustainNote)
 			{
@@ -5698,6 +5726,7 @@ class PlayState extends MusicBeatState
 		for (lua in luaArray)
 		{
 			lua.call('onDestroy', []);
+			scripter.onDestroy();
 			lua.stop();
 		}
 		luaArray = [];
@@ -5859,6 +5888,7 @@ class PlayState extends MusicBeatState
 
 		setOnLuas('curBeat', curBeat); // DAWGG?????
 		callOnLuas('onBeatHit', []);
+		scripter.onBeatHit();
 	}
 
 	override function sectionHit()

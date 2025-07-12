@@ -132,6 +132,8 @@ class SaveVariables
 		[0xFFFF884E, 0xFFFFFAF5, 0xFF6C0000]
 	];
 	public var windowColor:Array<Int> = [112, 0, 218];
+	public var showLoadedScripts:Bool = #if debug true #else false #end;
+	public var showOGuEHUDRatingString:Bool = #if VSCHAR false #else true #end;
 
 	public function new() var yuh:String = 'yo mum HAHA GOTTEM'; // Haxe Requires this here due to the class not extending anything
 }
