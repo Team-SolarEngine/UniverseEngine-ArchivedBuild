@@ -66,7 +66,7 @@
   </tr>
 
   <tr>
-    <th> Main (Now Former) Developer </th>
+    <th> Former Developer </th>
     <th> Main Developer </th>
     <th> Invited Developer </th>
     <th> Invited Developer </th>
