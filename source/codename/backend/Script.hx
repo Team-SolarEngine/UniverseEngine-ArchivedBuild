@@ -83,7 +83,7 @@ class Script extends FlxBasic implements IFlxDestroyable
 			"CustomShader" => codename.backend.shaders.CustomShader,
 			"Alphabet" => Alphabet,
 
-			"CoolUtil" => CoolUtil,
+			"CoolUtil" => CoolUtil
 		];
 	}
 
