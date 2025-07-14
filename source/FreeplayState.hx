@@ -753,7 +753,7 @@ class FreeplayState extends MusicBeatState
 						curDifficulty = 1;
 						trace('Couldnt find file');
 				}*/
-				Logs.traceNew(poop, ERROR);
+				Logs.traceNew(poop);
 
 				PlayState.isStoryMode = false;
 				PlayState.storyDifficulty = curDifficulty;
