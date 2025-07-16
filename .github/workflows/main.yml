@@ -90,8 +90,6 @@ jobs:
           haxelib install flixel 5.6.2
           haxelib run lime setup flixel
           haxelib run lime setup
-          haxelib set flixel-addons 3.2.0
-          haxelib set flixel-ui 2.5.0
           haxelib install hxvlc
           haxelib git linc_luajit https://github.com/superpowers04/linc_luajit
           haxelib install hscript
@@ -101,6 +99,8 @@ jobs:
           haxelib install hxCodec 2.5.1
           haxelib install hscript
           haxelib install hxcpp-debug-server
+          haxelib set flixel-addons 3.2.0
+          haxelib set flixel-ui 2.5.0
           haxelib list
         shell: cmd
       - name: Create Version Tag
