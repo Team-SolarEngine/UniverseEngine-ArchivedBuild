@@ -94,13 +94,13 @@ Did you know I'm making a mo-" </th>
 <p>
   You can either:
   <ul>
-    <li> Submit Issues </li>
+    <li> Submit Issues with the engine </li>
     <li> Submit Pull Requests (Bugs, QOL, etc...) </li>
   </ul>
 </p>
 
-<h3> ☝️❓ How can YOU join the DEV team? </h3>
+<h3> ☝️❓ How can YOU join the Developer team? </h3>
 <p>
   We are currently not hiring and probably never. <br>
-  We only invite people to join the DEV team.
+  We only invite people to join the Developer team.
 </p>
