@@ -16,51 +16,34 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  # buildLinux:
-  #   # The type of runner that the job will run on
-  #   runs-on: ubuntu-latest
+  buildLinux:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
 
-  #   # Steps represent a sequence of tasks that will be executed as part of the job
-  #   steps:
-  #     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-  #     - uses: actions/checkout@v2
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4.1.7
 
-  #     - uses: krdlab/setup-haxe@master
-  #       with:
-  #         haxe-version: 4.2.5
-  #     # Runs a set of commands using the runners shell
-  #     - name: Install Haxelib
-  #       run: |
-  #         sudo apt-get install libvlc-dev
-  #         sudo apt-get install libvlccore-dev
-  #         haxelib setup ~/haxelib
-  #         haxelib git hxcpp https://github.com/HaxeFoundation/hxcpp
-  #         haxelib install lime
-  #         haxelib install openfl
-  #         haxelib --never install flixel
-  #         haxelib run lime setup flixel
-  #         haxelib run lime setup
-  #         haxelib install flixel-tools
-  #         haxelib install flixel-ui
-  #         haxelib install flixel-addons
-  #         haxelib install tjson
-  #         haxelib install hxjsonast
-  #         haxelib install hxCodec
-  #         haxelib git linc_luajit https://github.com/superpowers04/linc_luajit
-  #         haxelib install hscript
-  #         haxelib git hscript-ex https://github.com/ianharrigan/hscript-ex
-  #         haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
-  #         haxelib install hxcpp-debug-server
-  #         haxelib list
-  #     - name: Create Version Tag
-  #       run: echo "${{github.run_id}}" > VERSION
-  #     - name: Compile
-  #       run: haxelib run lime build Project.xml linux --app-version="4.0.0-${{ github.run_id}}"
-  #     - name: Publish Artifact
-  #       uses: actions/upload-artifact@v2.2.4
-  #       with:
-  #         name: linuxBuild
-  #         path: 'export/release/linux/bin'
+      - uses: krdlab/setup-haxe@master
+        with:
+          haxe-version: 4.3.4
+      # Runs a set of commands using the runners shell
+      - name: Install Haxelib
+        run: |
+          sudo apt-get install libvlc-dev
+          sudo apt-get install libvlccore-dev
+          haxelib setup ~/haxelib
+          chmod x+ ./compile/workflow/unix.sh
+          sh ./compile/workflow/unix.sh
+          haxelib list
+      - name: Compile
+        run: haxelib run lime build Project.xml linux"
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Universe-Linux
+          path: 'export/release/linux/bin'
   buildWindows:
     runs-on: windows-latest
 
@@ -73,84 +56,48 @@ jobs:
           haxe-version: 4.3.4
       # Runs a set of commands using the runners shell
       
-      # also shoutout to moxie for a old PR about this workflow, W to moxie
+      # also, shoutout to moxie for a old PR about this workflow, W to moxie
       # reason why videobot denied it because he thought it wouldn't work with the MT tool
       # which i say is BULLSHIT!!!
       # cause i'm 110% sure it'll work with 4.3.x haxe
       # so videobot, if you read this
       # uhh, can't go back dumbass :3
+      # -dave
       
       - name: Install Haxelib
         run: |
           haxelib setup C:/haxelib
-          haxelib set Haxelib 4.1.0
-          haxelib git hxcpp https://github.com/moxie-coder/hxcpp-compiled
-          haxelib install lime 8.1.3 && haxelib set lime 8.1.3
-          haxelib install openfl 9.2.2 && haxelib set openfl 9.2.2
-          haxelib install flixel 5.6.2 && haxelib set flixel 5.6.2
-          haxelib run lime setup flixel
-          haxelib run lime setup
-          haxelib install hxvlc
-          haxelib install flixel-addons 3.2.0 && haxelib set flixel-addons 3.2.0
-          haxelib install flixel-ui 2.5.0 && haxelib set flixel-ui 2.5.0
-          haxelib git linc_luajit https://github.com/superpowers04/linc_luajit
-          haxelib install hscript
-          haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
-          haxelib install hxWindowColorMode
-          haxelib git hscript-improved https://github.com/CodenameCrew/hscript-improved
-          haxelib install hxCodec 2.5.1 && haxelib set hxCodec 2.5.1
-          haxelib install hscript
-          haxelib install hxcpp-debug-server
+          .\"compile/workflow/windows.bat"
           haxelib list
         shell: cmd
-      # - name: Create Version Tag
-      #   run: echo "${{github.run_id}}" > VERSION
       - name: Compile Windows
         run: haxelib run lime build windows
-        # --app-version="4.0.0-${{ github.run_id}}"
       - name: Publish Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: windowsBuild
+          name: Universe-Windows
           path: export/release/windows/bin
-  # buildMac:
-  #   runs-on: macos-latest
+  buildMac:
+    runs-on: macos-latest
 
-  #   steps:
-  #     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-  #     - uses: actions/checkout@v2
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4.1.7
 
-  #     - uses: krdlab/setup-haxe@master
-  #       with:
-  #         haxe-version: 4.2.5
-  #     # Runs a set of commands using the runners shell
-  #     - name: Install Haxelib
-  #       run: |
-  #         haxelib setup ~/haxelib
-  #         haxelib git hxcpp https://github.com/HaxeFoundation/hxcpp
-  #         haxelib install lime
-  #         haxelib install openfl
-  #         haxelib --never install flixel
-  #         haxelib run lime setup flixel
-  #         haxelib run lime setup
-  #         haxelib install flixel-tools
-  #         haxelib install flixel-ui
-  #         haxelib install flixel-addons
-  #         haxelib install tjson
-  #         haxelib install hxjsonast
-  #         haxelib install hxCodec
-  #         haxelib git linc_luajit https://github.com/superpowers04/linc_luajit
-  #         haxelib install hscript
-  #         haxelib git hscript-ex https://github.com/ianharrigan/hscript-ex
-  #         haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
-  #         haxelib install hxcpp-debug-server
-  #         haxelib list
-  #     - name: Create Version Tag
-  #       run: echo "${{github.run_id}}" > VERSION
-  #     - name: Compile
-  #       run: haxelib run lime build mac --app-version="4.0.0-${{ github.run_id}}"
-  #     - name: Publish Artifact
-  #       uses: actions/upload-artifact@v2.2.4
-  #       with:
-  #         name: macBuild
-  #         path: export/release/macos/bin
+      - uses: krdlab/setup-haxe@master
+        with:
+          haxe-version: 4.3.4
+      # Runs a set of commands using the runners shell
+      - name: Install Haxelib
+        run: 
+          haxelib setup ~/haxelib
+          chmod x+ ./compile/workflow/unix.sh
+          sh ./compile/workflow/unix.sh
+          haxelib list
+      - name: Compile
+        run: haxelib run lime build mac"
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Universe-MacOS
+          path: export/release/macos/bin
