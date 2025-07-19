@@ -38,7 +38,11 @@ jobs:
           sh ./compile/workflow/unix.sh
           haxelib list
       - name: Compile
-        run: haxelib run lime build Project.xml linux"
+        run: |
+          cd $(haxelib libpath hxcpp)/tools/hxcpp
+          haxe compile.hxml
+          cd -
+          haxelib run lime build mac"
       - name: Publish Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -95,7 +99,11 @@ jobs:
           sh ./compile/workflow/unix.sh
           haxelib list
       - name: Compile
-        run: haxelib run lime build mac"
+        run: |
+          cd $(haxelib libpath hxcpp)/tools/hxcpp
+          haxe compile.hxml
+          cd -
+          haxelib run lime build mac"
       - name: Publish Artifact
         uses: actions/upload-artifact@v4
         with:
