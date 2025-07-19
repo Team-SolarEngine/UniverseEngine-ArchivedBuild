@@ -91,8 +91,8 @@ jobs:
           haxelib run lime setup flixel
           haxelib run lime setup
           haxelib install hxvlc
-          haxelib set flixel-addons 3.2.0 && haxelib set flixel-addons 3.2.0
-          haxelib set flixel-ui 2.5.0 && haxelib set flixel-ui 2.5.0
+          haxelib install flixel-addons 3.2.0 && haxelib set flixel-addons 3.2.0
+          haxelib install flixel-ui 2.5.0 && haxelib set flixel-ui 2.5.0
           haxelib git linc_luajit https://github.com/superpowers04/linc_luajit
           haxelib install hscript
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
