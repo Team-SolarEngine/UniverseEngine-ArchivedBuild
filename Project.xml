@@ -141,14 +141,15 @@
 	<haxedev set='webgl' />
 
 	<!--In case you want to use the addons package-->
-	<haxelib name="flixel-addons" />
+	<!-- god fucking damn it i hate github actions and haxeflixel with their shit 3:< -->
+	<haxelib name="flixel-addons" version="3.2.0"/>
 	<haxelib name="hscript" />
 	<haxelib name="hxWindowColorMode"/>
 	<haxelib name="hscript-improved"/>
 	<haxedef name="hscriptPos" />
 
 	<!--In case you want to use the ui package-->
-	<haxelib name="flixel-ui" />
+	<haxelib name="flixel-ui" version="2.5.0"/>
 	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
 	<haxelib name="hxCodec" if="VIDEOS_ALLOWED" version="2.5.1"/> <!-- Specify the version so people can compile! -->
 	<haxelib name="faxe" if='switch'/>
