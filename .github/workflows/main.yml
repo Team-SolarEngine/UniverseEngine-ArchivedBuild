@@ -39,7 +39,7 @@ jobs:
           haxelib list
       - name: Compile
         run: |
-          cd $(haxelib libpath hxcpp)/tools/hxcpp
+          cd "$(haxelib libpath hxcpp)/tools/hxcpp"
           haxe compile.hxml
           cd -
           haxelib run lime build mac"
@@ -100,7 +100,7 @@ jobs:
           haxelib list
       - name: Compile
         run: |
-          cd $(haxelib libpath hxcpp)/tools/hxcpp
+          cd "$(haxelib libpath hxcpp)/tools/hxcpp"
           haxe compile.hxml
           cd -
           haxelib run lime build mac"
