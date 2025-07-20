@@ -22,8 +22,8 @@ jobs:
           haxe-version: 4.3.4
       - name: Install Haxelib
         run: |
-          sudo apt-get install libvlc-dev
-          sudo apt-get install libvlccore-dev
+          sudo apt-get install libvlc
+          sudo apt-get install libvlccore
           haxelib setup ~/haxelib
           chmod +x ./compile/workflow/unix.sh
           sh ./compile/workflow/unix.sh
