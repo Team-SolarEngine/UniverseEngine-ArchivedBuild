@@ -12,10 +12,7 @@ haxelib install hscript
 haxelib install hscript
 haxelib install hxcpp-debug-server
 
-haxelib git hxcpp https://github.com/HaxeFoundation/hxcpp.git
+haxelib git hxcpp https://github.com/moxie-coder/hxcpp-compiled
 haxelib git linc_luajit https://github.com/superpowers04/linc_luajit
 haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
 haxelib git hscript-improved https://github.com/CodenameCrew/hscript-improved
-
-# Libraries that UNIX platform does NOT need because it's not compatible with windows.
-# haxelib install hxWindowColorMode

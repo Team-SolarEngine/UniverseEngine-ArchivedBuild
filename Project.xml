@@ -144,7 +144,6 @@
 	<!-- god fucking damn it i hate github actions and haxeflixel with their shit 3:< -->
 	<haxelib name="flixel-addons" />
 	<haxelib name="hscript" />
-	<haxelib name="hxWindowColorMode"/>
 	<haxelib name="hscript-improved"/>
 	<haxedef name="hscriptPos" />
 

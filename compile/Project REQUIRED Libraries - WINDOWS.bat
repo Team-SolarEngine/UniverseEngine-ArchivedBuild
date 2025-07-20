@@ -8,11 +8,10 @@ haxelib install flixel-ui 2.5.0 && haxelib set flixel-ui 2.5.0
 haxelib install lime 8.1.2 && haxelib set lime 8.1.2
 
 haxelib install hscript
-haxelib install hxWindowColorMode
 
 haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
 haxelib git linc_luajit https://github.com/superpowers04/linc_luajit
-haxelib git hxcpp https://github.com/HaxeFoundation/hxcpp.git
+haxelib git hxcpp https://github.com/moxie-coder/hxcpp-compiled
 haxelib git hscript-improved https://github.com/CodenameCrew/hscript-improved
 
 haxelib list

@@ -79,7 +79,6 @@ import sys.io.File;
 #if VIDEOS_ALLOWED
 import vlc.MP4Handler;
 #end
-import hxwindowmode.WindowColorMode;
 
 using StringTools;
 
@@ -4567,8 +4566,6 @@ class PlayState extends MusicBeatState
 			}
 		}
 		#end
-
-		WindowColorMode.setWindowBorderColor(ClientPrefs.data.windowColor);
 
 		var ret:Dynamic = callOnLuas('onEndSong', [], false);
 		if (ret != FunkinLua.Function_Stop && !transitioning)

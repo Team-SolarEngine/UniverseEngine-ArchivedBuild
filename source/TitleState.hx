@@ -42,7 +42,6 @@ import flixel.util.FlxAxes;
 import vlc.MP4Handler;
 #end
 import flixel.addons.display.FlxBackdrop;
-import hxwindowmode.WindowColorMode;
 import flixel.tweens.misc.NumTween;
 
 using StringTools;
@@ -168,8 +167,6 @@ class TitleState extends MusicBeatState
 		FlxG.save.bind('funkin', 'universe');
 
 		ClientPrefs.loadPrefs();
-		WindowColorMode.setWindowBorderColor(ClientPrefs.data.windowColor, true, true);
-		WindowColorMode.redrawWindowHeader();
 
 		Highscore.load();
 
