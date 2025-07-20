@@ -1,7 +1,10 @@
 <div align="center"> 
   <img src="assets/exclude/images/Universe Engine.png" width="568" height="285"> <br>
-  
-  <h3> Universe engine - Yet another <a href="https://github.com/ShadowMario/FNF-PsychEngine">Psych Engine</a> fork. </h3>
+
+  <h3>
+    <img src="art/icon64.png" width="25">
+    Universe engine - Yet another <a href="https://github.com/ShadowMario/FNF-PsychEngine">Psych Engine</a> fork.
+  </h3>
   
   <p>
     <a href="https://discord.gg/RaHmP5fgyA">
@@ -52,6 +55,7 @@
 <h3> 👑 Who created and helped this engine? </h3>
 <table align="center">
   <tr>
+    <th>Contributor Names</th>
     <th> <img src="https://daveberry.netlify.app/daveberry/dave.png" width="25"> Daveberry   </th>
     <th> <img src="https://github.com/VideoBotYT/Universe-Engine/blob/main/assets/preload/images/credits/videobot.png?raw=true" width="25"> VideoBot </th>
     <th> <img src="https://github.com/VideoBotYT/Universe-Engine/blob/main/assets/preload/images/credits/baranmuzu.png?raw=true" width="25"> BaranMuzu </th>
@@ -59,17 +63,28 @@
   </tr>
 
   <tr>
-    <th> Idea for the engine. <br> Created the engine. </th>
-    <th> Idea for the engine. <br> Created the engine. </th>
+    <th>Initial Role</th>
+    <th> Created the engine. </th>
+    <th> Created the engine. </th>
     <th> Invited to help. </th>
     <th> Invited to help. </th>
   </tr>
 
   <tr>
-    <th> Main (Now Former) Developer </th>
+    <th>Role</th>
+    <th> Former Developer </th>
     <th> Main Developer </th>
     <th> Invited Developer </th>
     <th> Invited Developer </th>
+  </tr>
+
+  <tr>
+    <th> Personal Message </th>
+    <th> "I'M NOT FUCKING GAY" </th>
+    <th> "I love MODCHARTING" </th>
+    <th> "idk" </th>
+    <th> "sup guys I was <s>forced</s> asked to join the team
+Did you know I'm making a mo-" </th>
   </tr>
 </table>
 
@@ -79,13 +94,13 @@
 <p>
   You can either:
   <ul>
-    <li> Submit Issues </li>
+    <li> Submit Issues with the engine </li>
     <li> Submit Pull Requests (Bugs, QOL, etc...) </li>
   </ul>
 </p>
 
-<h3> ☝️❓ How can YOU join the DEV team? </h3>
+<h3> ☝️❓ How can YOU join the Developer team? </h3>
 <p>
   We are currently not hiring and probably never. <br>
-  We only invite people to join the DEV team.
+  We only invite people to join the Developer team.
 </p>
