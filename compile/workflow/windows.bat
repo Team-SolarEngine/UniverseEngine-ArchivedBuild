@@ -11,7 +11,6 @@ haxelib install hxvlc
 haxelib install hscript
 haxelib install hxcpp-debug-server
 
-haxelib git hxCodec https://github.com/polybiusproxy/hxCodec
 haxelib git hxcpp https://github.com/moxie-coder/hxcpp-compiled
 haxelib git linc_luajit https://github.com/superpowers04/linc_luajit
 haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
