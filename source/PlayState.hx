@@ -1470,8 +1470,10 @@ class PlayState extends MusicBeatState
 			FlxG.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
 		}
 		ModchartFuncs.loadLuaFunctions();
+		#if windows
 		if (ClientPrefs.data.windows)
 			scripting.WindowsLua.loadLua();
+		#end
 		callOnLuas('onCreatePost', []);
 
 		animIconCheck();
