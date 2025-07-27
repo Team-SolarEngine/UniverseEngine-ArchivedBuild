@@ -4,7 +4,6 @@ haxelib install flixel 5.6.2 && haxelib set flixel 5.6.2
 haxelib install flixel-addons 3.2.0 && haxelib set flixel-addons 3.2.0
 haxelib install flixel-ui 2.5.0 && haxelib set flixel-ui 2.5.0
 haxelib install hxCodec 2.5.1 && haxelib set hxCodec 2.5.1
-rm -rf ~/haxelib/hxCodec/2,5,1/lib/vlc/lib/Linux/*
 
 haxelib run lime setup flixel
 haxelib run lime setup
