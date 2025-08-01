@@ -618,10 +618,9 @@ class TitleState extends MusicBeatState
 				FlxG.sound.playMusic(Paths.music("freakyMenu-" + ClientPrefs.data.mmm), 0);
 				FlxG.sound.music.fadeIn(4, 0, 0.7);
 				trace('----------------- Aku Sayang Aku juga sayang ---------------');
-				trace(Paths.video('AACIntro'));
 
 				if (video != null) {
-					video.play();
+					// video.play();
 					video.bitmap.mute = true;
 				}
 			}
@@ -1010,15 +1009,17 @@ class TitleState extends MusicBeatState
 						skipIntro();
 				}
 			}
-			else if (ClientPrefs.data.mmm != "Stay Funky")
+			else if (ClientPrefs.data.mmm == "AAC V4" && ClientPrefs.data.mmm != "Stay Funky")
 			{
 				if (curBeat < 32 && video != null && video.bitmap != null) {
 					video.pause();
 					video.bitmap.time = Std.int(Conductor.songPosition);
-					video.play();
+					// video.play();
 				}
 				switch (sickBeats)
 				{
+					case 1:
+						trace("An Ammar Creativity Video");
 					case 28:
 						createCoolText(['FNF']);
 					// credTextShit.visible = true;
@@ -1027,10 +1028,8 @@ class TitleState extends MusicBeatState
 					// credTextShit.text += '\nNight';
 					case 30:
 						addMoreText('Creativity'); // credTextShit.text += '\nFunkin';
-
 					case 31:
 						addMoreText('V4'); // credTextShit.text += '\nFunkin';
-
 					case 32:
 						skipIntro();
 						FlxG.camera.flash(FlxColor.WHITE, 4);
