@@ -52,7 +52,6 @@ import hscript.Expr;
 import Discord;
 import Discord.DiscordClient;
 #end
-import hxwindowmode.WindowColorMode;
 import editors.StageEditor;
 
 using StringTools;
@@ -362,10 +361,6 @@ class FunkinLua
 			{
 				FlxTween.tween(screen, {"x": 0, "y": 0}, duration, {ease: getFlxEaseByString(ease)});
 			}
-		});
-		Lua_helper.add_callback(lua, "windowColor", function(red:Int, green:Int, blue:Int, header:Bool, border:Bool)
-		{
-			WindowColorMode.setWindowBorderColor([red, green, blue], header, border);
 		});
 		Lua_helper.add_callback(lua, "addCamera", function(tag:String, defaultTarget:Bool, x:Int, y:Int, height:Int, zoom:Float)
 		{

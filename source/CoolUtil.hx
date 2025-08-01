@@ -15,6 +15,11 @@ import openfl.utils.Assets;
 #end
 import sys.io.Process;
 
+import flixel.text.FlxText;
+import flixel.util.FlxColor;
+import flixel.tweens.FlxTween;
+
+
 import Song.SwagSong;
 import haxe.xml.Access;
 

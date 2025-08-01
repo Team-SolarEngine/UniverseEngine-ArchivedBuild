@@ -1,0 +1,85 @@
+# MAINLY shout out to Moxie and Psych Engine workflows!
+# Workflows fixed by a Former Dev, Daveberry Blueson!
+# ok now stop asking for linux for macos
+
+name: Compiling the engine
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  Linux-Build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4.1.7
+
+      - uses: krdlab/setup-haxe@master
+        with:
+          haxe-version: 4.3.4
+      - name: Install Haxelib
+        run: |
+          sudo apt-get install libvlc-dev
+          sudo apt-get install libvlccore-dev
+          haxelib setup ~/haxelib
+          haxelib install Haxelib 4.1.0 && haxelib set Haxelib 4.1.0
+          chmod +x ./compile/workflow/unix.sh
+          sh ./compile/workflow/unix.sh
+          haxelib list
+      - name: Compile Linux
+        run: haxelib run lime build Project.xml linux
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Universe-Linux
+          path: 'export/release/linux/bin'
+  Windows-Build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4.1.7
+
+      - uses: krdlab/setup-haxe@master
+        with:
+          haxe-version: 4.3.4
+      
+      - name: Install Haxelib
+        run: |
+          haxelib setup C:/haxelib
+          haxelib install Haxelib 4.1.0 && haxelib set Haxelib 4.1.0
+          .\"compile/workflow/windows.bat"
+          haxelib list
+        shell: cmd
+      - name: Compile Windows
+        run: haxelib run lime build windows
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Universe-Windows
+          path: export/release/windows/bin
+  MacOS-Build:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4.1.7
+
+      - uses: krdlab/setup-haxe@master
+        with:
+          haxe-version: 4.3.4
+      - name: Install Haxelib
+        run: |
+          haxelib setup ~/haxelib
+          haxelib install Haxelib 4.1.0 && haxelib set Haxelib 4.1.0
+          chmod +x ./compile/workflow/unix.sh
+          sh ./compile/workflow/unix.sh
+          haxelib list
+      - name: Compile MacOS
+        run: haxelib run lime build mac
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Universe-MacOS
+          path: export/release/macos/bin

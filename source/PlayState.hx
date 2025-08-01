@@ -79,7 +79,6 @@ import sys.io.File;
 #if VIDEOS_ALLOWED
 import vlc.MP4Handler;
 #end
-import hxwindowmode.WindowColorMode;
 
 using StringTools;
 
@@ -1470,8 +1469,10 @@ class PlayState extends MusicBeatState
 			FlxG.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
 		}
 		ModchartFuncs.loadLuaFunctions();
+		#if windows
 		if (ClientPrefs.data.windows)
 			scripting.WindowsLua.loadLua();
+		#end
 		callOnLuas('onCreatePost', []);
 
 		animIconCheck();
@@ -4565,8 +4566,6 @@ class PlayState extends MusicBeatState
 			}
 		}
 		#end
-
-		WindowColorMode.setWindowBorderColor(ClientPrefs.data.windowColor);
 
 		var ret:Dynamic = callOnLuas('onEndSong', [], false);
 		if (ret != FunkinLua.Function_Stop && !transitioning)

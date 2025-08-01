@@ -71,7 +71,7 @@ class SaveVariables
 	public var uems:Bool = true;
 	public var loadscreen:Bool = false;
 	public var hideOriCredits:Bool = false;
-	public var windows:Bool = false;
+	#if windows public var windows:Bool = false; #end
 
 	// offical launcherl mao
 	public var officialLauncher:Bool = true;
@@ -131,7 +131,6 @@ class SaveVariables
 		[0xFF71E300, 0xFFF6FFE6, 0xFF003100],
 		[0xFFFF884E, 0xFFFFFAF5, 0xFF6C0000]
 	];
-	public var windowColor:Array<Int> = [112, 0, 218];
 
 	public function new() var yuh:String = 'yo mum HAHA GOTTEM'; // Haxe Requires this here due to the class not extending anything
 }
@@ -178,7 +177,6 @@ class ClientPrefs
 		[0xFF71E300, 0xFFF6FFE6, 0xFF003100],
 		[0xFFFF884E, 0xFFFFFAF5, 0xFF6C0000]
 	];
-	public static var defaultWindowColor:Array<Int> = [112, 0, 218];
 
 	public static function loadDefaultStuff()
 	{

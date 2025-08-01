@@ -23,7 +23,7 @@ import flixel.graphics.FlxGraphic;
 import MusicBeatState;
 import Controls;
 import lime.app.Application;
-import winapi.WindowsAPI;
+#if windows import winapi.WindowsAPI; #end
 
 using StringTools;
 
@@ -79,9 +79,11 @@ class UEGameOptions extends BaseOptionsMenu
 		var option:Option = new Option('Hide Original Credits', "Hides the original credits built-in in source.", 'hideOriCredits', 'bool', false);
 		addOption(option);
 
+		#if windows
 		var option:Option = new Option("Dangerous Functions", "This does DANGEROUS stuff to your OS. Not deleting your files, just a extenal window of a message box, hiding the taskbar, etc etc...", "windows", "bool", false);
 		addOption(option);
 		option.onChange = window;
+		#end
 
 		super();
 	}
@@ -145,8 +147,10 @@ class UEGameOptions extends BaseOptionsMenu
 		}
 		FlxG.camera.fade(FlxColor.BLACK, 0.5, false, FlxG.resetGame, false);
 	}
+	#if windows
 	function window()
 	{
 		WindowsAPI.showMessageBox("Warning", "Are you sure, this will mess with your pc", MessageBoxIcon.MSG_QUESTION);
 	}
+	#end
 }
