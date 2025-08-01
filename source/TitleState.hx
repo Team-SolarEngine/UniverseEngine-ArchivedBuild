@@ -620,7 +620,7 @@ class TitleState extends MusicBeatState
 				trace('----------------- Aku Sayang Aku juga sayang ---------------');
 
 				if (video != null) {
-					// video.play();
+					video.play();
 					video.bitmap.mute = true;
 				}
 			}
@@ -1014,7 +1014,7 @@ class TitleState extends MusicBeatState
 				if (curBeat < 32 && video != null && video.bitmap != null) {
 					video.pause();
 					video.bitmap.time = Std.int(Conductor.songPosition);
-					// video.play();
+					video.play();
 				}
 				switch (sickBeats)
 				{
