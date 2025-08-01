@@ -77,7 +77,8 @@ import sys.FileSystem;
 import sys.io.File;
 #end
 #if VIDEOS_ALLOWED
-import vlc.MP4Handler;
+import hxvlc.flixel.FlxVideo;
+import hxvlc.flixel.FlxVideoSprite;
 #end
 
 using StringTools;
@@ -1863,6 +1864,7 @@ class PlayState extends MusicBeatState
 		char.y += char.positionArray[1];
 	}
 
+	public var videoCutscene:FlxVideoSprite;
 	public function startVideo(name:String)
 	{
 		#if VIDEOS_ALLOWED
@@ -1870,9 +1872,9 @@ class PlayState extends MusicBeatState
 
 		var filepath:String = Paths.video(name);
 		#if sys
-		if (!FileSystem.exists(filepath))
+		if(!FileSystem.exists(filepath))
 		#else
-		if (!OpenFlAssets.exists(filepath))
+		if(!OpenFlAssets.exists(filepath))
 		#end
 		{
 			FlxG.log.warn('Couldnt find video file: ' + name);
@@ -1880,19 +1882,36 @@ class PlayState extends MusicBeatState
 			return;
 		}
 
-		var video:MP4Handler = new MP4Handler();
-		video.playVideo(filepath);
-		video.finishCallback = function()
-		{
+		videoCutscene = new FlxVideoSprite(0, 0);
+		videoCutscene.antialiasing = true;
+		videoCutscene.bitmap.onFormatSetup.add(function():Void
+			{
+				videoCutscene.setGraphicSize(FlxG.width, FlxG.height);
+				videoCutscene.updateHitbox();
+				videoCutscene.screenCenter();
+			});
+			videoCutscene.bitmap.onEndReached.add(function(){
+			videoCutscene.destroy();
 			startAndEnd();
-			return;
 		}
+		);
+		videoCutscene.load(filepath);
+		videoCutscene.cameras = [camOther];
+		videoCutscene.bitmap.mute = false;
+		videoCutscene.bitmap.volume = 1;
+		videoCutscene.autoVolumeHandle = true;
+
+		new FlxTimer().start(0.5, function(tmr:FlxTimer){
+			videoCutscene.play();
+			add(videoCutscene);
+		});
 		#else
 		FlxG.log.warn('Platform not supported!');
 		startAndEnd();
 		return;
 		#end
 	}
+
 
 	function startAndEnd()
 	{

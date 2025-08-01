@@ -34,6 +34,7 @@ class SaveVariables
 	public var controllerMode:Bool = false;
 	public var hitsoundVolume:Float = 0;
 	public var pauseMusic:String = 'Tea Time';
+	public var discordRPC:Bool = true;
 	// public var checkForUpdates:Bool = true;
 	public var comboStacking = true;
 
