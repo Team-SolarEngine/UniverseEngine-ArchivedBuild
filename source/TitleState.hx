@@ -39,7 +39,8 @@ import lime.app.Application;
 import openfl.Assets;
 import flixel.util.FlxAxes;
 #if VIDEOS_ALLOWED
-import vlc.MP4Handler;
+import hxvlc.flixel.FlxVideo;
+import hxvlc.flixel.FlxVideoSprite;
 #end
 import flixel.addons.display.FlxBackdrop;
 import flixel.tweens.misc.NumTween;
@@ -97,6 +98,7 @@ class TitleState extends MusicBeatState
 	var anammar:FlxSprite;
 	var creativity:FlxSprite;
 	var bg:FlxSprite;
+	var video:FlxVideoSprite;
 
 	// NORMAL COLLECTIONS
 	var pRESSENTERTOBEGIN:FlxSprite;
@@ -429,6 +431,22 @@ class TitleState extends MusicBeatState
 
 		if (ClientPrefs.data.mmm == "AAC V4")
 		{
+			video = new FlxVideoSprite(0, 0);
+			video.bitmap.onFormatSetup.add(function():Void
+			{
+				video.setGraphicSize(FlxG.width, FlxG.height);
+				video.updateHitbox();
+				video.screenCenter();
+			});
+			video.bitmap.onEndReached.add(video.destroy);
+			video.autoPause = true;
+			//video.load(Paths.video('Intro'));
+			video.load(Paths.video('AACIntro'));
+			video.antialiasing = false;
+			video.autoVolumeHandle = false;
+			video.bitmap.mute = true;
+			add(video);
+
 			bg = new FlxSprite(0, 0).loadGraphic(Paths.image('title/ammar/introBG'));
 			bg.updateHitbox();
 			bg.screenCenter();
@@ -593,8 +611,20 @@ class TitleState extends MusicBeatState
 
 		if (initialized)
 			skipIntro();
-		else
+		else {
 			initialized = true;
+			
+			if (ClientPrefs.data.mmm == "AAC V4") {
+				FlxG.sound.playMusic(Paths.music("freakyMenu-" + ClientPrefs.data.mmm), 0);
+				FlxG.sound.music.fadeIn(4, 0, 0.7);
+				trace('----------------- Aku Sayang Aku juga sayang ---------------');
+
+				if (video != null) {
+					video.play();
+					video.bitmap.mute = true;
+				}
+			}
+		}
 
 		// credGroup.add(credTextShit);
 	}
@@ -979,20 +1009,30 @@ class TitleState extends MusicBeatState
 						skipIntro();
 				}
 			}
-			else if (ClientPrefs.data.mmm != "Stay Funky")
+			else if (ClientPrefs.data.mmm == "AAC V4" && ClientPrefs.data.mmm != "Stay Funky")
 			{
+				if (curBeat < 32 && video != null && video.bitmap != null) {
+					video.pause();
+					video.bitmap.time = Std.int(Conductor.songPosition);
+					video.play();
+				}
 				switch (sickBeats)
 				{
 					case 1:
-						#if !html5
-						var video:MP4Handler = new MP4Handler();
-						video.playVideo("assets/videos/AACIntroUE.mp4");
-						#end
-
-						FlxG.sound.playMusic(Paths.music("freakyMenu-" + ClientPrefs.data.mmm), 0);
-						FlxG.sound.music.fadeIn(4, 0, 0.7);
-					case 33:
+						trace("An Ammar Creativity Video");
+					case 28:
+						createCoolText(['FNF']);
+					// credTextShit.visible = true;
+					case 29:
+						addMoreText('An Ammar');
+					// credTextShit.text += '\nNight';
+					case 30:
+						addMoreText('Creativity'); // credTextShit.text += '\nFunkin';
+					case 31:
+						addMoreText('V4'); // credTextShit.text += '\nFunkin';
+					case 32:
 						skipIntro();
+						FlxG.camera.flash(FlxColor.WHITE, 4);
 				}
 			}
 			else if (ClientPrefs.data.mmm != "AAC V4" && ClientPrefs.data.mmm == 'Stay Funky')
@@ -1091,6 +1131,12 @@ class TitleState extends MusicBeatState
 						FlxG.sound.playMusic(Paths.music("freakyMenu-" + ClientPrefs.data.mmm), 0);
 						FlxG.sound.music.fadeIn(4, 0, 0.7);
 						return;
+				}
+
+				if (video != null) {
+					video.stop();
+					video.destroy();
+					video.alpha = 0;
 				}
 
 				transitioning = true;
