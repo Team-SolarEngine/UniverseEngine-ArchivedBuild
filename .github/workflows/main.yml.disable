@@ -25,7 +25,6 @@ jobs:
           sudo apt-get install libvlc-dev
           sudo apt-get install libvlccore-dev
           haxelib setup ~/haxelib
-          haxelib install Haxelib 4.1.0 && haxelib set Haxelib 4.1.0
           chmod +x ./compile/workflow/unix.sh
           sh ./compile/workflow/unix.sh
           haxelib list
@@ -49,7 +48,6 @@ jobs:
       - name: Install Haxelib
         run: |
           haxelib setup C:/haxelib
-          haxelib install Haxelib 4.1.0 && haxelib set Haxelib 4.1.0
           .\"compile/workflow/windows.bat"
           haxelib list
         shell: cmd
@@ -72,7 +70,6 @@ jobs:
       - name: Install Haxelib
         run: |
           haxelib setup ~/haxelib
-          haxelib install Haxelib 4.1.0 && haxelib set Haxelib 4.1.0
           chmod +x ./compile/workflow/unix.sh
           sh ./compile/workflow/unix.sh
           haxelib list
