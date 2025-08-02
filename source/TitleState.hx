@@ -431,22 +431,6 @@ class TitleState extends MusicBeatState
 
 		if (ClientPrefs.data.mmm == "AAC V4")
 		{
-			video = new FlxVideoSprite(0, 0);
-			video.bitmap.onFormatSetup.add(function():Void
-			{
-				video.setGraphicSize(FlxG.width, FlxG.height);
-				video.updateHitbox();
-				video.screenCenter();
-			});
-			video.bitmap.onEndReached.add(video.destroy);
-			video.autoPause = true;
-			//video.load(Paths.video('Intro'));
-			video.load(Paths.video('AACIntro'));
-			video.antialiasing = false;
-			video.autoVolumeHandle = false;
-			video.bitmap.mute = true;
-			add(video);
-
 			bg = new FlxSprite(0, 0).loadGraphic(Paths.image('title/ammar/introBG'));
 			bg.updateHitbox();
 			bg.screenCenter();
@@ -611,18 +595,32 @@ class TitleState extends MusicBeatState
 
 		if (initialized)
 			skipIntro();
-		else {
+		else
+		{
 			initialized = true;
-			
-			if (ClientPrefs.data.mmm == "AAC V4") {
+
+			if (ClientPrefs.data.mmm == "AAC V4")
+			{
 				FlxG.sound.playMusic(Paths.music("freakyMenu-" + ClientPrefs.data.mmm), 0);
 				FlxG.sound.music.fadeIn(4, 0, 0.7);
 				trace('----------------- Aku Sayang Aku juga sayang ---------------');
 
-				if (video != null) {
-					video.play();
-					video.bitmap.mute = true;
-				}
+				video = new FlxVideoSprite(0, 0);
+				video.bitmap.onFormatSetup.add(function():Void
+				{
+					video.setGraphicSize(FlxG.width, FlxG.height);
+					video.updateHitbox();
+					video.screenCenter();
+				});
+				video.bitmap.onEndReached.add(video.destroy);
+				video.autoPause = true;
+				// video.load(Paths.video('Intro'));
+				video.load(Paths.video('AACIntro'));
+				trace(Paths.video('AACIntro'));
+				video.antialiasing = false;
+				video.autoVolumeHandle = false;
+				video.bitmap.mute = true;
+				add(video);
 			}
 		}
 
@@ -936,14 +934,18 @@ class TitleState extends MusicBeatState
 		}
 		if (skippedIntro)
 		{
-			if (beatCamAngle != null) beatCamAngle.cancel();
-			if (beatCamZoom != null) beatCamZoom.cancel();
+			if (beatCamAngle != null)
+				beatCamAngle.cancel();
+			if (beatCamZoom != null)
+				beatCamZoom.cancel();
 
-			if (ClientPrefs.data.mmm == "Normal Collections" && ClientPrefs.data.mmm == "AAC V4") {
+			if (ClientPrefs.data.mmm == "Normal Collections" && ClientPrefs.data.mmm == "AAC V4")
+			{
 				beatCamAngle = FlxTween.tween(FlxG.camera, {angle: curBeat % 2 == 0 ? 2 : -2}, 1, {ease: FlxEase.expoOut, type: BACKWARD});
 				beatCamZoom = FlxTween.tween(FlxG.camera, {zoom: 1.125}, 1, {ease: FlxEase.expoOut, type: BACKWARD});
 			}
-			else {
+			else
+			{
 				beatCamZoom = FlxTween.tween(FlxG.camera, {zoom: 1.1}, 1, {ease: FlxEase.expoOut, type: BACKWARD});
 			}
 		}
@@ -1011,7 +1013,8 @@ class TitleState extends MusicBeatState
 			}
 			else if (ClientPrefs.data.mmm == "AAC V4" && ClientPrefs.data.mmm != "Stay Funky")
 			{
-				if (curBeat < 32 && video != null && video.bitmap != null) {
+				if (video != null && video.bitmap != null)
+				{
 					video.pause();
 					video.bitmap.time = Std.int(Conductor.songPosition);
 					video.play();
@@ -1133,7 +1136,8 @@ class TitleState extends MusicBeatState
 						return;
 				}
 
-				if (video != null) {
+				if (video != null)
+				{
 					video.stop();
 					video.destroy();
 					video.alpha = 0;
