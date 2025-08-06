@@ -104,9 +104,3 @@ Did you know I'm making a mo-" </th>
   We are currently not hiring and probably never. <br>
   We only invite people to join the Developer team.
 </p>
-
-<!--
-egg plant
-idk man im bored :3
--dave
--->
