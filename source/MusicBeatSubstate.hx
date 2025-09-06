@@ -1,6 +1,5 @@
 package;
 
-import codename.scripting.ScriptPack;
 import Conductor.BPMChangeEvent;
 import flixel.FlxG;
 import flixel.FlxSubState;
@@ -9,11 +8,6 @@ import flixel.FlxSprite;
 
 class MusicBeatSubstate extends FlxSubState
 {
-
-	/**
-	 * Current injected script attached to the state. To add one, create a file at path "data/states/stateName" (ex: "data/states/PauseMenuSubstate.hx")
-	 */
-	public var stateScripts:ScriptPack;
 
 	public var scriptsAllowed:Bool = true;
 

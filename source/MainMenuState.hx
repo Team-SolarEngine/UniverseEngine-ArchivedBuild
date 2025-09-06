@@ -349,12 +349,12 @@ class MainMenuState extends MusicBeatState
 										MusicBeatState.switchState(new FreeplayState());
 									#if MODS_ALLOWED
 									case 'mods':
-										openSubState(new codename.substates.ModSwitchMenu());
+										MusicBeatState.switchState(new ModsMenuState());
 									#end
 									case 'awards':
 										MusicBeatState.switchState(new AchievementsMenuState());
 									case 'credits':
-										MusicBeatState.switchState(new credits.CreditsState());
+										MusicBeatState.switchState(new credits.PECreditsState());
 									case 'options':
 										LoadingState.loadAndSwitchState(new options.SelectThing());
 								}

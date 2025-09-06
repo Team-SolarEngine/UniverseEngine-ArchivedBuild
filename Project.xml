@@ -2,7 +2,12 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Funkin': Universe Engine" file="UniverseEngine" packageName="com.univere.engine" package="com.universe.engine" main="Main" version="0.2.8" company="Universe" />
+	<section unless="mac">
+		<app title="Friday Night Funkin': Universe Engine" file="UniverseEngine" packageName="com.univere.engine" package="com.universe.engine" main="Main" version="0.2.8" company="Universe" />
+	</section>
+	<section if="mac"> <!-- Version the final file for mac (Revert to just the top when release build)-->
+		<app title="Friday Night Funkin': Universe Engine" file="UniverseEngine_1-0-0B2" packageName="com.univere.engine" package="com.universe.engine" main="Main" version="0.2.8" company="Universe" />
+	</section>
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -144,8 +149,12 @@
 	<!-- god fucking damn it i hate github actions and haxeflixel with their shit 3:< -->
 	<haxelib name="flixel-addons" />
 	<haxelib name="hscript" />
-	<haxelib name="hscript-improved"/>
+	<!--
+    <haxelib name="hscript-improved"/>
 	<haxedef name="hscriptPos" />
+	-->
+	<haxelib name="polymod" /> <!-- Required for the custom mod loader.-->
+	<haxedef name="POLYMOD_ROOT_PATH" value="game/"/> <!-- This is used to tell polymod where scripts are-->
 
 	<!--In case you want to use the ui package-->
 	<haxelib name="flixel-ui" version="2.5.0"/>
@@ -157,7 +166,7 @@
 	<haxelib name="hxdiscord_rpc" version="1.3.0"/>
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
 
-	<!-- <haxelib name="markdown" /> -->
+	<!-- <haxelib name="markdown" /> --> <!-- WHAT THE FUCK IS MARKDOWN DOING HERE?! -->
 	<!-- <haxelib name="HtmlParser" /> -->
 
 	<!--In case you want to use nape with flixel-->
