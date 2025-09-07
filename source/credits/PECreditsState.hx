@@ -115,13 +115,6 @@ class PECreditsState extends MusicBeatState
 					'14FFFF'
 				],
 				[
-					'BaranMuzu',
-					'baranmuzu',
-					'Second DEV, In charge of the LUA files and other',
-					'https://linktr.ee/baranmuzu',
-					'BE9877'
-				],
-				[
 					'CharGoldenYT',
 					'char',
 					"I guess I'll join the team - Me\nThird DEV In charge of HX Files, and the POLYMOD MOD LOADER!",
@@ -129,13 +122,20 @@ class PECreditsState extends MusicBeatState
 					'FFA600'
 				],
 				[''],
-				['Former UE DEV'],
+				['Former UE DEVs'],
 				[
 					'Daveberry',
 					'dave',
 					'Former DEV, (No Longer) In charge of the LUA, HX files and other',
-					'https://uwenalil.netlify.app/uwenalil/links',
+					'https://daveberry.netlify.app/',
 					'008BFF'
+				],
+				[
+					'BaranMuzu',
+					'baranmuzu',
+					'Former DEV, (No Longer) In charge of the LUA files and other',
+					'https://linktr.ee/baranmuzu',
+					'BE9877'
 				],
 				[''],
 				['UE Borrowed Code'],
