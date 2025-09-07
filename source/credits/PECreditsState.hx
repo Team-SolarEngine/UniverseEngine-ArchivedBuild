@@ -118,7 +118,7 @@ class PECreditsState extends MusicBeatState
 					'CharGoldenYT',
 					'char',
 					"I guess I'll join the team - Me\nThird DEV In charge of HX Files, and the POLYMOD MOD LOADER!",
-					'https://bsky.app/profile/chargoldenyt.bsky.social',
+					'https://bsky.app/profile/vschar-official.com',
 					'FFA600'
 				],
 				[''],
