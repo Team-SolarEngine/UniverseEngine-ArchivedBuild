@@ -121,11 +121,18 @@ class PECreditsState extends MusicBeatState
 					'https://linktr.ee/baranmuzu',
 					'BE9877'
 				],
+				[
+					'CharGoldenYT',
+					'char',
+					"I guess I'll join the team - Me\nThird DEV In charge of HX Files, and the POLYMOD MOD LOADER!",
+					'https://bsky.app/profile/chargoldenyt.bsky.social',
+					'FFA600'
+				],
 				[''],
 				['Former UE DEV'],
 				[
-					'uwenalil',
-					'uwenalil',
+					'Daveberry',
+					'dave',
 					'Former DEV, (No Longer) In charge of the LUA, HX files and other',
 					'https://uwenalil.netlify.app/uwenalil/links',
 					'008BFF'
@@ -207,13 +214,6 @@ class PECreditsState extends MusicBeatState
 				],
 				[''],
 				["UE PR's"],
-				[
-					'CharGoldenYT',
-					'char',
-					"Fixing Erect chaning difficulty and QOL",
-					'https://bsky.app/profile/chargoldenyt.bsky.social',
-					'FFA600'
-				],
 				[
 					'MoxieCoder',
 					'moxie',
