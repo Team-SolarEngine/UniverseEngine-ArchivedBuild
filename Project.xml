@@ -50,23 +50,18 @@
 	
 	<!-- PSYCH ENGINE CUSTOMIZATION -->
 	<define name="MODS_ALLOWED" if="desktop" />
-	<define name="MOD_SUPPORT" if="MODS_ALLOWED" /> <!-- TODO: Rename all instances to MODS_ALLOWED-->
 	<define name="LUA_ALLOWED" if="desktop" />
 	<define name="ACHIEVEMENTS_ALLOWED" />
 	<define name="VIDEOS_ALLOWED" if="web || desktop" unless="32bits"/>
 	<define name="PSYCH_WATERMARKS"/> <!-- DELETE THIS TO REMOVE WATERMARKS/DEV NAMES ON TITLE SCREEN -->
 	<define name="TITLE_SCREEN_EASTER_EGG" if="officialBuild"/> <!-- DELETE THE if="officialBuild" for enabling this on an unofficial build -->
 	<define name="CRASH_HANDLER" if="desktop release" />
-	<define name="SOFTCODED_STATES" if="MODS_ALLOWED"/>
-	<define name="GLOBAL_SCRIPT" if="MODS_ALLOWED"/>
 
 	<define name="DEV"/>
 	
 	<define name="PSYCH" />
 	<define name="PSYCHVERSION" value="0.6.3"/>
 	<define name="hscript"/>
-
-	<define name="GLOBAL_SCRIPT"/>
 
 	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/>
 	<assets path="assets/preload" rename="assets" exclude="*.mp3"  unless="web"/>
@@ -153,7 +148,7 @@
     <haxelib name="hscript-improved"/>
 	<haxedef name="hscriptPos" />
 	-->
-	<haxelib name="polymod" /> <!-- Required for the custom mod loader.-->
+	<haxelib name="polymod" if="MODS_ALLOWED"/> <!-- Required for the custom mod loader.-->
 	<haxedef name="POLYMOD_ROOT_PATH" value="game/"/> <!-- This is used to tell polymod where scripts are-->
 
 	<!--In case you want to use the ui package-->
