@@ -1,7 +1,7 @@
-package charengine.sys.logger;
+package sys.logger;
 
-import charengine.sys.logger.AnsiColors;
-import charengine.sys.logger.Level;
+import sys.logger.AnsiColors;
+import sys.logger.Level;
 
 class LogTools
 {

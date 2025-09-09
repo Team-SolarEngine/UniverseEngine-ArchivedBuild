@@ -1,4 +1,4 @@
-package charengine.sys.logger;
+package sys.logger;
 
 // Thank you @notbilly in the Haxe Discord for the color codes!
 enum abstract AnsiColors(String) to String {

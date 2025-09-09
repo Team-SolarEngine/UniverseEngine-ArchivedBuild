@@ -1,4 +1,4 @@
-package charengine.sys.logger;
+package sys.logger;
 
 enum abstract Level(Int)
 {

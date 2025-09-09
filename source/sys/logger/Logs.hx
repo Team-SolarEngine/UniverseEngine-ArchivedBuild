@@ -1,11 +1,11 @@
-package charengine.sys.logger; // This is MY log script, so it's under charengine :3c - CharGoldenYT
+package sys.logger; // This is MY log script, so it's under charengine :3c - CharGoldenYT
 
 import haxe.Log;
 import haxe.PosInfos;
 import lime.app.Application;
-import charengine.sys.logger.AnsiColors;
-using charengine.sys.logger.LogTools;
-import charengine.sys.logger.Level;
+import sys.logger.AnsiColors;
+using sys.logger.LogTools;
+import sys.logger.Level;
 
 class Logs
 {

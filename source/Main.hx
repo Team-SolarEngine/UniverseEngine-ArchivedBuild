@@ -10,7 +10,7 @@ import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.display.StageScaleMode;
-import charengine.sys.logger.Logs;
+import sys.logger.Logs;
 
 //crash handler stuff
 #if CRASH_HANDLER
