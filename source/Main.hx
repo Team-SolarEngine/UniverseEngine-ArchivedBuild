@@ -37,6 +37,7 @@ class Main extends Sprite
 		skipSplash: true,
 		startFullscreen: false,
 	};
+	var gameArgs:Array<String> = []; // Used for allowing mods to define custom commandline arguments.
 	public static var fpsVar:FPS;
 
 	public static var noTerminalColor:Bool = false;
@@ -77,6 +78,8 @@ class Main extends Sprite
 
 	private function setupGame():Void
 	{
+		gameArgs = Sys.args();
+		trace(gameArgs);
 		var stageWidth:Int = Lib.current.stage.stageWidth;
 		var stageHeight:Int = Lib.current.stage.stageHeight;
 

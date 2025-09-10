@@ -41,6 +41,7 @@ class SaveVariables
 	public var splashAlpha:Float = 0.6;
 
 	// UE
+	public var enabledMods:Array<Array<String>> = []; // Format: [modID, modName]
 	public var universeEngineCPREF:Bool = true; // this is to check if you running universe engine!
 	public var keystrokes:Bool = true;
 	public var keyA:Float = 0.3;
