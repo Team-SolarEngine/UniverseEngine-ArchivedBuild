@@ -1,7 +1,9 @@
 package modding;
 
+import haxe.PosInfos;
 #if MODS_ALLOWED
 import polymod.Polymod;
+import polymod.Polymod.PolymodError;
 import polymod.util.DefineUtil.getDefineString;
 import polymod.util.DefineUtil.getDefineBool;
 
@@ -13,42 +15,113 @@ import sys.FileSystem as Fs;
 import sys.io.File; // Just in case, may get removed later if unused.
 
 class PolymodHandler {
-    var modRoot:String = #if TEST_BUILD "../../../new_example_mods" #else "mods/" #end;
-    var apiVersion:String = "1.0.0"; // This should match the current engine version.
+    static var modRoot:String = #if TEST_BUILD "../../../new_example_mods" #else "mods" #end;
+    static var apiVersion:String = "1.0.0"; // This should match the current engine version.
 
-    var curMods_folder:Array<ModFolder> = [];
-    var raw_curMods:Array<ModMetadata> = [];
-    var scriptContexts:Array<ModScriptContexts> = [];
+    static var curMods_folder:Array<ModFolder> = [];
+    static var raw_curMods:Array<ModMetadata> = [];
+    static var scriptContexts:Array<ModScriptContexts> = [];
+
+    static var customAssetLibrary:Map<String, String> = [
+        #if VIDEOS_ALLOWED "videos" => "./videos", #end
+        "songs" => "./songs",
+        "shared" => "shared",
+        "week2" => "./week1",
+        "week3" => "./week2",
+        "week4" => "./week3",
+        "week5" => "./week4",
+        "week6" => "./week5",
+        "week7" => "./week7",
+        "shaders" => "./shaders"
+    ];
     
     public static function initMods()
     {
-        raw_curMods = Polymod.init({
-            modRoot: modRoot,
-            apiVersionRule: '>=$apiVersion'
-        });
-
+        curMods_folder = [];
+        raw_curMods = [];
+        scriptContexts = [];
+        
         trace("Let's have a mod load.. /ref");
 
+        raw_curMods = Polymod.scan({
+            modRoot: modRoot,
+            apiVersionRule: '>=$apiVersion',
+            errorCallback: function(e:PolymodError) errorCallback(e)
+        });
+
+        var modDirs:Array<String> = [];
         for (mod in raw_curMods)
         {
-            for (modMeta in ClientPrefs.data.enabledMods)
+            modDirs.push(mod.id);
+        }
+
+        Polymod.init({
+            modRoot: modRoot,
+            apiVersionRule: '>=$apiVersion',
+            errorCallback: function(e:PolymodError) errorCallback(e),
+            frameworkParams: {
+                assetLibraryPaths: customAssetLibrary
+            },
+            dirs: modDirs
+        });
+
+        try
+        {
+            for (mod in raw_curMods)
             {
-                if (mod.id != modMeta[0])
+                if (ClientPrefs.data.enabledMods.length > 0)
                 {
-                    if (mod.title != modMeta[1])
+                    for (modMeta in ClientPrefs.data.enabledMods)
                     {
-                        fireModDisable(mod.id);
+                        if (mod.id != modMeta[0])
+                        {
+                            if (mod.title != modMeta[1])
+                            {
+                                fireModDisable(mod.id);
+                            }
+                            fireModDisable(mod.id);
+                        }
+                        else
+                        {
+                            Logs.traceNew("Loaded mod: `" + mod.title + '`[${mod.id}]', INFO);
+                            curMods_folder.push(new ModFolder(mod.id, mod.title, true));
+
+                            //scriptContexts.push(initScriptContexts(mod.modPath, mod.id));
+                        }
                     }
-                    fireModDisable(mod.id);
                 }
                 else
                 {
                     Logs.traceNew("Loaded mod: `" + mod.title + '`[${mod.id}]', INFO);
-                    curMods_folder.push(new ModFolder(mod.id, mod.modPath, mod.title));
+                    curMods_folder.push(new ModFolder(mod.id, mod.title, true));
 
-                    scriptContexts.push(initScriptContexts(mod.modPath, mod.id));
+                    //scriptContexts.push(initScriptContexts(mod.modPath, mod.id));
                 }
             }
+        }
+        catch(e:Dynamic)
+        {
+            Logs.traceNew("Mod loading didn't work! `" + Std.string(e) + "`", ERROR);
+        }
+
+        trace("Loading finished! Final loaded mods: " + Std.string(curMods_folder.length) + ' / ${raw_curMods.length}');
+    }
+
+    static function errorCallback(e:PolymodError, ?infos:Null<PosInfos>):Void
+    {
+        if (e.severity == NOTICE)
+        {
+            Logs.traceNew(e.message, INFO, infos);
+        }
+
+        if (e.severity == WARNING)
+        {
+            Logs.traceNew(e.message, WARNING, infos);
+        }
+
+        if (e.severity == ERROR)
+        {
+            Logs.traceNew(e.message, ERROR, infos);
         }
     }
 
@@ -145,12 +218,12 @@ class PolymodHandler {
         return curMods_folder.remove(get_enabledModByID(id));
     }
 
-    public static function enableMod(id:String):Bool
+    public static function enableMod(id:String)
     {
         var tempMods:Array<ModMetadata> = Polymod.loadMod(id);
         var mod:ModMetadata = get_modByID(id);
-        curMods_folder.push(new ModFolder(id, mod.modFolder, mod.title));
         scriptContexts.push(initScriptContexts(mod.modPath, mod.id));
+        curMods_folder.push(new ModFolder(mod.id, mod.title, true));
 
         trace("Enabled mod: `" + mod.title + '`[$id]');
     }

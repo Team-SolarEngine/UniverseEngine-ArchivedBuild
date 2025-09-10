@@ -1,0 +1,6 @@
+{
+	"title":"Test Mod",
+	"description":"This mod is for testing the polymod mod loader framework",
+	"api_version":"1.0.0",
+	"mod_version":"1.0.0"
+}

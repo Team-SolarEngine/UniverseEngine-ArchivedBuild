@@ -24,6 +24,10 @@ import sys.io.File;
 import sys.io.Process;
 #end
 
+#if MODS_ALLOWED
+import modding.PolymodHandler as Modding;
+#end
+
 using StringTools;
 
 class Main extends Sprite
@@ -92,6 +96,9 @@ class Main extends Sprite
 			game.height = Math.ceil(stageHeight / game.zoom);
 		}
 		Logs.init();
+		#if MODS_ALLOWED
+		Modding.initMods();
+		#end
 	
 		ClientPrefs.loadDefaultStuff();
 		addChild(new FlxGame(game.width, game.height, game.initialState, game.fps, game.fps, game.skipSplash, game.startFullscreen));
