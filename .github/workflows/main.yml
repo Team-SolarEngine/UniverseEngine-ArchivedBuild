@@ -96,10 +96,7 @@ jobs:
           chmod +x ./compile/workflow/unix.sh
           sh ./compile/workflow/unix.sh
           haxelib list
-<<<<<<< HEAD
-=======
           haxelib install lime 8.2.2 && haxelib set lime 8.2.2
->>>>>>> refs/remotes/origin/uedev-polymod
       - name: Compile MacOS ARM
         run: haxelib run lime build mac -arm64
       - name: Publish Artifact
