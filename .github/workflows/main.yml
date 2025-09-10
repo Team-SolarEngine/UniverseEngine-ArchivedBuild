@@ -81,25 +81,26 @@ jobs:
           path: export/release/macos/bin
   # MacOS On ARM (M1 to M4 chips) Will be commented until we figure it out.
 
-  # MacOS-ARM-Build:
-  #   runs-on: macos-latest
+  MacOS-ARM-Build:
+    runs-on: macos-latest
 
-  #   steps:
-  #     - uses: actions/checkout@v4.1.7
+    steps:
+      - uses: actions/checkout@v4.1.7
 
-  #     - uses: krdlab/setup-haxe@master
-  #       with:
-  #         haxe-version: 4.3.4
-  #     - name: Install Haxelib
-  #       run: |
-  #         haxelib setup ~/haxelib
-  #         chmod +x ./compile/workflow/unix.sh
-  #         sh ./compile/workflow/unix.sh
-  #         haxelib list
-  #     - name: Compile MacOS ARM
-  #       run: haxelib run lime build mac -arm64
-  #     - name: Publish Artifact
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: Universe-MacOS-ARM
-  #         path: export/release/macos/bin
+      - uses: krdlab/setup-haxe@master
+        with:
+          haxe-version: 4.3.4
+      - name: Install Haxelib
+        run: |
+          haxelib setup ~/haxelib
+          chmod +x ./compile/workflow/unix.sh
+          sh ./compile/workflow/unix.sh
+          haxelib list
+          haxelib install lime 8.2.2 && haxelib set lime 8.2.2
+      - name: Compile MacOS ARM
+        run: haxelib run lime build mac -arm64
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Universe-MacOS-ARM
+          path: export/release/macos/bin
