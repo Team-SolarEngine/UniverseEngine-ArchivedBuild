@@ -16,6 +16,8 @@ class Logs
         Log.trace = traceOverride;
     }
 
+    public static dynamic function trace(v:Dynamic, level:Level = NONE, ?infos:PosInfos):Void traceNew(v, level, infos);
+
     static function levelToInt(l:Level):Int
     {
         switch(l)
