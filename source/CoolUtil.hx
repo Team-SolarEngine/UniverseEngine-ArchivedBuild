@@ -1,5 +1,6 @@
 package;
 
+import haxe.PosInfos;
 import flixel.FlxG;
 import openfl.utils.Assets;
 import lime.utils.Assets as LimeAssets;
@@ -191,29 +192,33 @@ class CoolUtil
 		return maxKey;
 	}
 
-	public static function coolError(message:Null<String> = null, title:Null<String> = null):Void
+	public static function coolError(message:String = "", title:String = "", ?backer:FlxSprite = null, ?infos:PosInfos):Void
 	{
-		#if !linux
-		lime.app.Application.current.window.alert(message, title);
+		#if CLASSIC_ERROR
+			#if !linux
+			lime.app.Application.current.window.alert(message, title);
+			#else
+			Logs.traceNew(title + " - " + message, ERROR);
+
+			var text:FlxText = new FlxText(8, 0, 1280, title + " - " + message, 24);
+			text.color = FlxColor.RED;
+			text.borderSize = 1.5;
+			text.borderColor = FlxColor.BLACK;
+			text.scrollFactor.set();
+			text.cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
+
+			FlxG.state.add(text);
+
+			FlxTween.tween(text, {alpha: 0, y: 8}, 5, {
+				onComplete: function(_)
+				{
+					FlxG.state.remove(text);
+					text.destroy();
+				}
+			});
+			#end
 		#else
-		Logs.traceNew(title + " - " + message, ERROR);
-
-		var text:FlxText = new FlxText(8, 0, 1280, title + " - " + message, 24);
-		text.color = FlxColor.RED;
-		text.borderSize = 1.5;
-		text.borderColor = FlxColor.BLACK;
-		text.scrollFactor.set();
-		text.cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
-
-		FlxG.state.add(text);
-
-		FlxTween.tween(text, {alpha: 0, y: 8}, 5, {
-			onComplete: function(_)
-			{
-				FlxG.state.remove(text);
-				text.destroy();
-			}
-		});
+		FlxG.state.openSubState(new CoolErrorSubstate(message, title, backer, infos));
 		#end
 	}
 
