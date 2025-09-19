@@ -11,12 +11,18 @@ class CoolErrorSubstate extends MusicBeatSubstate
     var stateCam:FlxCamera;
     var finishedInit:Bool = false;
     var initDelay:FlxTimer = new FlxTimer(); // make sure you can actually SEE the error.
+    var fadeDelay:Int = 2;
 
     /*
+    *   Creates a new substate that shows an error with a title.
+    *
     *   @param backRef The FlxSprite to use as the backdrop.
+    *   @param fadeDelay How many seconds should the fade be delayed by
+    *   @param infos Don't touch this unless you know how `haxe.PosInfos` works.
     */
-    public function new(errMsg:String, errTitle:String = "", ?backRef:FlxSprite = null, ?infos:PosInfos)
+    public function new(errMsg:String, errTitle:String = "", ?backRef:FlxSprite = null, fadeDelay:Int = 2, ?infos:PosInfos)
     {
+        this.fadeDelay = fadeDelay;
         if (backRef != null)
         {
             back = backRef;
@@ -61,7 +67,7 @@ class CoolErrorSubstate extends MusicBeatSubstate
             finishedInit = true;
         });
 
-        errTween = FlxTween.tween(stateCam, {alpha: 0}, 5, {onComplete: function(twn:FlxTween) close(), startDelay: 2});
+        errTween = FlxTween.tween(stateCam, {alpha: 0}, 5, {onComplete: function(twn:FlxTween) close(), startDelay: fadeDelay});
     }
 
     public override function update(elapsed:Float) {

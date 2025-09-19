@@ -192,7 +192,7 @@ class CoolUtil
 		return maxKey;
 	}
 
-	public static function coolError(message:String = "", title:String = "", ?backer:FlxSprite = null, ?infos:PosInfos):Void
+	public static function coolError(message:String = "", title:String = "", ?backer:FlxSprite = null, fadeDelay:Int = 2, ?infos:PosInfos):Void
 	{
 		#if CLASSIC_ERROR
 			#if !linux
@@ -218,7 +218,7 @@ class CoolUtil
 			});
 			#end
 		#else
-		FlxG.state.openSubState(new CoolErrorSubstate(message, title, backer, infos));
+		FlxG.state.openSubState(new CoolErrorSubstate(message, title, backer, fadeDelay, infos));
 		#end
 	}
 
