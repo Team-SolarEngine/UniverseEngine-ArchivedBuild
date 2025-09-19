@@ -192,6 +192,11 @@ class CoolUtil
 		return maxKey;
 	}
 
+	static function openSubState(s:flixel.FlxSubState)
+	{
+		FlxG.state.openSubState(s);
+	}
+
 	public static function coolError(message:String = "", title:String = "", ?backer:FlxSprite = null, fadeDelay:Int = 2, ?infos:PosInfos):Void
 	{
 		#if CLASSIC_ERROR
@@ -218,7 +223,7 @@ class CoolUtil
 			});
 			#end
 		#else
-		FlxG.state.openSubState(new CoolErrorSubstate(message, title, backer, fadeDelay, infos));
+		openSubState(new CoolErrorSubstate(message, title, backer, fadeDelay, infos));
 		#end
 	}
 
