@@ -2,5 +2,9 @@ package modding;
 
 class LoadState extends MusicBeatState
 {
-    // stub
+    public override function create() {
+        super.create();
+
+        trace("Loadin Stuffs");
+    }
 }
