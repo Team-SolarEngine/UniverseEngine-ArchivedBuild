@@ -74,7 +74,7 @@
     <th>Role</th>
     <th> Former Developer </th>
     <th> Main Developer </th>
-    <th> Invited Developer </th>
+    <th> Former Developer </th>
     <th> Invited Developer </th>
   </tr>
 
