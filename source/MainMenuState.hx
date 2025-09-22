@@ -46,6 +46,8 @@ class MainMenuState extends MusicBeatState
 	var camFollowPos:FlxObject;
 	var debugKeys:Array<FlxKey>;
 
+	var modShit:FlxText;
+
 	override function create()
 	{
 		optionShit = [
@@ -191,7 +193,7 @@ class MainMenuState extends MusicBeatState
 
 		FlxG.camera.follow(camFollowPos, null, 1);
 
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 112, 0, "Current Mod Folder: " + ClientPrefs.data.lastLoadedMod, 12);
+		var versionShit:FlxText = new FlxText(12, FlxG.height - 112, 0, "Current Mod Folder: " + modding.PolymodHandler.getLoadedMod(), 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat(Paths.font('funkin.ttf'), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
@@ -207,6 +209,12 @@ class MainMenuState extends MusicBeatState
 		versionShit.scrollFactor.set();
 		versionShit.setFormat(Paths.font('funkin.ttf'), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
+
+		modShit = new FlxText(0, 0, FlxG.width, "Mods List:\n" + modding.PolymodHandler.formattedModList(), 8);
+		modShit.scrollFactor.set();
+		modShit.setFormat(Paths.font('funkin.ttf'), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(modShit);
+		modShit.visible = false;
 
 		var textBG:FlxSprite = new FlxSprite(0, FlxG.height - 30).makeGraphic(FlxG.width, 30, 0xFF000000);
 		textBG.scrollFactor.set();
@@ -268,6 +276,7 @@ class MainMenuState extends MusicBeatState
 
 		if (!selectedSomethin && !dev.DevSubState.inShortcutMenu)
 		{
+			if (FlxG.keys.justPressed.F9) modShit.visible = !modShit.visible;
 			if (controls.RESET)
 			{
 				ClientPrefs.saveSettings();

@@ -1,5 +1,6 @@
 package modding;
 
+import haxe.Log;
 import haxe.PosInfos;
 #if MODS_ALLOWED
 import polymod.Polymod;
@@ -17,11 +18,9 @@ import sys.io.File; // Just in case, may get removed later if unused.
 class PolymodHandler {
     static var modRoot:String = #if TEST_BUILD "../../../new_example_mods" #else "mods" #end;
     static var apiVersion:String = "1.0.0"; // This should match the current engine version.
-
-    static var curMods_folder:Array<ModFolder> = [];
-    static var raw_curMods:Array<ModMetadata> = [];
     static var scriptContexts:Array<ModScriptContexts> = [];
 
+    static var modsList:Array<ModMetadata> = [];
     static var customAssetLibrary:Map<String, String> = [
         #if VIDEOS_ALLOWED "videos" => "./videos", #end
         "songs" => "./songs",
@@ -34,77 +33,68 @@ class PolymodHandler {
         "week7" => "./week7",
         "shaders" => "./shaders"
     ];
+    static var selectedMod:Array<String>;
+
+    public static var isInit:Bool = false;
     
     public static function initMods()
     {
-        curMods_folder = [];
-        raw_curMods = [];
+        modsList = [];
         scriptContexts = [];
         
         trace("Let's have a mod load.. /ref");
 
-        raw_curMods = Polymod.scan({
+        modsList = Polymod.scan({
             modRoot: modRoot,
             apiVersionRule: '>=$apiVersion',
             errorCallback: function(e:PolymodError) errorCallback(e)
         });
 
-        var modDirs:Array<String> = [];
-        for (mod in raw_curMods)
-        {
-            modDirs.push(mod.id);
-        }
-
+        selectedMod = (cast FlxG.save.data.lastLoadedMod) ?? [];
         Polymod.init({
             modRoot: modRoot,
-            apiVersionRule: '>=$apiVersion',
+            apiVersionRule: '<=$apiVersion',
             errorCallback: function(e:PolymodError) errorCallback(e),
             frameworkParams: {
                 assetLibraryPaths: customAssetLibrary
             },
-            dirs: modDirs
+            dirs: selectedMod
         });
 
-        try
-        {
-            for (mod in raw_curMods)
-            {
-                if (ClientPrefs.data.enabledMods.length > 0)
-                {
-                    for (modMeta in ClientPrefs.data.enabledMods)
-                    {
-                        if (mod.id != modMeta[0])
-                        {
-                            if (mod.title != modMeta[1])
-                            {
-                                fireModDisable(mod.id);
-                            }
-                            fireModDisable(mod.id);
-                        }
-                        else
-                        {
-                            Logs.traceNew("Loaded mod: `" + mod.title + '`[${mod.id}]', INFO);
-                            curMods_folder.push(new ModFolder(mod.id, mod.title, true));
+        trace("Loading finished!");
+    }
 
-                            //scriptContexts.push(initScriptContexts(mod.modPath, mod.id));
-                        }
-                    }
-                }
-                else
-                {
-                    Logs.traceNew("Loaded mod: `" + mod.title + '`[${mod.id}]', INFO);
-                    curMods_folder.push(new ModFolder(mod.id, mod.title, true));
+    public static function getLoadedMod():String
+    {
+        if (selectedMod.length > 0) return selectedMod[0];
 
-                    //scriptContexts.push(initScriptContexts(mod.modPath, mod.id));
-                }
-            }
-        }
-        catch(e:Dynamic)
+        return "None";
+    }
+
+    public static function getAvailableMods():Array<String>
+    {
+        var a:Array<String> = [];
+
+        for (mod in modsList)
         {
-            Logs.traceNew("Mod loading didn't work! `" + Std.string(e) + "`", ERROR);
+            a.push(mod.title);
         }
 
-        trace("Loading finished! Final loaded mods: " + Std.string(curMods_folder.length) + ' / ${raw_curMods.length}');
+        return a;
+    }
+
+    /*
+    * Meant for string representation of the current mods list.
+    */
+    public static function formattedModList():String
+    {
+        var s:String = '';
+        for (mod in getAvailableMods())
+        {
+            s += mod + '\n';
+        }
+
+        return s.trim();
     }
 
     static function errorCallback(e:PolymodError, ?infos:Null<PosInfos>):Void
@@ -123,109 +113,18 @@ class PolymodHandler {
         {
             Logs.traceNew(e.message, ERROR, infos);
         }
-    }
 
-    static function initScriptContexts(path:String, id:String):ModScriptContexts
-    {
-        var scriptContexts:Array<ScriptContext> = [];
-        var p = path + '/game';
-        if (Fs.exists(p))
-        {
-            var f = Fs.readDirectory(p);
-            var sbd:Array<String> = [];
-            for (file in f)
-            {
-                if (Fs.isDirectory(p + '/$file'))
-                {
-                    sbd.push(file);
-                }
-                else
-                {
-                    scriptContexts.push(new ScriptContext(p, file));
-                }
-            }
-        }
-
-        return new ModScriptContexts(id, scriptContexts);
-    }
-
-    static function getScriptContexts(mod_id:String):ModScriptContexts
-    {
-        for (contexts in scriptContexts)
-        {
-            if (contexts.mod_id == mod_id)
-                return contexts;
-        }
-
-        trace("Couldn't find that mod id!");
-        return null;
+        if (isInit) visual_errorCallback(e, infos);
     }
 
     /*
-    * This is here so that mod scripts can find the folder they're currently in
+    * Creates a visible, in-window error (DIFFERENT FROM CoolUtil.coolError)
     */
-    public static function getScriptContext(sFileName:String, id:String):ScriptContext
+    public static function visual_errorCallback(e:Dynamic, ?infos:Null<PosInfos>):Void
     {
-        var contexts = getScriptContexts(id);
-
-        for (script in contexts.contexts)
-        {
-            if (script.script == sFileName)
-                return script;
-        }
-
-        trace("Not a validly loaded script!");
-        return null;
-    }
-
-    public static function get_modByID(id:String):ModMetadata
-    {
-        for (mod in raw_curMods)
-        {
-            if (mod.id == id)
-            {
-                return mod;
-            }
-        }
-
-        trace("Couldn't find a mod with that ID!");
-        return null;
-    }
-
-    public static function get_enabledModByID(id:String):ModFolder
-    {
-        for (mod in curMods_folder)
-        {
-            if (mod.id == id)
-            return mod;
-        }
-
-        trace("Couldn't find a mod with that ID!");
-        return null;
-    }
-
-    /* 
-    * ONLY USE THIS FUNCTION AFTER INIT HAS FINISHED.
-    */
-    public static function disableMod(id:String):Bool return fireModDisable(id, false);
-
-    static function fireModDisable(id:String, isInitPhase:Bool = true):Bool
-    {
-        if (!isInitPhase) trace('Disabling mod `${get_modByID(id).title}[$id]');
-
-        Polymod.unloadMod(id);
-        scriptContexts.remove(getScriptContexts(id));
-        return curMods_folder.remove(get_enabledModByID(id));
-    }
-
-    public static function enableMod(id:String)
-    {
-        var tempMods:Array<ModMetadata> = Polymod.loadMod(id);
-        var mod:ModMetadata = get_modByID(id);
-        scriptContexts.push(initScriptContexts(mod.modPath, mod.id));
-        curMods_folder.push(new ModFolder(mod.id, mod.title, true));
-
-        trace("Enabled mod: `" + mod.title + '`[$id]');
+        var text:FlxText = new FlxText(0, 0, FlxG.width, Log.formatOutput(e, infos));
+        text.setFormat(Paths.font("funkin.ttf"), 8, 0xFFFFFFFF, LEFT, OUTLINE, 0xFF000000);
+        CoolUtil.addToCurrentState(text);
     }
 }
 #end

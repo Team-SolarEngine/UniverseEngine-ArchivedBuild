@@ -9,7 +9,7 @@ import flixel.util.FlxColor;
 
 class SaveVariables
 {
-	public var lastLoadedMod:String = null;
+	public var lastLoadedMod:Array<String> = [];
 	public var downScroll:Bool = false;
 	public var middleScroll:Bool = false;
 	public var opponentStrums:Bool = true;
@@ -41,7 +41,6 @@ class SaveVariables
 	public var splashAlpha:Float = 0.6;
 
 	// UE
-	public var enabledMods:Array<Array<String>> = []; // Format: [modID, modName]
 	public var universeEngineCPREF:Bool = true; // this is to check if you running universe engine!
 	public var keystrokes:Bool = true;
 	public var keyA:Float = 0.3;

@@ -95,6 +95,9 @@ class Main extends Sprite
 			game.width = Math.ceil(stageWidth / game.zoom);
 			game.height = Math.ceil(stageHeight / game.zoom);
 		}
+
+		FlxG.save.bind('funkin', 'universe');
+		
 		Logs.init();
 		#if MODS_ALLOWED
 		Modding.initMods();

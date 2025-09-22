@@ -130,10 +130,10 @@ class MusicBeatState extends modchart.modcharting.ModchartMusicBeatState
 
 		call("update", [elapsed]);
 
-		if (FlxG.keys.justPressed.F9)
+		/* if (FlxG.keys.justPressed.F9)
 		{
 			CoolUtil.coolError("Test Error", "Test Error State");
-		}
+		} */
 
 		super.update(elapsed);
 	}

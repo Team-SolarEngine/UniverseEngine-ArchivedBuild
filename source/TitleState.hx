@@ -1,5 +1,6 @@
 package;
 
+import modding.PolymodHandler;
 #if desktop
 import Discord.DiscordClient;
 import sys.thread.Thread;
@@ -166,8 +167,6 @@ class TitleState extends MusicBeatState
 		swagShader = new ColorSwap();
 		super.create();
 
-		FlxG.save.bind('funkin', 'universe');
-
 		ClientPrefs.loadPrefs();
 
 		Highscore.load();
@@ -298,6 +297,8 @@ class TitleState extends MusicBeatState
 				FlxG.sound.playMusic(Paths.music("freakyMenu-" + ClientPrefs.data.mmm), 0);
 			}
 		}
+
+		PolymodHandler.isInit = true; // for mod errors.
 
 		Conductor.changeBPM(titleJSON.bpm);
 		persistentUpdate = true;

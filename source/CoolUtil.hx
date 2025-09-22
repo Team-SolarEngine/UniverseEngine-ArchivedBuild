@@ -227,6 +227,12 @@ class CoolUtil
 		#end
 	}
 
+	public static function addToCurrentState(o:FlxBasic, topCam:Bool = true):FlxBasic
+	{
+		if (topCam) o.camera = FlxG.cameras.list[FlxG.cameras.list.length - 1];
+		return FlxG.state.add(o);
+	}
+
 	public static function numberArray(max:Int, ?min = 0):Array<Int>
 	{
 		var dumbArray:Array<Int> = [];
