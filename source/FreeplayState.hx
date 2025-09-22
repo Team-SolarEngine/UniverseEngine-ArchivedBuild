@@ -723,7 +723,7 @@ class FreeplayState extends MusicBeatState
 					}
 					catch (e:Dynamic)
 					{
-						Logs.traceNew('Error loading/playing file! $e', ERROR);
+						CoolUtil.coolError('Error loading song! $e', "Freeplay | Missing File or Chart");
 						FlxG.sound.play(Paths.sound('cancelMenu'));
 					}
 					#end
@@ -741,7 +741,7 @@ class FreeplayState extends MusicBeatState
 				}
 				catch (e:Dynamic)
 				{
-					lime.app.Application.current.window.alert('Error loading song!\n$e');
+					CoolUtil.coolError('Error loading song! $e', "Freeplay | Missing File or Chart");
 					return;
 				}
 				/*#if MODS_ALLOWED
