@@ -1,5 +1,6 @@
 package;
 
+import modding.LoadState;
 import Conductor.BPMChangeEvent;
 import flixel.FlxG;
 import flixel.addons.ui.FlxUIState;
@@ -46,7 +47,7 @@ class MusicBeatState extends modchart.modcharting.ModchartMusicBeatState
 
 	public var scriptName:String = null;
 
-	public function new(scriptsAllowed:Bool = true, ?scriptName:String)
+	public function new()
 	{
 		super();
 	}
@@ -130,10 +131,13 @@ class MusicBeatState extends modchart.modcharting.ModchartMusicBeatState
 
 		call("update", [elapsed]);
 
-		/* if (FlxG.keys.justPressed.F9)
+		if (FlxG.keys.justPressed.F5)
 		{
-			CoolUtil.coolError("Test Error", "Test Error State");
-		} */
+			if (!Std.isOfType(FlxG.state, LoadState))
+			{
+				switchState(new LoadState(true, FlxG.state)); // Reload that shit
+			}
+		}
 
 		super.update(elapsed);
 	}

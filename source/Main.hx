@@ -35,7 +35,7 @@ class Main extends Sprite
 	var game = {
 		width: 1280,
 		height: 720,
-		initialState: TitleState,
+		initialState: modding.LoadState,
 		zoom: -1.0,
 		fps: 60,
 		skipSplash: true,
@@ -99,9 +99,6 @@ class Main extends Sprite
 		FlxG.save.bind('funkin', 'universe');
 		
 		Logs.init();
-		#if MODS_ALLOWED
-		Modding.initMods();
-		#end
 	
 		ClientPrefs.loadDefaultStuff();
 		addChild(new FlxGame(game.width, game.height, game.initialState, game.fps, game.fps, game.skipSplash, game.startFullscreen));

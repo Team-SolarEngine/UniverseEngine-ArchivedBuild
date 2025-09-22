@@ -13,4 +13,6 @@ import flixel.tweens.FlxEase;
 import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.FlxCamera;
+import flixel.FlxState;
+import flixel.input.keyboard.FlxKey;
 #end
