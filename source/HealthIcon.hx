@@ -34,7 +34,7 @@ class HealthIcon extends FlxSprite
 		else changeIcon('bf');
 	}
 
-	private var iconOffsets:Array<Float> = [0, 0];
+	private var iconOffsets:Array<Float> = [0, 0, 0];
 	public var imageFile:String;
 	public function changeIcon(char:String) {
 		if(this.char != char) {
@@ -44,15 +44,16 @@ class HealthIcon extends FlxSprite
 			imageFile = name;
 			var file:Dynamic = Paths.image(name);
 
-			var imageRatio:Int = Math.round(width / height); // The ratio for the image, used to divide the image.
 			loadGraphic(file); //Load stupidly first for getting the file size
-			var framesArray:Array<Int> = [0, 1]; // The amount of animation frames
-			var w2 = width;
-			loadGraphic(file, true, Math.floor(width / 2), Math.floor(height)); //Then load it fr
-			for (i in 0...imageRatio)
+			var amountOfFrames:Int = Math.round(width / height);
+			//trace('result of amount Of Frames for $name: $amountOfFrames');
+			var width2 = width;
+			loadGraphic(file, true, Math.floor(width / amountOfFrames), Math.floor(height)); // actually load it now.
+			var framesArray:Array<Int> = [];
+			for (i in 0...amountOfFrames)
 			{
-				iconOffsets[i] = (width - 150) / imageRatio;
-				framesArray[i] = i;
+				iconOffsets[i] = (width - 150) / amountOfFrames;
+				framesArray.insert(Std.int(1 * i), i); // theoretically it'll do this, 1 * 0 = 0, 1 * 1 = 1, etc.
 			}
 			updateHitbox();
 
