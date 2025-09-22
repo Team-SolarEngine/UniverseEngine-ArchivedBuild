@@ -79,8 +79,7 @@ jobs:
       #   with:
       #     name: Universe-MacOS-INTEL
       #     path: export/release/macos/bin
-  # MacOS On ARM (M1 to M4 chips) Will be commented until we figure it out.
-  # that's already fixed -_-
+  # MacOS On ARM (M1 to M4 chips) Was originally broken, but found out it was lime.
 
   MacOS-ARM-Build:
     runs-on: macos-latest
