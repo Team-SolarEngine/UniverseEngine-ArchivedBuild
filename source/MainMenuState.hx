@@ -212,7 +212,7 @@ class MainMenuState extends MusicBeatState
 
 		modShit = new FlxText(0, 0, FlxG.width, "Mods List:\n" + modding.PolymodHandler.formattedModList(), 8);
 		modShit.scrollFactor.set();
-		modShit.setFormat(Paths.font('funkin.ttf'), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		modShit.setFormat(Paths.font('funkin.ttf'), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(modShit);
 		modShit.visible = false;
 
