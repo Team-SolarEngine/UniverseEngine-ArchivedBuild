@@ -263,12 +263,12 @@ class ClientPrefs
 	{
 		PlayerSettings.player1.controls.setKeyboardScheme(KeyboardScheme.Solo);
 
-		TitleState.muteKeys = copyKey(keyBinds.get('volume_mute'));
-		TitleState.volumeDownKeys = copyKey(keyBinds.get('volume_down'));
-		TitleState.volumeUpKeys = copyKey(keyBinds.get('volume_up'));
-		FlxG.sound.muteKeys = TitleState.muteKeys;
-		FlxG.sound.volumeDownKeys = TitleState.volumeDownKeys;
-		FlxG.sound.volumeUpKeys = TitleState.volumeUpKeys;
+		modding.LoadState.muteKeys = copyKey(keyBinds.get('volume_mute'));
+		modding.LoadState.volumeDownKeys = copyKey(keyBinds.get('volume_down'));
+		modding.LoadState.volumeUpKeys = copyKey(keyBinds.get('volume_up'));
+		FlxG.sound.muteKeys = modding.LoadState.muteKeys;
+		FlxG.sound.volumeDownKeys = modding.LoadState.volumeDownKeys;
+		FlxG.sound.volumeUpKeys = modding.LoadState.volumeUpKeys;
 	}
 
 	public static function copyKey(arrayToCopy:Array<FlxKey>):Array<FlxKey>

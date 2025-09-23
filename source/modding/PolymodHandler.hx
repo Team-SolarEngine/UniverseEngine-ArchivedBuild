@@ -37,12 +37,12 @@ class PolymodHandler {
 
     public static var isInit:Bool = false;
     
-    public static function initMods()
+    public static function initModList()
     {
         modsList = [];
         scriptContexts = [];
         
-        trace("Let's have a mod load.. /ref");
+        trace("Searching for mods!");
 
         modsList = Polymod.scan({
             modRoot: modRoot,
@@ -50,7 +50,25 @@ class PolymodHandler {
             errorCallback: function(e:PolymodError) errorCallback(e)
         });
 
-        selectedMod = (cast FlxG.save.data.lastLoadedMod) ?? [];
+        trace("Scan finished!");
+    }
+
+    public static function init()
+    {
+        if (!isInit) initModList();
+        selectedMod = ClientPrefs.data.lastLoadedMod ?? [];
+        var modExists:Bool = false;
+        for (mod in modsList)
+        {
+            if (mod.id == selectedMod[0])
+                modExists = true;
+        }
+
+        if (!modExists)
+        {
+            selectedMod = []; // Prevent an error due to missing mod id
+        }
+
         Polymod.init({
             modRoot: modRoot,
             apiVersionRule: '<=$apiVersion',
@@ -60,8 +78,6 @@ class PolymodHandler {
             },
             dirs: selectedMod
         });
-
-        trace("Loading finished!");
     }
 
     public static function getLoadedMod():String
@@ -78,6 +94,18 @@ class PolymodHandler {
         for (mod in modsList)
         {
             a.push(mod.title);
+        }
+
+        return a;
+    }
+
+    public static function getAvailableModsIDs():Array<String>
+    {
+        var a:Array<String> = [];
+
+        for (mod in modsList)
+        {
+            a.push(mod.id);
         }
 
         return a;

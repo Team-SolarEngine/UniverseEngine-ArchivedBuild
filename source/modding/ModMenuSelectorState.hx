@@ -1,9 +1,6 @@
 package modding;
 
-import flixel.sound.FlxSound;
-import flixel.FlxObject;
-import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
-
+// Truly a classic Psych State setup
 class ModMenuSelectorState extends MusicBeatState
 {
     var bg:FlxSprite;
@@ -70,8 +67,7 @@ class ModMenuSelectorState extends MusicBeatState
                 case "Psych Engine Mods":
                     FlxG.switchState(new ModsMenuState());
                 case "UE Mod Switcher":
-                    CoolUtil.coolError("That state doesn't exist yet", "UE Mod Switcher unavailable");
-                    FlxG.sound.play(Paths.sound('cancelMenu'));
+                    FlxG.switchState(new modding.UEModSwitchState());
             }
         }
     }

@@ -1,5 +1,6 @@
 package;
 
+import modding.LoadState;
 import modding.PolymodHandler;
 #if desktop
 import Discord.DiscordClient;
@@ -62,10 +63,6 @@ typedef TitleData =
 
 class TitleState extends MusicBeatState
 {
-	public static var muteKeys:Array<FlxKey> = [FlxKey.ZERO];
-	public static var volumeDownKeys:Array<FlxKey> = [FlxKey.NUMPADMINUS, FlxKey.MINUS];
-	public static var volumeUpKeys:Array<FlxKey> = [FlxKey.NUMPADPLUS, FlxKey.PLUS];
-	
 	public static var initialized:Bool = false;
 
 	var blackScreen:FlxSprite;
@@ -279,8 +276,6 @@ class TitleState extends MusicBeatState
 				FlxG.sound.playMusic(Paths.music("freakyMenu-" + ClientPrefs.data.mmm), 0);
 			}
 		}
-
-		PolymodHandler.isInit = true; // for mod errors.
 
 		Conductor.changeBPM(titleJSON.bpm);
 		persistentUpdate = true;

@@ -797,9 +797,9 @@ class ModchartEditorState extends #if SCEModchartingTools states.MusicBeatState 
 			#if (PSYCH && PSYCHVERSION >= "0.7")
 			ClientPrefs.toggleVolumeKeys(true);
 			#elseif (PSYCH && !(PSYCHVERSION >= "0.7"))
-			FlxG.sound.muteKeys = TitleState.muteKeys;
-			FlxG.sound.volumeDownKeys = TitleState.volumeDownKeys;
-			FlxG.sound.volumeUpKeys = TitleState.volumeUpKeys;
+			FlxG.sound.muteKeys = modding.LoadState.muteKeys;
+			FlxG.sound.volumeDownKeys = modding.LoadState.volumeDownKeys;
+			FlxG.sound.volumeUpKeys = modding.LoadState.volumeUpKeys;
 			#end
 			if (FlxG.keys.justPressed.SPACE)
 			{
@@ -1082,9 +1082,9 @@ class ModchartEditorState extends #if SCEModchartingTools states.MusicBeatState 
 				#if (PSYCH && PSYCHVERSION >= "0.7")
 				ClientPrefs.toggleVolumeKeys(true);
 				#elseif (PSYCH && !(PSYCHVERSION >= "0.7"))
-				FlxG.sound.muteKeys = TitleState.muteKeys;
-				FlxG.sound.volumeDownKeys = TitleState.volumeDownKeys;
-				FlxG.sound.volumeUpKeys = TitleState.volumeUpKeys;
+				FlxG.sound.muteKeys = modding.LoadState.muteKeys;
+				FlxG.sound.volumeDownKeys = modding.LoadState.volumeDownKeys;
+				FlxG.sound.volumeUpKeys = modding.LoadState.volumeUpKeys;
 				#end
 				FlxG.mouse.visible = false;
 				inst.stop();

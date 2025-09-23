@@ -47,11 +47,6 @@ class MusicBeatState extends modchart.modcharting.ModchartMusicBeatState
 
 	public var scriptName:String = null;
 
-	public function new()
-	{
-		super();
-	}
-
 	function loadScript() // Stubbed untill later, this will be re-used for loading polymod scripts.
 	{
 /* 		var className = Type.getClassName(Type.getClass(this));

@@ -15,4 +15,7 @@ import flixel.FlxG;
 import flixel.FlxCamera;
 import flixel.FlxState;
 import flixel.input.keyboard.FlxKey;
+import flixel.sound.FlxSound;
+import flixel.FlxObject;
+import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 #end
