@@ -55,6 +55,7 @@ class PolymodHandler {
 
     public static function init()
     {
+        trace("Let's have a load.. /ref");
         if (!isInit) initModList();
         selectedMod = ClientPrefs.data.lastLoadedMod ?? [];
         var modExists:Bool = false;
@@ -78,6 +79,7 @@ class PolymodHandler {
             },
             dirs: selectedMod
         });
+        trace("Finished loading mods!");
     }
 
     public static function getLoadedMod():String
