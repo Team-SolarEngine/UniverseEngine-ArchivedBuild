@@ -139,6 +139,11 @@ class MusicBeatState extends modchart.modcharting.ModchartMusicBeatState
 		super.update(elapsed);
 	}
 
+	public override function startOutro(onOutroComplete:() -> Void) {
+		CoolUtil.clearWatermarks(); // Don't want them piling up.
+		super.startOutro(onOutroComplete);
+	}
+
 	private function updateSection():Void
 	{
 		if (stepsToDo < 1)

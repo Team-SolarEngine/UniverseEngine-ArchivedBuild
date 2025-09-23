@@ -237,6 +237,25 @@ class CoolUtil
 		watermarks.push(watermark);
 	}
 
+	public static function removeWatermark(watermark:Watermark)
+	{
+		try
+		{
+			Main.instance.removeChild(watermark);
+			watermarks.remove(watermark);
+		}
+		catch(e:Dynamic) {}
+	}
+
+	public static function clearWatermarks()
+	{
+		for (watermark in watermarks)
+		{
+			Main.instance.removeChild(watermark);
+			watermarks.remove(watermark);
+		}
+	}
+
 	public static function addToCurrentState(o:FlxBasic, topCam:Bool = true):FlxBasic
 	{
 		if (topCam) o.camera = FlxG.cameras.list[FlxG.cameras.list.length - 1];
