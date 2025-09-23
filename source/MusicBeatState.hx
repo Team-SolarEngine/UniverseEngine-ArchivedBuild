@@ -1,5 +1,6 @@
 package;
 
+import modding.PolymodHandler;
 import modding.LoadState;
 import Conductor.BPMChangeEvent;
 import flixel.FlxG;
@@ -130,6 +131,7 @@ class MusicBeatState extends modchart.modcharting.ModchartMusicBeatState
 		{
 			if (!Std.isOfType(FlxG.state, LoadState))
 			{
+				PolymodHandler.isInit = false; // make it recheck the mods folder
 				switchState(new LoadState(true, FlxG.state)); // Reload that shit
 			}
 		}
