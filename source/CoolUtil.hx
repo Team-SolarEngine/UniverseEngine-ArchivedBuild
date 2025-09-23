@@ -1,5 +1,6 @@
 package;
 
+import sys.Watermark;
 import haxe.PosInfos;
 import flixel.FlxG;
 import openfl.utils.Assets;
@@ -225,6 +226,15 @@ class CoolUtil
 		#else
 		openSubState(new CoolErrorSubstate(message, title, backer, fadeDelay, infos));
 		#end
+	}
+
+	static var watermarks:Array<Watermark> = [];
+	public static function spawnWatermark(text:String, color:Int = 0xFFFFFF, size:Int = 100)
+	{
+		var watermark:sys.Watermark = new sys.Watermark(text, color, size);
+		watermark.screenCenter();
+		Main.instance.addChild(watermark);
+		watermarks.push(watermark);
 	}
 
 	public static function addToCurrentState(o:FlxBasic, topCam:Bool = true):FlxBasic

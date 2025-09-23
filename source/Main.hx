@@ -41,6 +41,7 @@ class Main extends Sprite
 		skipSplash: true,
 		startFullscreen: false,
 	};
+	public static var instance:Main = null;
 	var gameArgs:Array<String> = []; // Used for allowing mods to define custom commandline arguments.
 	public static var fpsVar:FPS;
 
@@ -121,6 +122,8 @@ class Main extends Sprite
 		#if CRASH_HANDLER
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
 		#end
+
+		instance = this;
 	}
 
 	// Code was entirely made by sqirra-rng for their fnf engine named "Izzy Engine", big props to them!!!
