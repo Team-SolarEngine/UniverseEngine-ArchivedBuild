@@ -143,7 +143,6 @@
 	<!-- god fucking damn it i hate github actions and haxeflixel with their shit 3:< -->
 	<haxelib name="flixel-addons" />
 	<haxelib name="polymod" if="MODS_ALLOWED"/> <!-- Required for the custom mod loader.-->
-	<haxedef name="POLYMOD_ROOT_PATH" value="game/"/> <!-- This is used to tell polymod where scripts are-->
 
 	<!--In case you want to use the ui package-->
 	<haxelib name="flixel-ui" version="2.5.0"/>
@@ -160,6 +159,12 @@
 
 	<!--In case you want to use nape with flixel-->
 	<!--<haxelib name="nape-haxe4" />-->
+
+	<!-- _________________________ Polymod Configuration ________________________ -->
+    
+    <haxedef name="POLYMOD_ROOT_PATH" value="game/"/> <!-- This is used to tell polymod where scripts are-->
+    <haxedef name="POLYMOD_MOD_METADATA_FILE" value="meta.json" />
+    <haxedef name="POLYMOD_MOD_ICON_FILE" value="icon.png" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
