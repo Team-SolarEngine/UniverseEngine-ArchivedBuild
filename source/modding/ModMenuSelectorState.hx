@@ -1,5 +1,7 @@
 package modding;
 
+import flixel.addons.transition.FlxTransitionableState;
+
 // Truly a classic Psych State setup
 class ModMenuSelectorState extends MusicBeatState
 {
@@ -62,6 +64,8 @@ class ModMenuSelectorState extends MusicBeatState
         }
         if (controls.ACCEPT)
         {
+            FlxTransitionableState.skipNextTransIn = true;
+            FlxTransitionableState.skipNextTransOut = true;
             switch(options[curSelected])
             {
                 case "Psych Engine Mods":

@@ -1,5 +1,6 @@
 package;
 
+import sys.Watermark;
 import flixel.graphics.FlxGraphic;
 import flixel.FlxG;
 import flixel.FlxGame;
@@ -103,6 +104,11 @@ class Main extends Sprite
 	
 		ClientPrefs.loadDefaultStuff();
 		addChild(new FlxGame(game.width, game.height, game.initialState, game.fps, game.fps, game.skipSplash, game.startFullscreen));
+		#if BETA_WATERMARK
+		var watermark:sys.Watermark = new sys.Watermark("UNIVERSE ENGINE PRIVATE BUILD\nDO NOT LEAK!!", 0xAAAAAA, 70);
+		watermark.screenCenter();
+		addChild(watermark);
+		#end
 
 		#if !mobile
 		fpsVar = new FPS(10, 3, 0xFFFFFF);

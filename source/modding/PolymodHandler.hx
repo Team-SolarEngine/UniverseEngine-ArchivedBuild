@@ -13,7 +13,7 @@ import modding.ScriptContext;
 import modding.ScriptContext.ModScriptContexts;
 
 import sys.FileSystem as Fs;
-import sys.io.File; // Just in case, may get removed later if unused.
+import sys.io.File;
 
 class PolymodHandler {
     static var modRoot:String = #if TEST_BUILD "../../../new_example_mods" #else "mods" #end;
@@ -155,6 +155,24 @@ class PolymodHandler {
         var text:FlxText = new FlxText(0, 0, FlxG.width, Log.formatOutput(e, infos));
         text.setFormat(Paths.font("funkin.ttf"), 8, 0xFFFFFFFF, LEFT, OUTLINE, 0xFF000000);
         CoolUtil.addToCurrentState(text);
+    }
+
+    public static function createModFromTemplate(name:String)
+    {
+        Fs.createDirectory('mods/$name');
+        File.saveContent('mods/$name/${getDefineString("POLYMOD_MOD_METADATA_FILE")}', getTemplateJSON(name));
+        File.copy('assets/images/templates/mods/templateIcon.png', 'mods/$name/${getDefineString("POLYMOD_MOD_ICON_FILE")}');
+    }
+
+    static function getTemplateJSON(name:String):String
+    {
+        return '{
+	"title":"$name",
+	"description":"Add your description here!",
+	"api_version":"1.0.0",
+	"mod_version":"0.0.1"
+}
+        ';
     }
 }
 #end
