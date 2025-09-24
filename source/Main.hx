@@ -1,5 +1,6 @@
 package;
 
+import sys.Watermark;
 import flixel.graphics.FlxGraphic;
 import flixel.FlxG;
 import flixel.FlxGame;
@@ -10,8 +11,7 @@ import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.display.StageScaleMode;
-import codename.modding.ModsFolder;
-import codename.backend.system.Logs;
+import sys.logger.Logs;
 
 //crash handler stuff
 #if CRASH_HANDLER
@@ -25,20 +25,25 @@ import sys.io.File;
 import sys.io.Process;
 #end
 
-import codename.backend.assets.AssetsLibraryList;
+#if MODS_ALLOWED
+import modding.PolymodHandler as Modding;
+#end
 
 using StringTools;
 
 class Main extends Sprite
 {
-	var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
-	var gameHeight:Int = 720; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
-	var initialState:Class<FlxState> = TitleState; // The FlxState the game starts with.
-	var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
-	var framerate:Int = 60; // How many frames per second the game should run at.
-	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
-	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
-	var modToLoad:String = null;
+	var game = {
+		width: 1280,
+		height: 720,
+		initialState: modding.LoadState,
+		zoom: -1.0,
+		fps: 60,
+		skipSplash: true,
+		startFullscreen: false,
+	};
+	public static var instance:Main = null;
+	var gameArgs:Array<String> = []; // Used for allowing mods to define custom commandline arguments.
 	public static var fpsVar:FPS;
 
 	public static var noTerminalColor:Bool = false;
@@ -79,23 +84,31 @@ class Main extends Sprite
 
 	private function setupGame():Void
 	{
+		gameArgs = Sys.args();
+		trace(gameArgs);
 		var stageWidth:Int = Lib.current.stage.stageWidth;
 		var stageHeight:Int = Lib.current.stage.stageHeight;
 
-		if (zoom == -1)
+		if (game.zoom == -1)
 		{
-			var ratioX:Float = stageWidth / gameWidth;
-			var ratioY:Float = stageHeight / gameHeight;
-			zoom = Math.min(ratioX, ratioY);
-			gameWidth = Math.ceil(stageWidth / zoom);
-			gameHeight = Math.ceil(stageHeight / zoom);
+			var ratioX:Float = stageWidth / game.width;
+			var ratioY:Float = stageHeight / game.height;
+			game.zoom = Math.min(ratioX, ratioY);
+			game.width = Math.ceil(stageWidth / game.zoom);
+			game.height = Math.ceil(stageHeight / game.zoom);
 		}
 
-		Paths.assetsTree = new AssetsLibraryList();
+		FlxG.save.bind('funkin', 'universe');
+		
 		Logs.init();
 	
 		ClientPrefs.loadDefaultStuff();
-		addChild(new FlxGame(gameWidth, gameHeight, initialState, framerate, framerate, skipSplash, startFullscreen));
+		addChild(new FlxGame(game.width, game.height, game.initialState, game.fps, game.fps, game.skipSplash, game.startFullscreen));
+		#if BETA_WATERMARK
+		var watermark:sys.Watermark = new sys.Watermark("UNIVERSE ENGINE PRIVATE BUILD\nDO NOT LEAK!!", 0xAAAAAA, 70);
+		watermark.screenCenter();
+		addChild(watermark);
+		#end
 
 		#if !mobile
 		fpsVar = new FPS(10, 3, 0xFFFFFF);
@@ -115,15 +128,8 @@ class Main extends Sprite
 		#if CRASH_HANDLER
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
 		#end
-		
-		#if GLOBAL_SCRIPT
-		codename.scripting.GlobalScript.init();
-		#end
 
-		ModsFolder.init();
-		#if MOD_SUPPORT
-		ModsFolder.switchMod(modToLoad = ClientPrefs.data.lastLoadedMod);
-		#end
+		instance = this;
 	}
 
 	// Code was entirely made by sqirra-rng for their fnf engine named "Izzy Engine", big props to them!!!

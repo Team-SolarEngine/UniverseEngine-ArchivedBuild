@@ -23,10 +23,6 @@ import haxe.Json;
 import flash.media.Sound;
 import flixel.graphics.frames.FlxFramesCollection;
 import flixel.animation.FlxAnimationController;
-import codename.backend.assets.AssetsLibraryList;
-
-import codename.scripting.HScript;
-import codename.backend.Script;
 
 using StringTools;
 
@@ -39,8 +35,6 @@ class Paths
 
 	public static var noteSkinFramesMap:Map<String, FlxFramesCollection> = new Map();
 	public static var noteSkinAnimsMap:Map<String, FlxAnimationController> = new Map();
-
-	public static var assetsTree:AssetsLibraryList;
 
 	#if MODS_ALLOWED
 	public static var ignoreModFolders:Array<String> = [
@@ -63,9 +57,9 @@ class Paths
 	];
 	#end
 
-	static public function getFolderDirectories(key:String, addPath:Bool = false, source:codename.backend.assets.AssetsLibraryList.AssetSource = BOTH):Array<String>
+	static public function getFolderDirectories(key:String, addPath:Bool = false):Array<String> // Stubbed for later polymod use
 	{
-		if (!key.endsWith("/"))
+		/* if (!key.endsWith("/"))
 			key += "/";
 		var content = assetsTree.getFolders('assets/$key', source);
 		if (addPath)
@@ -73,12 +67,13 @@ class Paths
 			for (k => e in content)
 				content[k] = '$key$e';
 		}
-		return content;
+		return content; */
+		return [];
 	}
 
-	static public function getFolderContent(key:String, addPath:Bool = false, source:codename.backend.assets.AssetsLibraryList.AssetSource = BOTH):Array<String>
+	static public function getFolderContent(key:String, addPath:Bool = false):Array<String> // Stubbed for later polymod use
 	{
-		// designed to work both on windows and web
+		/* // designed to work both on windows and web
 		if (!key.endsWith("/"))
 			key += "/";
 		var content = assetsTree.getFiles('assets/$key', source);
@@ -87,7 +82,8 @@ class Paths
 			for (k => e in content)
 				content[k] = '$key$e';
 		}
-		return content;
+		return content; */
+		return [];
 	}
 
 	public static var defaultSkin = 'NOTE_assets' + Note.getNoteSkinPostfix();
@@ -492,21 +488,6 @@ class Paths
 			return file.file.substr(4);
 		}
 		return "";
-	}
-
-	inline static public function hscript(key:String, ?library:String, isAssetsPath:Bool = false) {
-		var scriptPath = isAssetsPath ? key : cne_getPath(key, library);
-		if (!OpenFlAssets.exists(scriptPath)) {
-			var p:String;
-			for(ex in Script.scriptExtensions) {
-				p = '$scriptPath.$ex';
-				if (OpenFlAssets.exists(p)) {
-					scriptPath = p;
-					break;
-				}
-			}
-		}
-		return scriptPath;
 	}
 
 	public static function returnSound(path:String, key:String, ?library:String)

@@ -585,9 +585,9 @@ class DialogueCharacterEditorState extends MusicBeatState
 
 		if (!blockInput && !animationDropDown.dropPanel.visible)
 		{
-			FlxG.sound.muteKeys = TitleState.muteKeys;
-			FlxG.sound.volumeDownKeys = TitleState.volumeDownKeys;
-			FlxG.sound.volumeUpKeys = TitleState.volumeUpKeys;
+			FlxG.sound.muteKeys = modding.LoadState.muteKeys;
+			FlxG.sound.volumeDownKeys = modding.LoadState.volumeDownKeys;
+			FlxG.sound.volumeUpKeys = modding.LoadState.volumeUpKeys;
 			if (FlxG.keys.justPressed.SPACE && UI_mainbox.selected_tab_id == 'Character')
 			{
 				character.playAnim(character.jsonFile.animations[curAnim].anim);

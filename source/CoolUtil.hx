@@ -1,5 +1,7 @@
 package;
 
+import sys.Watermark;
+import haxe.PosInfos;
 import flixel.FlxG;
 import openfl.utils.Assets;
 import lime.utils.Assets as LimeAssets;
@@ -191,30 +193,73 @@ class CoolUtil
 		return maxKey;
 	}
 
-	public static function coolError(message:Null<String> = null, title:Null<String> = null):Void
+	static function openSubState(s:flixel.FlxSubState)
 	{
-		#if !linux
-		lime.app.Application.current.window.alert(message, title);
+		FlxG.state.openSubState(s);
+	}
+
+	public static function coolError(message:String = "", title:String = "", ?backer:FlxSprite = null, fadeDelay:Int = 2, ?infos:PosInfos):Void
+	{
+		#if CLASSIC_ERROR
+			#if !linux
+			lime.app.Application.current.window.alert(message, title);
+			#else
+			Logs.traceNew(title + " - " + message, ERROR);
+
+			var text:FlxText = new FlxText(8, 0, 1280, title + " - " + message, 24);
+			text.color = FlxColor.RED;
+			text.borderSize = 1.5;
+			text.borderColor = FlxColor.BLACK;
+			text.scrollFactor.set();
+			text.cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
+
+			FlxG.state.add(text);
+
+			FlxTween.tween(text, {alpha: 0, y: 8}, 5, {
+				onComplete: function(_)
+				{
+					FlxG.state.remove(text);
+					text.destroy();
+				}
+			});
+			#end
 		#else
-		trace(title + " - " + message, ERROR);
-
-		var text:FlxText = new FlxText(8, 0, 1280, title + " - " + message, 24);
-		text.color = FlxColor.RED;
-		text.borderSize = 1.5;
-		text.borderColor = FlxColor.BLACK;
-		text.scrollFactor.set();
-		text.cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
-
-		FlxG.state.add(text);
-
-		FlxTween.tween(text, {alpha: 0, y: 8}, 5, {
-			onComplete: function(_)
-			{
-				FlxG.state.remove(text);
-				text.destroy();
-			}
-		});
+		openSubState(new CoolErrorSubstate(message, title, backer, fadeDelay, infos));
 		#end
+	}
+
+	static var watermarks:Array<Watermark> = [];
+	public static function spawnWatermark(text:String, color:Int = 0xFFFFFF, size:Int = 100)
+	{
+		var watermark:sys.Watermark = new sys.Watermark(text, color, size);
+		watermark.screenCenter();
+		Main.instance.addChild(watermark);
+		watermarks.push(watermark);
+	}
+
+	public static function removeWatermark(watermark:Watermark)
+	{
+		try
+		{
+			Main.instance.removeChild(watermark);
+			watermarks.remove(watermark);
+		}
+		catch(e:Dynamic) {}
+	}
+
+	public static function clearWatermarks()
+	{
+		for (watermark in watermarks)
+		{
+			Main.instance.removeChild(watermark);
+			watermarks.remove(watermark);
+		}
+	}
+
+	public static function addToCurrentState(o:FlxBasic, topCam:Bool = true):FlxBasic
+	{
+		if (topCam) o.camera = FlxG.cameras.list[FlxG.cameras.list.length - 1];
+		return FlxG.state.add(o);
 	}
 
 	public static function numberArray(max:Int, ?min = 0):Array<Int>

@@ -1,5 +1,7 @@
 package;
 
+import modding.PolymodHandler;
+import modding.LoadState;
 import Conductor.BPMChangeEvent;
 import flixel.FlxG;
 import flixel.addons.ui.FlxUIState;
@@ -15,9 +17,6 @@ import flixel.FlxState;
 import flixel.FlxCamera;
 import flixel.FlxBasic;
 import flixel.sound.FlxSound;
-// scripting
-import codename.scripting.ScriptPack;
-import codename.scripting.DummyScript;
 #if sys
 import sys.FileSystem;
 import sys.io.File;
@@ -42,9 +41,6 @@ class MusicBeatState extends modchart.modcharting.ModchartMusicBeatState
 	inline function get_controls():Controls
 		return PlayerSettings.player1.controls;
 
-	// scripting
-	public var stateScripts:ScriptPack;
-
 	public var scriptsAllowed:Bool = true;
 
 	public static var lastScriptName:String = null;
@@ -52,22 +48,9 @@ class MusicBeatState extends modchart.modcharting.ModchartMusicBeatState
 
 	public var scriptName:String = null;
 
-	public function new(scriptsAllowed:Bool = true, ?scriptName:String)
+	function loadScript() // Stubbed untill later, this will be re-used for loading polymod scripts.
 	{
-		super();
-		this.scriptsAllowed = #if SOFTCODED_STATES scriptsAllowed #else false #end;
-
-		if (lastStateName != (lastStateName = Type.getClassName(Type.getClass(this))))
-		{
-			lastScriptName = null;
-		}
-		this.scriptName = scriptName != null ? scriptName : lastScriptName;
-		lastScriptName = this.scriptName;
-	}
-
-	function loadScript()
-	{
-		var className = Type.getClassName(Type.getClass(this));
+/* 		var className = Type.getClassName(Type.getClass(this));
 		if (stateScripts == null)
 			(stateScripts = new ScriptPack(className)).setParent(this);
 		if (scriptsAllowed)
@@ -88,7 +71,7 @@ class MusicBeatState extends modchart.modcharting.ModchartMusicBeatState
 			}
 			else
 				stateScripts.reload();
-		}
+		} */
 	}
 
 	override function create()
@@ -108,10 +91,12 @@ class MusicBeatState extends modchart.modcharting.ModchartMusicBeatState
 		FlxTransitionableState.skipNextTransOut = false;
 	}
 
-	public function call(name:String, ?args:Array<Dynamic>, ?defaultVal:Dynamic):Dynamic {
-		// calls the function on the assigned script
+	public function call(name:String, ?args:Array<Dynamic>, ?defaultVal:Dynamic):Dynamic { // Stubbed untill polymod loader finished.
+		/* // calls the function on the assigned script
 		if(stateScripts != null)
 			return stateScripts.call(name, args);
+		return defaultVal; */
+
 		return defaultVal;
 	}
 
@@ -140,12 +125,23 @@ class MusicBeatState extends modchart.modcharting.ModchartMusicBeatState
 		if (FlxG.save.data != null)
 			FlxG.save.data.fullscreen = FlxG.fullscreen;
 
-		if (FlxG.keys.justPressed.F5)
-			loadScript();
-
 		call("update", [elapsed]);
 
+		if (FlxG.keys.justPressed.F5)
+		{
+			if (!Std.isOfType(FlxG.state, LoadState))
+			{
+				PolymodHandler.isInit = false; // make it recheck the mods folder
+				switchState(new LoadState(true, FlxG.state)); // Reload that shit
+			}
+		}
+
 		super.update(elapsed);
+	}
+
+	public override function startOutro(onOutroComplete:() -> Void) {
+		CoolUtil.clearWatermarks(); // Don't want them piling up.
+		super.startOutro(onOutroComplete);
 	}
 
 	private function updateSection():Void

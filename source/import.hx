@@ -1,7 +1,21 @@
 #if !macro // Fix for haxe 4.3+
 import Paths;
+import sys.logger.Logs;
+using StringTools;
+import sys.CoolErrorSubstate;
 
-import codename.backend.assets.AssetsLibraryList;
-import codename.backend.Script;
-import codename.backend.system.Logs;
+//fuckass imports that should have been here from the start
+import flixel.FlxSprite;
+import flixel.text.FlxText;
+import flixel.util.FlxTimer;
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
+import flixel.FlxBasic;
+import flixel.FlxG;
+import flixel.FlxCamera;
+import flixel.FlxState;
+import flixel.input.keyboard.FlxKey;
+import flixel.sound.FlxSound;
+import flixel.FlxObject;
+import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 #end
