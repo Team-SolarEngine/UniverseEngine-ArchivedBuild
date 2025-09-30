@@ -8,17 +8,12 @@ import polymod.Polymod.PolymodError;
 import polymod.util.DefineUtil.getDefineString;
 import polymod.util.DefineUtil.getDefineBool;
 
-import modding.ModFolder;
-import modding.ScriptContext;
-import modding.ScriptContext.ModScriptContexts;
-
 import sys.FileSystem as Fs;
 import sys.io.File;
 
 class PolymodHandler {
     static var modRoot:String = #if TEST_BUILD "../../../new_example_mods" #else "mods" #end;
     static var apiVersion:String = "1.0.0"; // This should match the current engine version.
-    static var scriptContexts:Array<ModScriptContexts> = [];
 
     static var modsList:Array<ModMetadata> = [];
     static var customAssetLibrary:Map<String, String> = [
@@ -40,7 +35,6 @@ class PolymodHandler {
     public static function initModList()
     {
         modsList = [];
-        scriptContexts = [];
         
         trace("Searching for mods!");
 

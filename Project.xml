@@ -163,6 +163,7 @@
 
 	<!-- _________________________ Polymod Configuration ________________________ -->
     
+	<haxedef name="POLYMOD_SCRIPT_EXT" value=".hscript" />
     <haxedef name="POLYMOD_ROOT_PATH" value="game/"/> <!-- This is used to tell polymod where scripts are-->
     <haxedef name="POLYMOD_MOD_METADATA_FILE" value="meta.json" />
     <haxedef name="POLYMOD_MOD_ICON_FILE" value="icon.png" />

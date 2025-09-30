@@ -1,5 +1,6 @@
 package;
 
+import modding.backend.RedirectHandler;
 import modding.PolymodHandler;
 import modding.LoadState;
 import Conductor.BPMChangeEvent;
@@ -24,6 +25,8 @@ import sys.io.File;
 
 using StringTools;
 
+class ScriptHandler {} // stub
+
 class MusicBeatState extends modchart.modcharting.ModchartMusicBeatState
 {
 	private var curSection:Int = 0;
@@ -41,12 +44,8 @@ class MusicBeatState extends modchart.modcharting.ModchartMusicBeatState
 	inline function get_controls():Controls
 		return PlayerSettings.player1.controls;
 
-	public var scriptsAllowed:Bool = true;
-
-	public static var lastScriptName:String = null;
-	public static var lastStateName:String = null;
-
-	public var scriptName:String = null;
+	public static var redirects:Array<RedirectHandler> = [];
+	public var loadedScripts:ScriptHandler;
 
 	function loadScript() // Stubbed untill later, this will be re-used for loading polymod scripts.
 	{
