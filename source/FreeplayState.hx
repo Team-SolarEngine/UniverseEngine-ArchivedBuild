@@ -139,7 +139,7 @@ class FreeplayState extends MusicBeatState
 				}
 		}*/
 
-		bg = new FlxSprite(0, 0).loadGraphic(Paths.image(ClientPrefs.data.darkmode? "aboutMenu" : "menuDesat", "preload"));
+		bg = new FlxSprite(0, 0).loadGraphic(Paths.image(ClientPrefs.data.darkmode ? "aboutMenu" : "menuDesat", "preload"));
 		bg.antialiasing = ClientPrefs.data.globalAntialiasing;
 		add(bg);
 		bg.screenCenter();
@@ -149,33 +149,6 @@ class FreeplayState extends MusicBeatState
 		grid.alpha = 0;
 		FlxTween.tween(grid, {alpha: 1}, 0.5, {ease: FlxEase.quadOut});
 		add(grid);
-
-		if (ClientPrefs.data.mmm == "Normal Collections")
-		{
-			var square1:FlxBackdrop = new FlxBackdrop(Paths.image("title/SQUARE"));
-			square1.alpha = 0.5;
-			square1.velocity.set(0, 50);
-			add(square1);
-
-			var square2:FlxBackdrop = new FlxBackdrop(Paths.image("title/SQUARE"));
-			square2.angle = 180;
-			square2.alpha = 0.5;
-			square2.velocity.set(0, -50);
-			add(square2);
-
-			var bgoverlay:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('overlay', "preload"));
-			bgoverlay.alpha = 0.5;
-			bgoverlay.antialiasing = ClientPrefs.data.globalAntialiasing;
-			bgoverlay.screenCenter();
-			bgoverlay.x = bgoverlay.x - 250;
-			add(bgoverlay);
-
-			var bgoverlay2:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('overlay', "preload"));
-			bgoverlay2.alpha = 0.5;
-			bgoverlay2.antialiasing = ClientPrefs.data.globalAntialiasing;
-			bgoverlay2.screenCenter();
-			add(bgoverlay2);
-		}
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
 		add(grpSongs);
@@ -217,34 +190,14 @@ class FreeplayState extends MusicBeatState
 			// songText.screenCenter(X);
 		}
 		WeekData.setDirectoryFromWeek();
+		scoreText = new FlxText(FlxG.width * 0.7, 5, 0, "", 32);
+		scoreText.setFormat(Paths.font("funkin.ttf"), 32, FlxColor.WHITE, RIGHT);
 
-		if (ClientPrefs.data.mmm != "Normal Collections")
-		{
-			scoreText = new FlxText(FlxG.width * 0.7, 5, 0, "", 32);
-			scoreText.setFormat(Paths.font("funkin.ttf"), 32, FlxColor.WHITE, RIGHT);
+		scoreBG = new FlxSprite(scoreText.x - 6, 0).makeGraphic(1, 66, 0xFF000000);
+		scoreBG.alpha = 0.6;
+		add(scoreBG);
 
-			scoreBG = new FlxSprite(scoreText.x - 6, 0).makeGraphic(1, 66, 0xFF000000);
-			scoreBG.alpha = 0.6;
-			add(scoreBG);
-		}
-		else
-		{
-			scoreText = new FlxText(1280 / 2 + theXthinglmao, 720 / 2 - theYthinglmao, 0, "SCORE: 0\nMISSES: 0\nRATING: 0.00%", 20);
-			scoreText.setFormat(Paths.font("funkin.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-
-			scoreBG = new FlxSprite(scoreText.x - 6, 0).makeGraphic(1, 66, 0xFF000000);
-			scoreBG.alpha = 0;
-			add(scoreBG);
-		}
-
-		if (ClientPrefs.data.mmm == "Normal Collections")
-		{
-			diffText = new FlxText(scoreText.x, scoreText.y + 70, 0, "", 24);
-		}
-		else
-		{
-			diffText = new FlxText(scoreText.x, scoreText.y + 36, 0, "", 24);
-		}
+		diffText = new FlxText(scoreText.x, scoreText.y + 70, 0, "", 24);
 		diffText.font = scoreText.font;
 		add(diffText);
 
@@ -591,20 +544,7 @@ class FreeplayState extends MusicBeatState
 			ratingSplit[1] += '0';
 		}
 
-		if (ClientPrefs.data.cm)
-		{
-			bg.color = 0xFFfd719b;
-		}
-
-		if (ClientPrefs.data.mmm == "Normal Collections")
-		{
-			scoreText.text = 'SCORE: ' + lerpScore + '\nMISSES: ' + lerpMisses + '\nRATING: ' + ratingSplit.join('.') + '%';
-		}
-		else
-		{
-			scoreText.text = 'PERSONAL BEST: ' + lerpScore + ' (' + ratingSplit.join('.') + '%)';
-		}
-		positionHighscore();
+		scoreText.text = 'SCORE: ' + lerpScore + '\nMISSES: ' + lerpMisses + '\nRATING: ' + ratingSplit.join('.') + '%';
 
 		var upP = controls.UI_UP_P;
 		var downP = controls.UI_DOWN_P;
@@ -816,7 +756,6 @@ class FreeplayState extends MusicBeatState
 
 		PlayState.storyDifficulty = curDifficulty;
 		diffText.text = '< ' + CoolUtil.difficultyString() + ' >';
-		positionHighscore();
 	}
 
 	function changeSelection(change:Int = 0, playSound:Bool = true)
@@ -928,7 +867,7 @@ class FreeplayState extends MusicBeatState
 		}
 	}
 
-	private function positionHighscore()
+	/*private function positionHighscore()
 	{
 		if (ClientPrefs.data.mmm != "Normal Collections")
 		{
@@ -939,7 +878,7 @@ class FreeplayState extends MusicBeatState
 			diffText.x = Std.int(scoreBG.x + (scoreBG.width / 2));
 			diffText.x -= diffText.width / 2;
 		}
-	}
+	}*/
 }
 
 class SongMetadata

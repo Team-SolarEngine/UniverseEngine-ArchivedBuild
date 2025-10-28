@@ -37,7 +37,6 @@ class StoryMenuState extends MusicBeatState
 	var txtWeekTitle:FlxText;
 	var blackBarThingie:FlxSprite;
 	var bgYellow:FlxSprite;
-	var bgCute:FlxSprite;
 	var bgSprite:FlxSprite;
 
 	var bgCoolMode:FlxSprite;
@@ -90,16 +89,7 @@ class StoryMenuState extends MusicBeatState
 		bgYellow = new FlxSprite(0, 56).makeGraphic(FlxG.width, 386, 0xFFF9CF51);
 		bgSprite = new FlxSprite(0, 56);
 		bgSprite.antialiasing = ClientPrefs.data.globalAntialiasing;
-		if (ClientPrefs.data.cm)
-		{
-			bgSprite.color = 0xFFfd719b;
-		}
-		else
-		{
-			bgSprite.color = 0xFFF9CF51;
-		}
-
-		bgCute = new FlxSprite(0, 56).makeGraphic(FlxG.width, 386, 0xFFfd719b);
+		bgSprite.color = 0xFFF9CF51;
 
 		bgCoolMode = new FlxSprite().loadGraphic(Paths.image("storymenu/TintableBGSprite"));
 		bgCoolMode.alpha = 0;
@@ -196,15 +186,7 @@ class StoryMenuState extends MusicBeatState
 		rightArrow.antialiasing = ClientPrefs.data.globalAntialiasing;
 		difficultySelectors.add(rightArrow);
 		menuPos.push(new FlxPoint(leftArrow.x + 376, leftArrow.y));
-
-		if (ClientPrefs.data.cm)
-		{
-			add(bgCute);
-		}
-		else
-		{
 			add(bgYellow);
-		}
 		add(grpWeekText);
 		add(blackBarThingie);
 		add(bgSprite);
@@ -505,7 +487,6 @@ class StoryMenuState extends MusicBeatState
 
 				bgTweens.push(FlxTween.tween(bgSprite, {alpha: 0}, 1, {ease: FlxEase.linear}));
 				bgTweens.push(FlxTween.tween(bgYellow, {alpha: 0}, 1, {ease: FlxEase.linear}));
-				bgTweens.push(FlxTween.tween(bgCute, {alpha: 0}, 1, {ease: FlxEase.linear}));
 
 				bgTweens.push(FlxTween.tween(tintableBarThingie, {alpha: 1}, 1, {ease: FlxEase.linear}));
 				bgTweens.push(FlxTween.tween(bgCoolMode, {alpha: 1}, 1, {ease:FlxEase.linear}));
@@ -548,7 +529,6 @@ class StoryMenuState extends MusicBeatState
 			bgTweens.push(FlxTween.tween(blackBarThingie, {alpha: 1}, 1, {ease: FlxEase.linear}));
 			bgTweens.push(FlxTween.tween(bgSprite, {alpha: 1}, 1, {ease: FlxEase.linear}));
 			bgTweens.push(FlxTween.tween(bgYellow, {alpha: 1}, 1, {ease: FlxEase.linear}));
-			bgTweens.push(FlxTween.tween(bgCute, {alpha: 1}, 1, {ease: FlxEase.linear}));
 
 			bgTweens.push(FlxTween.tween(tintableBarThingie, {alpha: 0}, 1, {ease: FlxEase.linear}));
 			bgTweens.push(FlxTween.tween(bgCoolMode, {alpha: 0}, 1, {ease:FlxEase.linear}));

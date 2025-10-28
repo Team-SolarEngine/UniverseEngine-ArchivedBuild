@@ -50,14 +50,7 @@ class Alphabet extends FlxSpriteGroup
 		this.startPosition.x = x;
 		this.startPosition.y = y;
 		this.bold = bold;
-		if (ClientPrefs.data.cm == true)
-		{
-			this.text = r.replace(text, 'w');
-		}
-		else
-		{
-			this.text = text;
-		}
+		this.text = text;
 	}
 
 	public function setAlignmentFromString(align:String)

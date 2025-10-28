@@ -32,23 +32,6 @@ class UEHud extends BaseOptionsMenu
 		title = 'Universe HUD';
 		rpcTitle = 'HUD options of the engine'; // for Discord Rich Presence
 
-		var option:Option = new Option('Universe Engine HUD', "If unchecked, it just goes back to scoreTxt, what more is there to explain? ", 'ueHud', 'bool',
-			true);
-		addOption(option);
-
-		if (ClientPrefs.data.ueHud == true)
-		{
-			var option:Option = new Option('Hud Pos', "Don't even try to ask me to explain this", 'hudPosUE', 'string', 'LEFT', ['LEFT', 'CENTER', 'RIGHT']);
-			addOption(option);
-
-			var option:Option = new Option('Song name and time follow', "If unchecked, The Song name and time doesn't follow the score, rating and misses.",
-				'sntf', 'bool', true);
-			addOption(option);
-
-			var option:Option = new Option("Hide UE's Timebar", ' If checked, the UE time bar is going to dissapear', 'huet', 'bool', false);
-			addOption(option);
-		}
-
 		var option:Option = new Option('Keystrokes', "If checked, you can see the keystrokes", 'keystrokes', 'bool', true);
 		addOption(option);
 
@@ -71,21 +54,6 @@ class UEHud extends BaseOptionsMenu
 			option.maxValue = 580;
 		}
 
-		var option:Option = new Option('Detached Health Bar', 'When Unchecked, the health bar get sets to camHUD', 'dhb', 'bool', true);
-		addOption(option);
-
-		var option:Option = new Option('Combo Counter', "If unchecked, it'll go back to the normal combo coutner", 'cc', 'bool', true);
-		addOption(option);
-
-		var option:Option = new Option('Zoomed Out', "If unchecked, it no zoomed out :3", 'hudZoomOut', 'bool', true);
-		addOption(option);
-
-		var option:Option = new Option('Icon Bop', "If the mod has a custom icon bop, disable this!", 'ib', 'bool', true);
-		addOption(option);
-		
-		var option:Option = new Option('Layer HPBG Behind', 'If unchecked, The Healthbar BG Layers behind the health bar colors.', 'lhpbgb', 'bool', false);
-		addOption(option);
-
 		super();
 	}
 
@@ -104,7 +72,7 @@ class UEHud extends BaseOptionsMenu
 	override function destroy()
 	{
 		if (changedMusic)
-			FlxG.sound.playMusic(Paths.music("freakyMenu-" + ClientPrefs.data.mmm));
+			FlxG.sound.playMusic(Paths.music("freakyMenu"));
 		super.destroy();
 	}
 
@@ -124,10 +92,5 @@ class UEHud extends BaseOptionsMenu
 		{
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 		}
-	}
-
-	function onChangeHitSound()
-	{
-		FlxG.sound.play(Paths.sound("hitsound-" + ClientPrefs.data.ht), ClientPrefs.data.hitsoundVolume);
 	}
 }

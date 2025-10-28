@@ -115,10 +115,6 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		option.onChange = onChangeChartOption;
 		optionsArray.push(option);
 
-		var option:GameplayOption = new GameplayOption('Crash on miss', 'sd', 'bool', false);
-		option.onChange = onChangeChartOption;
-		optionsArray.push(option);
-
 		var option:GameplayOption = new GameplayOption('Health Drain', 'hd', 'bool', false);
 		option.onChange = onChangeChartOption;
 		optionsArray.push(option);
@@ -126,18 +122,6 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		var option:GameplayOption = new GameplayOption('Sustain 1 note', 'sn', 'bool', false);
 		option.onChange = onChangeChartOption;
 		optionsArray.push(option);
-
-		var option:GameplayOption = new GameplayOption('Increase HlthDrn on miss', 'hdp2', 'bool', false);
-		option.onChange = onChangeChartOption;
-		optionsArray.push(option);
-
-		var option:GameplayOption = new GameplayOption('Increase Playback on hit', 'ipbr', 'bool', false);
-		option.onChange = onChangeChartOption;
-		optionsArray.push(option);
-
-		var goption:GameplayOption = new GameplayOption('Increase PBR Value', 'ipbrv', 'string', 'Normal', ["Normal", "High", "Very High", "WTF", "Good Luck"]);
-		// BARAN TOLD ME TO ADD WTF :sob:
-		optionsArray.push(goption);
 	}
 
 	public function getOptionByName(name:String)

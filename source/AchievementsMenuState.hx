@@ -45,16 +45,6 @@ class AchievementsMenuState extends MusicBeatState
 			menuBG.antialiasing = ClientPrefs.data.globalAntialiasing;
 			add(menuBG);
 		}
-		else if (ClientPrefs.data.cm)
-		{
-			var menuBG:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
-			menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
-			menuBG.updateHitbox();
-			menuBG.screenCenter();
-			menuBG.antialiasing = ClientPrefs.data.globalAntialiasing;
-			menuBG.color = 0xFFfd719b;
-			add(menuBG);
-		}
 		else
 		{
 			var menuBG:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuBGBlue'));

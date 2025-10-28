@@ -246,23 +246,8 @@ class FunkinLua
 		set('UEkeyFT', ClientPrefs.data.keyFT);
 		set('UEkeyXPos', ClientPrefs.data.keyXPos);
 		set('UEkeyYPos', ClientPrefs.data.keyYPos);
-		set('UEHud', ClientPrefs.data.ueHud);
-		set('UEhudZoomOut', ClientPrefs.data.hudZoomOut);
-		set('UEhudPos', ClientPrefs.data.hudPosUE);
-		set('UEsnTimeFollow', ClientPrefs.data.sntf);
-		set('UEhitsound', ClientPrefs.data.ht);
-		set('UEDetachedHB', ClientPrefs.data.dhb);
-		set('UEcCounter', ClientPrefs.data.cc);
 		set('UESmoothHP', ClientPrefs.data.sh);
-		set('UEe100C', ClientPrefs.data.ec);
 		set('UEshakeMiss', ClientPrefs.data.snm);
-		set('UEtauntGo', ClientPrefs.data.tng);
-		set('UEiconBop', ClientPrefs.data.ib);
-		set('UEhidetimeBar', ClientPrefs.data.huet);
-		set('UE100comboSounds', ClientPrefs.data.css);
-		set('UEdarkenCamGame', ClientPrefs.data.dcm);
-		set('UEcute', ClientPrefs.data.cm);
-		set('UEmmm', ClientPrefs.data.mmm);
 		set('UEir', ir);
 		set('UEstrumsplash', ClientPrefs.data.uess);
 		set('UEresultscreen', ClientPrefs.data.ueresultscreen);
@@ -274,9 +259,6 @@ class FunkinLua
 		set('UEsustainOneNote', ClientPrefs.data.gameplaySettings.get('sn'));
 		set('modchart', ClientPrefs.data.gameplaySettings.get('modchart'));
 		set('UEplayBothSides', ClientPrefs.data.gameplaySettings.get('pbs'));
-		set('UEhealthdrainp2', ClientPrefs.data.gameplaySettings.get('hdp2'));
-		set('UEIncreasePBR', ClientPrefs.data.gameplaySettings.get('ipbr'));
-		set('UEipbrv', ClientPrefs.data.gameplaySettings.get('ipbrv'));
 
 		// ewwww cringe simplified names!!!
 		// VIDEOBOT WHY WOULD YOU EVEN SIMPLIFY THESE DAMN NAMES
@@ -1961,7 +1943,7 @@ class FunkinLua
 			else
 				MusicBeatState.switchState(new FreeplayState());
 
-			FlxG.sound.playMusic(Paths.music("freakyMenu-" + ClientPrefs.data.mmm));
+			FlxG.sound.playMusic(Paths.music("freakyMenu"));
 			PlayState.changedDifficulty = false;
 			PlayState.chartingMode = false;
 			PlayState.instance.transitioning = true;

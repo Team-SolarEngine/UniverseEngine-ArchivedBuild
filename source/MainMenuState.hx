@@ -78,7 +78,7 @@ class MainMenuState extends MusicBeatState
 
 		if (FlxG.sound.music == null)
 		{
-			FlxG.sound.playMusic(Paths.music("freakyMenu-" + ClientPrefs.data.mmm), 0.7);
+			FlxG.sound.playMusic(Paths.music("freakyMenu"), 0.7);
 		}
 
 		camGame = new FlxCamera();
@@ -105,17 +105,6 @@ class MainMenuState extends MusicBeatState
 			bg.updateHitbox();
 			bg.screenCenter();
 			bg.antialiasing = ClientPrefs.data.globalAntialiasing;
-			add(bg);
-		}
-		else if (ClientPrefs.data.cm)
-		{
-			var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
-			bg.scrollFactor.set(0, yScroll);
-			bg.setGraphicSize(Std.int(bg.width * 1.175));
-			bg.updateHitbox();
-			bg.screenCenter();
-			bg.antialiasing = ClientPrefs.data.globalAntialiasing;
-			bg.color = 0xFFfd719b;
 			add(bg);
 		}
 		else

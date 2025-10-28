@@ -21,7 +21,7 @@ class StagePopup extends MusicBeatState
         if (controls.BACK || controls.ACCEPT)
         {
             FlxG.sound.play(Paths.sound("confirmMenu"));
-            FlxG.sound.playMusic(Paths.music("freakyMenu-" + ClientPrefs.data.mmm));
+            FlxG.sound.playMusic(Paths.music("freakyMenu"));
             MusicBeatState.switchState(new MasterEditorMenu());
         }
         super.update(elapsed);

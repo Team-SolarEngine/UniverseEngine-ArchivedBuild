@@ -165,22 +165,19 @@ class LoadingState extends MusicBeatState
 		Paths.setCurrentLevel(directory);
 		trace('Setting asset folder to ' + directory);
 
-		if (ClientPrefs.data.loadscreen)
+		var loaded:Bool = false;
+		if (PlayState.SONG != null)
 		{
-			var loaded:Bool = false;
-			if (PlayState.SONG != null)
-			{
-				loaded = isSoundLoaded(getSongPath())
-					&& (!PlayState.SONG.needsVoices || isSoundLoaded(getVocalPath()))
-					&& isLibraryLoaded("shared")
-					&& isLibraryLoaded(directory);
-			}
-			
-			if (!loaded)
-				return new LoadingState(target, stopMusic, directory);
-			if (stopMusic && FlxG.sound.music != null)
-				FlxG.sound.music.stop();
+			loaded = isSoundLoaded(getSongPath())
+				&& (!PlayState.SONG.needsVoices || isSoundLoaded(getVocalPath()))
+				&& isLibraryLoaded("shared")
+				&& isLibraryLoaded(directory);
 		}
+
+		if (!loaded)
+			return new LoadingState(target, stopMusic, directory);
+		if (stopMusic && FlxG.sound.music != null)
+			FlxG.sound.music.stop();
 		return target;
 	}
 

@@ -47,31 +47,13 @@ class SaveVariables
 	public var keyFT:Float = 0.15;
 	public var keyXPos:Int = 90;
 	public var keyYPos:Int = 330;
-	public var ueHud:Bool = true;
-	public var hudZoomOut:Bool = true;
-	public var hudPosUE:String = 'LEFT';
-	public var sntf:Bool = true;
-	public var mmm:String = 'Universe';
-	public var ht:String = 'Classic';
-	public var dhb:Bool = true;
-	public var cc:Bool = true;
 	public var sh:Bool = true;
-	public var ec:Bool = true;
 	public var snm:Bool = false;
-	public var tng:Bool = true;
-	public var ib:Bool = true;
-	public var cm:Bool = false;
-	public var huet:Bool = false;
-	public var css:String = 'GF Sounds';
-	public var dcm:Bool = false;
 	public var uess:Bool = true;
-	public var lhpbgb:Bool = false;
 	public var longnotet:Float = 0.6;
 	public var darkmode:Bool = false;
 	public var ueresultscreen:Bool = true;
 	public var uems:Bool = true;
-	public var loadscreen:Bool = false;
-	public var hideOriCredits:Bool = false;
 	#if windows public var windows:Bool = false; #end
 
 	// offical launcherl mao
@@ -116,9 +98,6 @@ class SaveVariables
 		'sd' => false,
 		'hd' => false, // ermm,,,
 		'sn' => false, // this is shitty
-		'hdp2' => false,
-		'ipbr' => false, //
-		'ipbrv' => "Normal"
 	];
 	public var arrowRGB:Array<Array<FlxColor>> = [
 		[0xFFC24B99, 0xFFFFFFFF, 0xFF3C1F56],

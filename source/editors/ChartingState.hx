@@ -2087,7 +2087,7 @@ class ChartingState extends MusicBeatState
 			{
 				PlayState.chartingMode = false;
 				MusicBeatState.switchState(new editors.MasterEditorMenu());
-				FlxG.sound.playMusic(Paths.music("freakyMenu-" + ClientPrefs.data.mmm));
+				FlxG.sound.playMusic(Paths.music("freakyMenu"));
 				FlxG.mouse.visible = false;
 				return;
 			}
@@ -2481,7 +2481,7 @@ class ChartingState extends MusicBeatState
 					{
 						if ((playSoundBf.checked && note.mustPress) || (playSoundDad.checked && !note.mustPress))
 						{
-							var soundToPlay = "hitsound-" + (ClientPrefs.data.ht);
+							var soundToPlay = "hitsound";
 							if (_song.player1 == 'gf')
 							{ // Easter egg
 								soundToPlay = 'GF_' + Std.string(data + 1);

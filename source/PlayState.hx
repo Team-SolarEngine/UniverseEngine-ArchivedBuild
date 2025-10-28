@@ -1212,16 +1212,8 @@ class PlayState extends MusicBeatState
 		healthBar.visible = !ClientPrefs.data.hideHud;
 		healthBar.alpha = ClientPrefs.data.healthBarAlpha;
 		healthBarBG.sprTracker = healthBar;
-		if (ClientPrefs.data.lhpbgb)
-		{
-			add(healthBarBG);
-			add(healthBar);
-		}
-		else
-		{
 			add(healthBar);
 			add(healthBarBG);
-		}
 
 		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
 		iconP1.y = healthBar.y - 75;
@@ -1443,7 +1435,7 @@ class PlayState extends MusicBeatState
 
 		// PRECACHING MISS SOUNDS BECAUSE I THINK THEY CAN LAG PEOPLE AND FUCK THEM UP IDK HOW HAXE WORKS
 		if (ClientPrefs.data.hitsoundVolume > 0)
-			precacheList.set('hitsound-${ClientPrefs.data.ht}', 'sound');
+			precacheList.set('hitsound', 'sound');
 		precacheList.set('missnote1', 'sound');
 		precacheList.set('missnote2', 'sound');
 		precacheList.set('missnote3', 'sound');
@@ -4615,7 +4607,7 @@ class PlayState extends MusicBeatState
 				if (storyPlaylist.length <= 0)
 				{
 					WeekData.loadTheFirstEnabledMod();
-					FlxG.sound.playMusic(Paths.music("freakyMenu-" + ClientPrefs.data.mmm));
+					FlxG.sound.playMusic(Paths.music("freakyMenu"));
 
 					cancelMusicFadeTween();
 					if (FlxTransitionableState.skipNextTransIn)
@@ -4688,7 +4680,7 @@ class PlayState extends MusicBeatState
 					CustomFadeTransition.nextCamera = null;
 				}
 				MusicBeatState.switchState(new FreeplayState());
-				FlxG.sound.playMusic(Paths.music("freakyMenu-" + ClientPrefs.data.mmm));
+				FlxG.sound.playMusic(Paths.music("freakyMenu"));
 				changedDifficulty = false;
 			}
 			transitioning = true;
@@ -5373,9 +5365,9 @@ class PlayState extends MusicBeatState
 			if (cpuControlled && (note.ignoreNote || note.hitCausesMiss))
 				return;
 
-			if (ClientPrefs.data.hitsoundVolume > 0 && !note.hitsoundDisabled && ClientPrefs.data.ht != "Baldi")
+			if (ClientPrefs.data.hitsoundVolume > 0 && !note.hitsoundDisabled)
 			{
-				FlxG.sound.play(Paths.sound("hitsound-" + ClientPrefs.data.ht), ClientPrefs.data.hitsoundVolume);
+				FlxG.sound.play(Paths.sound("hitsound"), ClientPrefs.data.hitsoundVolume);
 			}
 
 			if (note.hitCausesMiss)
